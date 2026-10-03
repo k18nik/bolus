@@ -140,6 +140,25 @@ public enum BackupMigrator {
 
     static func uuid(_ value: JSONValue?) -> UUID? { value?.stringValue.flatMap(UUID.init(uuidString:)) }
 
+    /// Deterministic UUID (RFC 9562 version 8) for rows the server exported without a usable
+    /// identifier, so importing the same file again recognises them instead of adding copies.
+    static func stableUUID(_ parts: String...) -> UUID {
+        let bytes = Array(parts.joined(separator: "\u{1F}").utf8)
+        func fnv1a(_ salt: UInt8) -> UInt64 {
+            var hash: UInt64 = 0xcbf2_9ce4_8422_2325
+            for byte in [salt] + bytes { hash = (hash ^ UInt64(byte)) &* 0x0000_0100_0000_01b3 }
+            return hash
+        }
+        var raw = [UInt8](repeating: 0, count: 16)
+        for (offset, word) in [fnv1a(0x41), fnv1a(0x42)].enumerated() {
+            for index in 0..<8 { raw[offset * 8 + index] = UInt8(truncatingIfNeeded: word >> (56 - 8 * UInt64(index))) }
+        }
+        raw[6] = (raw[6] & 0x0F) | 0x80
+        raw[8] = (raw[8] & 0x3F) | 0x80
+        return UUID(uuid: (raw[0], raw[1], raw[2], raw[3], raw[4], raw[5], raw[6], raw[7],
+                           raw[8], raw[9], raw[10], raw[11], raw[12], raw[13], raw[14], raw[15]))
+    }
+
     /// v1 (server JSON export) → v2 (local document).
     static func migrateServerV1(_ root: JSONValue) throws -> JSONValue {
         let datasets = root["datasets"] ?? .object([:])
@@ -174,7 +193,7 @@ public enum BackupMigrator {
                 dedupe = .string("bolus:" + calculation.lowercased())
                 calculationEntries[calculation.lowercased()] = id.lowercased()
             }
-            let identity = UUID(uuidString: id)?.uuidString.lowercased() ?? UUID().uuidString.lowercased()
+            let identity = (UUID(uuidString: id) ?? stableUUID("server-entry", id)).uuidString.lowercased()
             entries.append(.object([
                 "id": .string(identity), "client_id": .string(identity), "kind": .string(kind), "occurred_at": .string(occurred),
                 "data": data, "created_at": .string(updated), "updated_at": .string(updated),
@@ -235,7 +254,7 @@ public enum BackupMigrator {
                 foods[index] = .object(existing)
                 continue
             }
-            data["id"] = .string((uuid(row["id"]) ?? UUID()).uuidString.lowercased())
+            data["id"] = .string((uuid(row["id"]) ?? stableUUID("server-favorite", key)).uuidString.lowercased())
             data["source"] = .string(provider)
             data["external_id"] = .string(external)
             data.removeValue(forKey: "provider")
@@ -256,7 +275,8 @@ public enum BackupMigrator {
             return .object(object)
         }
         let audit: [JSONValue] = rows("Audit").map { row in
-            .object(["id": .string(UUID().uuidString.lowercased()), "timestamp": row["timestamp"] ?? .string(ISODate.format(exportedAt)),
+            .object(["id": .string(stableUUID("server-audit", String(decoding: BolusJSON.data(row), as: UTF8.self)).uuidString.lowercased()),
+                     "timestamp": row["timestamp"] ?? .string(ISODate.format(exportedAt)),
                      "action": row["action"] ?? .string("unknown"), "entity_type": row["entity_type"] ?? .string(""),
                      "entity_id": row["entity_id"] ?? .string(""),
                      "details": .object(["old_value": row["old_value"] ?? .null, "new_value": row["new_value"] ?? .null, "migrated_from": .string("server")])])

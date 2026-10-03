@@ -188,6 +188,30 @@ final class BackupTests: XCTestCase {
         XCTAssertEqual(plan.conflicts, ["запись \(key)"])
     }
 
+    /// Importing the same server export twice adds nothing: rows the server exported without
+    /// an identifier (the audit log) get identifiers derived from their content.
+    func testServerBackupReimportAddsNothing() throws {
+        let data = try Fixture.data("legacy_server_backup")
+        let first = try BackupMigrator.decode(data)
+        let existing = ExistingData(profiles: first.therapyProfiles, entries: first.entries, calculations: first.bolusCalculations,
+                                    foods: first.foods, cycles: first.cycles, insights: first.aiInsights, audit: first.auditEvents)
+        let again = BackupImportPlanner.plan(try BackupMigrator.decode(data), existing: existing)
+        XCTAssertEqual(again.newCount, 0)
+        XCTAssertTrue(again.conflicts.isEmpty, "\(again.conflicts)")
+        XCTAssertEqual(again.identical, first.recordCount)
+        XCTAssertEqual(Set(first.auditEvents.map(\.id)).count, first.auditEvents.count, "distinct rows keep distinct identifiers")
+    }
+
+    func testStableUUIDIsDeterministicVersion8() {
+        let a = BackupMigrator.stableUUID("server-audit", "row")
+        XCTAssertEqual(a, BackupMigrator.stableUUID("server-audit", "row"))
+        XCTAssertNotEqual(a, BackupMigrator.stableUUID("server-audit", "row2"))
+        XCTAssertNotEqual(a, BackupMigrator.stableUUID("server-entry", "row"))
+        let text = a.uuidString.lowercased()
+        XCTAssertEqual(Array(text)[14], "8", "version 8")
+        XCTAssertTrue("89ab".contains(Array(text)[19]), "RFC 9562 variant")
+    }
+
     /// A real JSON export of the former server (`scripts/generate_legacy_backup_fixture.py`).
     func testMigratesServerBackupV1() throws {
         let document = try BackupMigrator.decode(try Fixture.data("legacy_server_backup"))
