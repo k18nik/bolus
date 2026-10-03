@@ -15,7 +15,7 @@ from app.services.security import current_user,login_session,rate_limit,hasher,v
 from app.services.demo import seed_demo
 from app.repositories.diary import entry_dict,profile_for,audit,period_entries,current_iob,utc
 from app.bolus.engine import calculate,select_segment,ALGORITHM_VERSION
-from app.analytics.engine import summarize,hourly_profile
+from app.analytics.engine import summarize,hourly_profile,daily_breakdown,activity_response
 from app.cycle.engine import cycle_status
 from app.food.providers import search_foods
 from app.imports.apple_health import parse_apple_health
@@ -234,21 +234,8 @@ def analytics(days:int=Query(default=7,ge=1,le=366),hours:int|None=Query(default
     rows=period_entries(db,user.id,df,dt,user.timezone)
     if hours:rows=[e for e in rows if datetime.fromisoformat(e['occurred_at'])>=datetime.now(timezone.utc)-timedelta(hours=hours)]
     metrics=summarize(rows,1 if hours else (dt-df).days+1,user.timezone)
-    daily=[]
-    for offset in range((dt-df).days+1):
-        day=df+timedelta(days=offset);r=[e for e in rows if datetime.fromisoformat(e['occurred_at']).astimezone(ZoneInfo(user.timezone)).date()==day]
-        workouts=[e for e in r if e['kind']=='activity']
-        daily.append({'date':day.isoformat(),**summarize(r,1,user.timezone),'activity_minutes':sum(e['data']['duration_minutes'] for e in workouts)})
-    # Context observations, no causal claims and no dosing modifiers.
-    activity_response=[]
-    for e in rows:
-        if e['kind']!='activity':continue
-        start=datetime.fromisoformat(e['occurred_at']);end=start+timedelta(minutes=e['data']['duration_minutes'])
-        before=[g for g in rows if g['kind']=='glucose' and start-timedelta(minutes=60)<=datetime.fromisoformat(g['occurred_at'])<=start]
-        after=[g for g in rows if g['kind']=='glucose' and end<=datetime.fromisoformat(g['occurred_at'])<=end+timedelta(hours=2)]
-        if before and after:
-            a=before[-1]['data']['value_mmol'];b=after[0]['data']['value_mmol'];activity_response.append({'activity_id':e['id'],'name':e['data']['name'],'before':a,'after':b,'change':round(b-a,2),'source':e['data'].get('source','manual')})
-    return {'period':{'from':str(df),'to':str(dt)},'metrics':metrics,'daily':daily,'hourly':hourly_profile(rows,user.timezone),'activity_response':activity_response,'activity_minutes':sum(e['data']['duration_minutes'] for e in rows if e['kind']=='activity'),'patterns':[],'entries':rows}
+    daily=daily_breakdown(rows,df,dt,user.timezone)
+    return {'period':{'from':str(df),'to':str(dt)},'metrics':metrics,'daily':daily,'hourly':hourly_profile(rows,user.timezone),'activity_response':activity_response(rows),'activity_minutes':sum(e['data']['duration_minutes'] for e in rows if e['kind']=='activity'),'patterns':[],'entries':rows}
 
 @router.post('/imports/apple-health')
 async def apple_import(file:UploadFile=File(...),user=Depends(current_user),db:Session=Depends(get_db)):

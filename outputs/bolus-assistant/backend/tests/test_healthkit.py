@@ -1,9 +1,10 @@
 from datetime import datetime,timezone,timedelta
 from uuid import uuid4
+from zoneinfo import ZoneInfo
 
 def payload(client):
     at=datetime.now(timezone.utc)
-    return {'expected_user_id':client.get('/api/users/me').json()['id'],'timezone':'Europe/Moscow','workouts':[{'id':str(uuid4()),'name':'Ходьба','source_name':'Apple Watch','started_at':(at-timedelta(hours=1)).isoformat(),'ended_at':at.isoformat(),'duration_minutes':55,'active_energy':150}],'days':[{'date':at.date().isoformat(),'steps':4000,'exercise_minutes':55}]}
+    return {'expected_user_id':client.get('/api/users/me').json()['id'],'timezone':'Europe/Moscow','workouts':[{'id':str(uuid4()),'name':'Ходьба','source_name':'Apple Watch','started_at':(at-timedelta(hours=1)).isoformat(),'ended_at':at.isoformat(),'duration_minutes':55,'active_energy':150}],'days':[{'date':at.astimezone(ZoneInfo('Europe/Moscow')).date().isoformat(),'steps':4000,'exercise_minutes':55}]}
 
 def test_sync_upserts_observations_only(demo):
     p=payload(demo);iob=demo.get('/api/iob').json()['iob'];profile=demo.get('/api/profile').json()

@@ -1,0 +1,1090 @@
+{
+ "schema_version": "1.0",
+ "exported_at": "2026-10-03T22:47:01.920927+00:00",
+ "user": {
+  "id": "0ef8f7f6-2168-4d1e-b3fb-058d392ba1f8",
+  "email": "legacy@example.com",
+  "name": "Мария",
+  "timezone": "Europe/Moscow",
+  "locale": "ru",
+  "glucose_unit": "mmol/L",
+  "weight_unit": "kg",
+  "theme_id": "light",
+  "mascot_id": "cat",
+  "created_at": "2026-10-03T22:47:01.588975+00:00"
+ },
+ "entries": [
+  {
+   "id": "1895a3f9-380a-4696-a75c-076b8b3d9ca5",
+   "kind": "glucose",
+   "occurred_at": "2026-10-03T22:44:01.478814+00:00",
+   "data": {
+    "value": 7.4,
+    "unit": "mmol/L",
+    "source": "manual",
+    "trend": "unknown",
+    "note": "",
+    "value_mmol": 7.4
+   },
+   "version": 1,
+   "updated_at": "2026-10-03T22:47:01.668892+00:00"
+  },
+  {
+   "id": "12113554-e77a-45d2-bc1c-d55e3cb5f94b",
+   "kind": "glucose",
+   "occurred_at": "2026-10-03T17:47:01.478814+00:00",
+   "data": {
+    "value": 162.0,
+    "unit": "mg/dL",
+    "source": "manual",
+    "trend": "unknown",
+    "note": "",
+    "value_mmol": 9.0
+   },
+   "version": 1,
+   "updated_at": "2026-10-03T22:47:01.676535+00:00"
+  },
+  {
+   "id": "7818a933-d261-40b1-bb32-14dd5bb60e8b",
+   "kind": "meal",
+   "occurred_at": "2026-10-03T22:45:01.478814+00:00",
+   "data": {
+    "name": "Обед",
+    "meal_type": "lunch",
+    "items": [
+     {
+      "carbs": 55.548,
+      "protein": 10.4,
+      "fat": 1.6,
+      "calories": 284.4,
+      "fiber": 3.2,
+      "sugar": 1.1,
+      "name_snapshot": "Макароны",
+      "food_source": "custom",
+      "food_id": "",
+      "grams": 180.0,
+      "amount": 180.0,
+      "unit": "g"
+     },
+     {
+      "carbs": 26.450000000000003,
+      "protein": 0.0,
+      "fat": 0.0,
+      "calories": 102.5,
+      "fiber": null,
+      "sugar": null,
+      "name_snapshot": "Кола",
+      "food_source": "yazio",
+      "food_id": "catalog-1",
+      "grams": null,
+      "amount": 250.0,
+      "unit": "ml"
+     }
+    ],
+    "note": "",
+    "total_carbs": 81.998,
+    "total_protein": 10.4,
+    "total_fat": 1.6,
+    "total_calories": 386.9
+   },
+   "version": 1,
+   "updated_at": "2026-10-03T22:47:01.684045+00:00"
+  },
+  {
+   "id": "aacfc650-01d9-4db4-959b-28232206afd3",
+   "kind": "insulin",
+   "occurred_at": "2026-10-03T12:47:01.478814+00:00",
+   "data": {
+    "units": 14.0,
+    "insulin_type": "basal",
+    "insulin_name": "Тресиба",
+    "purpose": "basal",
+    "note": "",
+    "insulin_id": "tresiba",
+    "active_ingredient": "инсулин деглудек",
+    "dose_increment": 1.0,
+    "dia": null,
+    "action_model": "basal-excluded"
+   },
+   "version": 1,
+   "updated_at": "2026-10-03T22:47:01.693435+00:00"
+  },
+  {
+   "id": "af61460c-8b2c-48d4-9620-35eba72e813e",
+   "kind": "activity",
+   "occurred_at": "2026-10-03T18:47:01.478814+00:00",
+   "data": {
+    "name": "Ходьба",
+    "duration_minutes": 40,
+    "intensity": "moderate",
+    "note": "",
+    "source": "manual"
+   },
+   "version": 1,
+   "updated_at": "2026-10-03T22:47:01.701112+00:00"
+  },
+  {
+   "id": "36a8378a-f8d4-4070-b268-b93c1f5da081",
+   "kind": "note",
+   "occurred_at": "2026-10-03T21:47:01.478814+00:00",
+   "data": {
+    "note": "=формула не исполняется"
+   },
+   "version": 1,
+   "updated_at": "2026-10-03T22:47:01.708606+00:00"
+  },
+  {
+   "id": "1f982222-239e-433b-b0c5-b14c26ee1174",
+   "kind": "insulin",
+   "occurred_at": "2026-10-03T22:47:01.724065+00:00",
+   "data": {
+    "units": 8.0,
+    "insulin_type": "rapid",
+    "insulin_name": "Фиасп",
+    "purpose": "meal_and_correction",
+    "dia": 4.0,
+    "action_model": "linear-remaining-v1.0.0",
+    "related_bolus_calculation_id": "3411a7e6-e0fc-4ac7-997d-76ae59fc0156",
+    "related_meal_id": "7818a933-d261-40b1-bb32-14dd5bb60e8b",
+    "note": "",
+    "dose_increment": 1.0,
+    "insulin_id": "fiasp",
+    "active_ingredient": "инсулин аспарт"
+   },
+   "version": 1,
+   "updated_at": "2026-10-03T22:47:01.731909+00:00"
+  },
+  {
+   "id": "3c7c1482-afc9-4c5e-8517-d49b24cacc66",
+   "kind": "activity",
+   "occurred_at": "2026-10-03T19:47:01.478814+00:00",
+   "data": {
+    "name": "Бег",
+    "source_name": "Apple Watch",
+    "duration_minutes": 35.0,
+    "active_energy": 310.0,
+    "distance_km": 5.2,
+    "source": "apple_health",
+    "source_kind": "healthkit",
+    "external_id": "8f4c3a5e-1b2d-4c6e-9f00-112233445566",
+    "ended_at": "2026-10-03T20:22:01.478814+00:00",
+    "intensity": "unknown",
+    "note": "Импортировано из Apple «Здоровье»"
+   },
+   "version": 1,
+   "updated_at": "2026-10-03T22:47:01.756864+00:00"
+  },
+  {
+   "id": "6123540e-7fc8-4fd9-b500-7b46210d8299",
+   "kind": "activity_summary",
+   "occurred_at": "2026-10-01T21:00:00+00:00",
+   "data": {
+    "steps": 8412,
+    "exercise_minutes": 41.0,
+    "name": "Активность за день",
+    "source": "apple_health",
+    "source_kind": "healthkit",
+    "local_date": "2026-10-02",
+    "timezone": "Europe/Moscow",
+    "note": "Дневная сводка; не суммируется с тренировками"
+   },
+   "version": 1,
+   "updated_at": "2026-10-03T22:47:01.757953+00:00"
+  }
+ ],
+ "datasets": {
+  "Glucose": [
+   {
+    "id": "1895a3f9-380a-4696-a75c-076b8b3d9ca5",
+    "timestamp": "2026-10-04T01:44:01.478814+03:00",
+    "value": 7.4,
+    "unit": "mmol/L",
+    "source": "manual",
+    "trend": "unknown",
+    "note": "",
+    "value_mmol": 7.4
+   },
+   {
+    "id": "12113554-e77a-45d2-bc1c-d55e3cb5f94b",
+    "timestamp": "2026-10-03T20:47:01.478814+03:00",
+    "value": 9.0,
+    "unit": "mmol/L",
+    "source": "manual",
+    "trend": "unknown",
+    "note": "",
+    "value_mmol": 9.0
+   }
+  ],
+  "Insulin": [
+   {
+    "id": "aacfc650-01d9-4db4-959b-28232206afd3",
+    "timestamp": "2026-10-03T15:47:01.478814+03:00",
+    "units": 14.0,
+    "insulin_type": "basal",
+    "insulin_name": "Тресиба",
+    "purpose": "basal",
+    "note": "",
+    "insulin_id": "tresiba",
+    "active_ingredient": "инсулин деглудек",
+    "dose_increment": 1.0,
+    "dia": null,
+    "action_model": "basal-excluded"
+   },
+   {
+    "id": "1f982222-239e-433b-b0c5-b14c26ee1174",
+    "timestamp": "2026-10-04T01:47:01.724065+03:00",
+    "units": 8.0,
+    "insulin_type": "rapid",
+    "insulin_name": "Фиасп",
+    "purpose": "meal_and_correction",
+    "dia": 4.0,
+    "action_model": "linear-remaining-v1.0.0",
+    "related_bolus_calculation_id": "3411a7e6-e0fc-4ac7-997d-76ae59fc0156",
+    "related_meal_id": "7818a933-d261-40b1-bb32-14dd5bb60e8b",
+    "note": "",
+    "dose_increment": 1.0,
+    "insulin_id": "fiasp",
+    "active_ingredient": "инсулин аспарт"
+   }
+  ],
+  "Meals": [
+   {
+    "id": "7818a933-d261-40b1-bb32-14dd5bb60e8b",
+    "timestamp": "2026-10-04T01:45:01.478814+03:00",
+    "name": "Обед",
+    "meal_type": "lunch",
+    "note": "",
+    "total_carbs": 81.998,
+    "total_protein": 10.4,
+    "total_fat": 1.6,
+    "total_calories": 386.9
+   }
+  ],
+  "Activities": [
+   {
+    "id": "af61460c-8b2c-48d4-9620-35eba72e813e",
+    "timestamp": "2026-10-03T21:47:01.478814+03:00",
+    "name": "Ходьба",
+    "duration_minutes": 40,
+    "intensity": "moderate",
+    "note": "",
+    "source": "manual"
+   },
+   {
+    "id": "3c7c1482-afc9-4c5e-8517-d49b24cacc66",
+    "timestamp": "2026-10-03T22:47:01.478814+03:00",
+    "name": "Бег",
+    "source_name": "Apple Watch",
+    "duration_minutes": 35.0,
+    "active_energy": 310.0,
+    "distance_km": 5.2,
+    "source": "apple_health",
+    "source_kind": "healthkit",
+    "external_id": "8f4c3a5e-1b2d-4c6e-9f00-112233445566",
+    "ended_at": "2026-10-03T20:22:01.478814+00:00",
+    "intensity": "unknown",
+    "note": "Импортировано из Apple «Здоровье»"
+   }
+  ],
+  "Activity Summaries": [
+   {
+    "id": "6123540e-7fc8-4fd9-b500-7b46210d8299",
+    "timestamp": "2026-10-02T00:00:00+03:00",
+    "steps": 8412,
+    "exercise_minutes": 41.0,
+    "name": "Активность за день",
+    "source": "apple_health",
+    "source_kind": "healthkit",
+    "local_date": "2026-10-02",
+    "timezone": "Europe/Moscow",
+    "note": "Дневная сводка; не суммируется с тренировками"
+   }
+  ],
+  "Meal Items": [
+   {
+    "meal_id": "7818a933-d261-40b1-bb32-14dd5bb60e8b",
+    "carbs": 55.548,
+    "protein": 10.4,
+    "fat": 1.6,
+    "calories": 284.4,
+    "fiber": 3.2,
+    "sugar": 1.1,
+    "name_snapshot": "Макароны",
+    "food_source": "custom",
+    "food_id": "",
+    "grams": 180.0,
+    "amount": 180.0,
+    "unit": "g"
+   },
+   {
+    "meal_id": "7818a933-d261-40b1-bb32-14dd5bb60e8b",
+    "carbs": 26.450000000000003,
+    "protein": 0.0,
+    "fat": 0.0,
+    "calories": 102.5,
+    "fiber": null,
+    "sugar": null,
+    "name_snapshot": "Кола",
+    "food_source": "yazio",
+    "food_id": "catalog-1",
+    "grams": null,
+    "amount": 250.0,
+    "unit": "ml"
+   }
+  ],
+  "Cycle": [
+   {
+    "id": "fc86ada6-0288-4514-8aa5-7ab02eb5f78e",
+    "start_date": "2026-09-23",
+    "end_date": null,
+    "cycle_length": 29
+   }
+  ],
+  "Bolus Calculations": [
+   {
+    "id": "3411a7e6-e0fc-4ac7-997d-76ae59fc0156",
+    "calculated_at": "2026-10-03T22:47:01.716931+00:00",
+    "algorithm_version": "bolus-v1.1.0",
+    "actual_bolus": 8.0,
+    "input_snapshot": {
+     "glucose": 7.4,
+     "unit": "mmol/L",
+     "original_unit": "mmol/L",
+     "original_glucose": 7.4,
+     "carbs": 81.998,
+     "start_time": "00:00",
+     "end_time": "12:00",
+     "icr": 10.0,
+     "isf": 2.0,
+     "target": 6.0,
+     "correct_above": 7.0,
+     "dia": 4.0,
+     "max_bolus": 15.0,
+     "iob": 0.0,
+     "measured_at": "2026-10-03T22:44:01.478814+00:00",
+     "calculated_at": "2026-10-03T22:47:01.716931+00:00",
+     "timezone": "Europe/Moscow",
+     "profile_id": "e2772af1-43c5-4e23-8245-2301da9738fa",
+     "profile_version": 2,
+     "meal_id": "7818a933-d261-40b1-bb32-14dd5bb60e8b",
+     "iob_model": "linear-remaining-v1.0.0",
+     "bolus_increment": 1.0,
+     "rapid_insulin_name": "Фиасп",
+     "basal_insulin_name": "Тресиба",
+     "insulin_id": "fiasp",
+     "active_ingredient": "инсулин аспарт",
+     "insulin_type": "rapid"
+    },
+    "calculation_snapshot": {
+     "algorithm_version": "bolus-v1.1.0",
+     "calculation_status": "ok",
+     "recommended_bolus": 8.0,
+     "warnings": [],
+     "meal_bolus": 8.1998,
+     "raw_correction_bolus": 0.7,
+     "correction_bolus": 0.7,
+     "iob": 0.0,
+     "iob_adjustment": 0.0,
+     "cycle_adjustment": 0.0,
+     "personalization_adjustment": 0.0,
+     "unrounded_bolus": 8.8998,
+     "rounding_increment": 1.0,
+     "rounding_adjustment": 0.8998
+    }
+   },
+   {
+    "id": "02216292-8c8c-4302-b613-2e1b818371eb",
+    "calculated_at": "2026-10-03T22:47:01.740056+00:00",
+    "algorithm_version": "bolus-v1.1.0",
+    "actual_bolus": null,
+    "input_snapshot": {
+     "glucose": 7.4,
+     "unit": "mmol/L",
+     "original_unit": "mmol/L",
+     "original_glucose": 7.4,
+     "carbs": 20.0,
+     "start_time": "00:00",
+     "end_time": "12:00",
+     "icr": 10.0,
+     "isf": 2.0,
+     "target": 6.0,
+     "correct_above": 7.0,
+     "dia": 4.0,
+     "max_bolus": 15.0,
+     "iob": 7.9999911161111115,
+     "measured_at": "2026-10-03T20:47:01.478814+00:00",
+     "calculated_at": "2026-10-03T22:47:01.740056+00:00",
+     "timezone": "Europe/Moscow",
+     "profile_id": "e2772af1-43c5-4e23-8245-2301da9738fa",
+     "profile_version": 2,
+     "meal_id": null,
+     "iob_model": "linear-remaining-v1.0.0",
+     "bolus_increment": 1.0,
+     "rapid_insulin_name": "Фиасп",
+     "basal_insulin_name": "Тресиба",
+     "insulin_id": "fiasp",
+     "active_ingredient": "инсулин аспарт",
+     "insulin_type": "rapid"
+    },
+    "calculation_snapshot": {
+     "algorithm_version": "bolus-v1.1.0",
+     "calculation_status": "blocked",
+     "recommended_bolus": null,
+     "warnings": [
+      "stale_glucose"
+     ],
+     "meal_bolus": 0.0,
+     "raw_correction_bolus": 0.0,
+     "correction_bolus": 0.0,
+     "iob": 7.9999911161111115,
+     "iob_adjustment": 0.0,
+     "cycle_adjustment": 0.0,
+     "personalization_adjustment": 0.0
+    }
+   }
+  ],
+  "Therapy Profiles": [
+   {
+    "id": "ed780fd7-6fe5-4957-a52c-bd9024fccae0",
+    "version": 1,
+    "valid_from": "2026-10-03T22:47:01.649354+00:00",
+    "valid_to": "2026-10-03T22:47:01.658650+00:00",
+    "source": "manual",
+    "data": {
+     "diabetes_type": "type1",
+     "insulin_therapy_type": "MDI",
+     "rapid_insulin_name": "Фиасп",
+     "basal_insulin_name": "Тресиба",
+     "bolus_increment": 0.5,
+     "basal_increment": 1.0,
+     "max_bolus": 15.0,
+     "insulin_action_duration": 4.0,
+     "segments": [
+      {
+       "start_time": "00:00",
+       "end_time": "12:00",
+       "icr": 10.0,
+       "isf": 2.0,
+       "target": 6.0,
+       "correct_above": 7.0
+      },
+      {
+       "start_time": "12:00",
+       "end_time": "24:00",
+       "icr": 12.0,
+       "isf": 2.5,
+       "target": 6.0,
+       "correct_above": 7.5
+      }
+     ],
+     "confirmed": true
+    }
+   },
+   {
+    "id": "e2772af1-43c5-4e23-8245-2301da9738fa",
+    "version": 2,
+    "valid_from": "2026-10-03T22:47:01.659555+00:00",
+    "valid_to": null,
+    "source": "manual",
+    "data": {
+     "diabetes_type": "type1",
+     "insulin_therapy_type": "MDI",
+     "rapid_insulin_name": "Фиасп",
+     "basal_insulin_name": "Тресиба",
+     "bolus_increment": 1.0,
+     "basal_increment": 1.0,
+     "max_bolus": 15.0,
+     "insulin_action_duration": 4.0,
+     "segments": [
+      {
+       "start_time": "00:00",
+       "end_time": "12:00",
+       "icr": 10.0,
+       "isf": 2.0,
+       "target": 6.0,
+       "correct_above": 7.0
+      },
+      {
+       "start_time": "12:00",
+       "end_time": "24:00",
+       "icr": 12.0,
+       "isf": 2.5,
+       "target": 6.0,
+       "correct_above": 7.5
+      }
+     ],
+     "confirmed": true
+    }
+   }
+  ],
+  "Foods": [
+   {
+    "id": "86d44289-7ead-46e5-8636-940f5d366d41",
+    "name": "Сырник домашний",
+    "is_recipe": false,
+    "data": {
+     "carbs": 14.2,
+     "protein": 9.0,
+     "fat": 6.0,
+     "calories": 150.0,
+     "fiber": null,
+     "sugar": 4.0,
+     "base_unit": "g",
+     "name": "Сырник домашний",
+     "brand": "",
+     "serving_name": "1 шт",
+     "serving_weight": 60.0,
+     "barcode": null
+    }
+   },
+   {
+    "id": "d8612bf6-3a89-4d09-a9ef-4a8755b7c9fb",
+    "name": "Паста с колой",
+    "is_recipe": true,
+    "data": {
+     "name": "Паста с колой",
+     "brand": "Мои блюда",
+     "base_unit": "g",
+     "serving_name": "100 г",
+     "serving_weight": 100,
+     "carbs": 19.0693,
+     "protein": 2.4186,
+     "fat": 0.3721,
+     "calories": 89.9767,
+     "fiber": null,
+     "sugar": null,
+     "recipe": {
+      "name": "Паста с колой",
+      "ingredients": [
+       {
+        "carbs": 55.548,
+        "protein": 10.4,
+        "fat": 1.6,
+        "calories": 284.4,
+        "fiber": 3.2,
+        "sugar": 1.1,
+        "name_snapshot": "Макароны",
+        "food_source": "custom",
+        "food_id": "",
+        "grams": 180.0,
+        "amount": 180.0,
+        "unit": "g"
+       },
+       {
+        "carbs": 26.450000000000003,
+        "protein": 0.0,
+        "fat": 0.0,
+        "calories": 102.5,
+        "fiber": null,
+        "sugar": null,
+        "name_snapshot": "Кола",
+        "food_source": "yazio",
+        "food_id": "catalog-1",
+        "grams": null,
+        "amount": 250.0,
+        "unit": "ml"
+       }
+      ],
+      "cooked_weight": 430.0,
+      "servings": 2
+     },
+     "total": {
+      "carbs": 81.998,
+      "protein": 10.4,
+      "fat": 1.6,
+      "calories": 386.9,
+      "fiber": null,
+      "sugar": null
+     },
+     "per_serving": {
+      "carbs": 40.999,
+      "protein": 5.2,
+      "fat": 0.8,
+      "calories": 193.45,
+      "fiber": null,
+      "sugar": null
+     }
+    }
+   }
+  ],
+  "Notes": [
+   {
+    "id": "36a8378a-f8d4-4070-b268-b93c1f5da081",
+    "timestamp": "2026-10-03T21:47:01.478814+00:00",
+    "note": "=формула не исполняется"
+   }
+  ],
+  "Patterns": [],
+  "Food Favorites": [
+   {
+    "id": "61b9eaf9-b5f8-44eb-b13e-8da455524b95",
+    "food_key": "custom:86d44289-7ead-46e5-8636-940f5d366d41",
+    "data": {
+     "carbs": 14.2,
+     "protein": 9.0,
+     "fat": 6.0,
+     "calories": 150.0,
+     "fiber": null,
+     "sugar": 4.0,
+     "base_unit": "g",
+     "name": "Сырник домашний",
+     "brand": "",
+     "serving_name": "1 шт",
+     "serving_weight": 60.0,
+     "barcode": null,
+     "external_id": "86d44289-7ead-46e5-8636-940f5d366d41",
+     "provider": "custom"
+    }
+   },
+   {
+    "id": "745a0ca8-a8cd-40f9-ac65-e22a1361b0fe",
+    "food_key": "yazio:catalog-1",
+    "data": {
+     "carbs": 10.58,
+     "protein": 0.0,
+     "fat": 0.0,
+     "calories": 41.0,
+     "fiber": null,
+     "sugar": null,
+     "base_unit": "ml",
+     "name": "Кола",
+     "brand": "Coca Cola",
+     "serving_name": "100 мл",
+     "serving_weight": 100.0,
+     "barcode": null,
+     "external_id": "catalog-1",
+     "provider": "yazio"
+    }
+   }
+  ],
+  "AI Insights": [
+   {
+    "id": "416c1e92-bb8c-4a61-a217-8b879668195c",
+    "question": "Объясни расчёт",
+    "response": {
+     "summary": "Наблюдений пока мало.",
+     "observations": [
+      "Глюкоза записана дважды."
+     ],
+     "possible_explanations": [],
+     "questions": [
+      "Есть ли измерения после тренировки?"
+     ],
+     "safety_flags": [
+      "Ручные измерения не отражают весь день."
+     ]
+    },
+    "context": {
+     "period_days": 14,
+     "glucose_unit": "mmol/L",
+     "metrics": {
+      "sample_size": 2,
+      "coverage_method": "sample_based",
+      "mean_glucose": 8.2,
+      "coefficient_of_variation": 9.8,
+      "tir": 100.0,
+      "tbr": 0.0,
+      "tar": 0.0,
+      "daily_insulin": 1.57,
+      "basal_insulin": 1.0,
+      "bolus_insulin": 0.57,
+      "carbs_per_day": 5.9,
+      "corrections_per_day": 0.07,
+      "days": 14
+     },
+     "hourly_glucose": [
+      {
+       "hour": 1,
+       "mean": 7.4,
+       "count": 1
+      },
+      {
+       "hour": 20,
+       "mean": 9.0,
+       "count": 1
+      }
+     ],
+     "activity": {
+      "workouts": 2,
+      "minutes": 75.0,
+      "days_with_steps": 1,
+      "mean_steps_on_recorded_days": 8412
+     },
+     "therapy": {
+      "insulin_therapy_type": "MDI",
+      "rapid_insulin_name": "Фиасп",
+      "basal_insulin_name": "Тресиба",
+      "insulin_action_duration": 4.0,
+      "bolus_increment": 1.0,
+      "basal_increment": 1.0,
+      "rapid": {
+       "insulin_id": "fiasp",
+       "active_ingredient": "инсулин аспарт",
+       "insulin_type": "rapid"
+      },
+      "basal": {
+       "insulin_id": "tresiba",
+       "active_ingredient": "инсулин деглудек",
+       "insulin_type": "basal"
+      }
+     },
+     "cycle": {
+      "day": 12,
+      "phase": "late_follicular",
+      "label": "Поздняя фолликулярная фаза",
+      "estimated": true,
+      "cycle_length": 29,
+      "predicted_ovulation_date": "2026-10-07"
+     },
+     "bolus_summary": {
+      "calculations": 2,
+      "confirmed": 1,
+      "blocked": 1
+     },
+     "calculation": {
+      "input": {
+       "glucose": 7.4,
+       "carbs": 81.998,
+       "icr": 10.0,
+       "isf": 2.0,
+       "target": 6.0,
+       "correct_above": 7.0,
+       "dia": 4.0,
+       "iob": 0.0,
+       "bolus_increment": 1.0,
+       "rapid_insulin_name": "Фиасп",
+       "basal_insulin_name": "Тресиба"
+      },
+      "result": {
+       "algorithm_version": "bolus-v1.1.0",
+       "calculation_status": "ok",
+       "recommended_bolus": 8.0,
+       "warnings": [],
+       "meal_bolus": 8.1998,
+       "raw_correction_bolus": 0.7,
+       "correction_bolus": 0.7,
+       "iob": 0.0,
+       "iob_adjustment": 0.0,
+       "cycle_adjustment": 0.0,
+       "personalization_adjustment": 0.0,
+       "unrounded_bolus": 8.8998,
+       "rounding_increment": 1.0,
+       "rounding_adjustment": 0.8998
+      },
+      "actual_units": 8.0,
+      "algorithm_version": "bolus-v1.1.0"
+     }
+    },
+    "provider": "openai",
+    "model": "gpt-4.1-mini",
+    "usage": {
+     "input_tokens": 111,
+     "output_tokens": 42,
+     "total_tokens": 153
+    },
+    "calculation_id": "3411a7e6-e0fc-4ac7-997d-76ae59fc0156",
+    "created_at": "2026-10-03T22:47:01.824949+00:00"
+   }
+  ],
+  "Audit": [
+   {
+    "action": "therapy_profile_change",
+    "entity_type": "profile",
+    "entity_id": "ed780fd7-6fe5-4957-a52c-bd9024fccae0",
+    "old_value": null,
+    "new_value": {
+     "diabetes_type": "type1",
+     "insulin_therapy_type": "MDI",
+     "rapid_insulin_name": "Фиасп",
+     "basal_insulin_name": "Тресиба",
+     "bolus_increment": 0.5,
+     "basal_increment": 1.0,
+     "max_bolus": 15.0,
+     "insulin_action_duration": 4.0,
+     "segments": [
+      {
+       "start_time": "00:00",
+       "end_time": "12:00",
+       "icr": 10.0,
+       "isf": 2.0,
+       "target": 6.0,
+       "correct_above": 7.0
+      },
+      {
+       "start_time": "12:00",
+       "end_time": "24:00",
+       "icr": 12.0,
+       "isf": 2.5,
+       "target": 6.0,
+       "correct_above": 7.5
+      }
+     ],
+     "confirmed": true
+    },
+    "timestamp": "2026-10-03T22:47:01.650652+00:00"
+   },
+   {
+    "action": "therapy_profile_change",
+    "entity_type": "profile",
+    "entity_id": "e2772af1-43c5-4e23-8245-2301da9738fa",
+    "old_value": {
+     "diabetes_type": "type1",
+     "insulin_therapy_type": "MDI",
+     "rapid_insulin_name": "Фиасп",
+     "basal_insulin_name": "Тресиба",
+     "bolus_increment": 0.5,
+     "basal_increment": 1.0,
+     "max_bolus": 15.0,
+     "insulin_action_duration": 4.0,
+     "segments": [
+      {
+       "start_time": "00:00",
+       "end_time": "12:00",
+       "icr": 10.0,
+       "isf": 2.0,
+       "target": 6.0,
+       "correct_above": 7.0
+      },
+      {
+       "start_time": "12:00",
+       "end_time": "24:00",
+       "icr": 12.0,
+       "isf": 2.5,
+       "target": 6.0,
+       "correct_above": 7.5
+      }
+     ],
+     "confirmed": true
+    },
+    "new_value": {
+     "diabetes_type": "type1",
+     "insulin_therapy_type": "MDI",
+     "rapid_insulin_name": "Фиасп",
+     "basal_insulin_name": "Тресиба",
+     "bolus_increment": 1.0,
+     "basal_increment": 1.0,
+     "max_bolus": 15.0,
+     "insulin_action_duration": 4.0,
+     "segments": [
+      {
+       "start_time": "00:00",
+       "end_time": "12:00",
+       "icr": 10.0,
+       "isf": 2.0,
+       "target": 6.0,
+       "correct_above": 7.0
+      },
+      {
+       "start_time": "12:00",
+       "end_time": "24:00",
+       "icr": 12.0,
+       "isf": 2.5,
+       "target": 6.0,
+       "correct_above": 7.5
+      }
+     ],
+     "confirmed": true
+    },
+    "timestamp": "2026-10-03T22:47:01.659986+00:00"
+   },
+   {
+    "action": "entry_create",
+    "entity_type": "glucose",
+    "entity_id": "1895a3f9-380a-4696-a75c-076b8b3d9ca5",
+    "old_value": null,
+    "new_value": {
+     "value": 7.4,
+     "unit": "mmol/L",
+     "source": "manual",
+     "trend": "unknown",
+     "note": "",
+     "value_mmol": 7.4
+    },
+    "timestamp": "2026-10-03T22:47:01.669501+00:00"
+   },
+   {
+    "action": "entry_create",
+    "entity_type": "glucose",
+    "entity_id": "12113554-e77a-45d2-bc1c-d55e3cb5f94b",
+    "old_value": null,
+    "new_value": {
+     "value": 162.0,
+     "unit": "mg/dL",
+     "source": "manual",
+     "trend": "unknown",
+     "note": "",
+     "value_mmol": 9.0
+    },
+    "timestamp": "2026-10-03T22:47:01.677012+00:00"
+   },
+   {
+    "action": "entry_create",
+    "entity_type": "meal",
+    "entity_id": "7818a933-d261-40b1-bb32-14dd5bb60e8b",
+    "old_value": null,
+    "new_value": {
+     "name": "Обед",
+     "meal_type": "lunch",
+     "items": [
+      {
+       "carbs": 55.548,
+       "protein": 10.4,
+       "fat": 1.6,
+       "calories": 284.4,
+       "fiber": 3.2,
+       "sugar": 1.1,
+       "name_snapshot": "Макароны",
+       "food_source": "custom",
+       "food_id": "",
+       "grams": 180.0,
+       "amount": 180.0,
+       "unit": "g"
+      },
+      {
+       "carbs": 26.450000000000003,
+       "protein": 0.0,
+       "fat": 0.0,
+       "calories": 102.5,
+       "fiber": null,
+       "sugar": null,
+       "name_snapshot": "Кола",
+       "food_source": "yazio",
+       "food_id": "catalog-1",
+       "grams": null,
+       "amount": 250.0,
+       "unit": "ml"
+      }
+     ],
+     "note": "",
+     "total_carbs": 81.998,
+     "total_protein": 10.4,
+     "total_fat": 1.6,
+     "total_calories": 386.9
+    },
+    "timestamp": "2026-10-03T22:47:01.684583+00:00"
+   },
+   {
+    "action": "entry_create",
+    "entity_type": "insulin",
+    "entity_id": "aacfc650-01d9-4db4-959b-28232206afd3",
+    "old_value": null,
+    "new_value": {
+     "units": 14.0,
+     "insulin_type": "basal",
+     "insulin_name": "Тресиба",
+     "purpose": "basal",
+     "note": "",
+     "insulin_id": "tresiba",
+     "active_ingredient": "инсулин деглудек",
+     "dose_increment": 1.0,
+     "dia": null,
+     "action_model": "basal-excluded"
+    },
+    "timestamp": "2026-10-03T22:47:01.693927+00:00"
+   },
+   {
+    "action": "entry_create",
+    "entity_type": "activity",
+    "entity_id": "af61460c-8b2c-48d4-9620-35eba72e813e",
+    "old_value": null,
+    "new_value": {
+     "name": "Ходьба",
+     "duration_minutes": 40,
+     "intensity": "moderate",
+     "note": "",
+     "source": "manual"
+    },
+    "timestamp": "2026-10-03T22:47:01.701531+00:00"
+   },
+   {
+    "action": "entry_create",
+    "entity_type": "note",
+    "entity_id": "36a8378a-f8d4-4070-b268-b93c1f5da081",
+    "old_value": null,
+    "new_value": {
+     "note": "=формула не исполняется"
+    },
+    "timestamp": "2026-10-03T22:47:01.709084+00:00"
+   },
+   {
+    "action": "bolus_calculation",
+    "entity_type": "calculation",
+    "entity_id": "3411a7e6-e0fc-4ac7-997d-76ae59fc0156",
+    "old_value": null,
+    "new_value": {
+     "algorithm_version": "bolus-v1.1.0",
+     "status": "ok"
+    },
+    "timestamp": "2026-10-03T22:47:01.720847+00:00"
+   },
+   {
+    "action": "bolus_confirmation",
+    "entity_type": "calculation",
+    "entity_id": "3411a7e6-e0fc-4ac7-997d-76ae59fc0156",
+    "old_value": null,
+    "new_value": {
+     "units": 8.0,
+     "insulin_type": "rapid",
+     "insulin_name": "Фиасп",
+     "purpose": "meal_and_correction",
+     "dia": 4.0,
+     "action_model": "linear-remaining-v1.0.0",
+     "related_bolus_calculation_id": "3411a7e6-e0fc-4ac7-997d-76ae59fc0156",
+     "related_meal_id": "7818a933-d261-40b1-bb32-14dd5bb60e8b",
+     "note": "",
+     "dose_increment": 1.0,
+     "insulin_id": "fiasp",
+     "active_ingredient": "инсулин аспарт"
+    },
+    "timestamp": "2026-10-03T22:47:01.732601+00:00"
+   },
+   {
+    "action": "bolus_calculation",
+    "entity_type": "calculation",
+    "entity_id": "02216292-8c8c-4302-b613-2e1b818371eb",
+    "old_value": null,
+    "new_value": {
+     "algorithm_version": "bolus-v1.1.0",
+     "status": "blocked"
+    },
+    "timestamp": "2026-10-03T22:47:01.741542+00:00"
+   },
+   {
+    "action": "healthkit_sync",
+    "entity_type": "import",
+    "entity_id": "0ef8f7f6-2168-4d1e-b3fb-058d392ba1f8",
+    "old_value": null,
+    "new_value": {
+     "inserted": 2,
+     "updated": 0,
+     "unchanged": 0
+    },
+    "timestamp": "2026-10-03T22:47:01.757688+00:00"
+   },
+   {
+    "action": "ai_settings_change",
+    "entity_type": "ai_settings",
+    "entity_id": "0ef8f7f6-2168-4d1e-b3fb-058d392ba1f8",
+    "old_value": null,
+    "new_value": {
+     "provider": "openai",
+     "model": "gpt-4.1-mini",
+     "consent": true,
+     "key_updated": true
+    },
+    "timestamp": "2026-10-03T22:47:01.807207+00:00"
+   },
+   {
+    "action": "ai_insight",
+    "entity_type": "ai_insight",
+    "entity_id": "416c1e92-bb8c-4a61-a217-8b879668195c",
+    "old_value": null,
+    "new_value": {
+     "model": "gpt-4.1-mini",
+     "total_tokens": 153
+    },
+    "timestamp": "2026-10-03T22:47:01.825672+00:00"
+   }
+  ]
+ }
+}

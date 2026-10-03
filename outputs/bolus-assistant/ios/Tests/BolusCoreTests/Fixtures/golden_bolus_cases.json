@@ -1,0 +1,1562 @@
+[
+  {
+    "id": "golden-001",
+    "input": {
+      "glucose": 4,
+      "carbs": 0,
+      "icr": 8,
+      "isf": 2,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 0.0
+  },
+  {
+    "id": "golden-002",
+    "input": {
+      "glucose": 4,
+      "carbs": 0,
+      "icr": 8,
+      "isf": 2,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 0.0
+  },
+  {
+    "id": "golden-003",
+    "input": {
+      "glucose": 4,
+      "carbs": 0,
+      "icr": 8,
+      "isf": 3,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 0.0
+  },
+  {
+    "id": "golden-004",
+    "input": {
+      "glucose": 4,
+      "carbs": 0,
+      "icr": 8,
+      "isf": 3,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 0.0
+  },
+  {
+    "id": "golden-005",
+    "input": {
+      "glucose": 4,
+      "carbs": 0,
+      "icr": 10,
+      "isf": 2,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 0.0
+  },
+  {
+    "id": "golden-006",
+    "input": {
+      "glucose": 4,
+      "carbs": 0,
+      "icr": 10,
+      "isf": 2,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 0.0
+  },
+  {
+    "id": "golden-007",
+    "input": {
+      "glucose": 4,
+      "carbs": 0,
+      "icr": 10,
+      "isf": 3,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 0.0
+  },
+  {
+    "id": "golden-008",
+    "input": {
+      "glucose": 4,
+      "carbs": 0,
+      "icr": 10,
+      "isf": 3,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 0.0
+  },
+  {
+    "id": "golden-009",
+    "input": {
+      "glucose": 4,
+      "carbs": 30,
+      "icr": 8,
+      "isf": 2,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 2.7
+  },
+  {
+    "id": "golden-010",
+    "input": {
+      "glucose": 4,
+      "carbs": 30,
+      "icr": 8,
+      "isf": 2,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 1.7
+  },
+  {
+    "id": "golden-011",
+    "input": {
+      "glucose": 4,
+      "carbs": 30,
+      "icr": 8,
+      "isf": 3,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 3.0
+  },
+  {
+    "id": "golden-012",
+    "input": {
+      "glucose": 4,
+      "carbs": 30,
+      "icr": 8,
+      "isf": 3,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 2.0
+  },
+  {
+    "id": "golden-013",
+    "input": {
+      "glucose": 4,
+      "carbs": 30,
+      "icr": 10,
+      "isf": 2,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 2.0
+  },
+  {
+    "id": "golden-014",
+    "input": {
+      "glucose": 4,
+      "carbs": 30,
+      "icr": 10,
+      "isf": 2,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 1.0
+  },
+  {
+    "id": "golden-015",
+    "input": {
+      "glucose": 4,
+      "carbs": 30,
+      "icr": 10,
+      "isf": 3,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 2.3
+  },
+  {
+    "id": "golden-016",
+    "input": {
+      "glucose": 4,
+      "carbs": 30,
+      "icr": 10,
+      "isf": 3,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 1.3
+  },
+  {
+    "id": "golden-017",
+    "input": {
+      "glucose": 4,
+      "carbs": 62,
+      "icr": 8,
+      "isf": 2,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 6.7
+  },
+  {
+    "id": "golden-018",
+    "input": {
+      "glucose": 4,
+      "carbs": 62,
+      "icr": 8,
+      "isf": 2,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 5.7
+  },
+  {
+    "id": "golden-019",
+    "input": {
+      "glucose": 4,
+      "carbs": 62,
+      "icr": 8,
+      "isf": 3,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 7.0
+  },
+  {
+    "id": "golden-020",
+    "input": {
+      "glucose": 4,
+      "carbs": 62,
+      "icr": 8,
+      "isf": 3,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 6.0
+  },
+  {
+    "id": "golden-021",
+    "input": {
+      "glucose": 4,
+      "carbs": 62,
+      "icr": 10,
+      "isf": 2,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 5.2
+  },
+  {
+    "id": "golden-022",
+    "input": {
+      "glucose": 4,
+      "carbs": 62,
+      "icr": 10,
+      "isf": 2,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 4.2
+  },
+  {
+    "id": "golden-023",
+    "input": {
+      "glucose": 4,
+      "carbs": 62,
+      "icr": 10,
+      "isf": 3,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 5.5
+  },
+  {
+    "id": "golden-024",
+    "input": {
+      "glucose": 4,
+      "carbs": 62,
+      "icr": 10,
+      "isf": 3,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 4.5
+  },
+  {
+    "id": "golden-025",
+    "input": {
+      "glucose": 6,
+      "carbs": 0,
+      "icr": 8,
+      "isf": 2,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 0.0
+  },
+  {
+    "id": "golden-026",
+    "input": {
+      "glucose": 6,
+      "carbs": 0,
+      "icr": 8,
+      "isf": 2,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 0.0
+  },
+  {
+    "id": "golden-027",
+    "input": {
+      "glucose": 6,
+      "carbs": 0,
+      "icr": 8,
+      "isf": 3,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 0.0
+  },
+  {
+    "id": "golden-028",
+    "input": {
+      "glucose": 6,
+      "carbs": 0,
+      "icr": 8,
+      "isf": 3,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 0.0
+  },
+  {
+    "id": "golden-029",
+    "input": {
+      "glucose": 6,
+      "carbs": 0,
+      "icr": 10,
+      "isf": 2,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 0.0
+  },
+  {
+    "id": "golden-030",
+    "input": {
+      "glucose": 6,
+      "carbs": 0,
+      "icr": 10,
+      "isf": 2,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 0.0
+  },
+  {
+    "id": "golden-031",
+    "input": {
+      "glucose": 6,
+      "carbs": 0,
+      "icr": 10,
+      "isf": 3,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 0.0
+  },
+  {
+    "id": "golden-032",
+    "input": {
+      "glucose": 6,
+      "carbs": 0,
+      "icr": 10,
+      "isf": 3,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 0.0
+  },
+  {
+    "id": "golden-033",
+    "input": {
+      "glucose": 6,
+      "carbs": 30,
+      "icr": 8,
+      "isf": 2,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 3.7
+  },
+  {
+    "id": "golden-034",
+    "input": {
+      "glucose": 6,
+      "carbs": 30,
+      "icr": 8,
+      "isf": 2,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 2.7
+  },
+  {
+    "id": "golden-035",
+    "input": {
+      "glucose": 6,
+      "carbs": 30,
+      "icr": 8,
+      "isf": 3,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 3.7
+  },
+  {
+    "id": "golden-036",
+    "input": {
+      "glucose": 6,
+      "carbs": 30,
+      "icr": 8,
+      "isf": 3,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 2.7
+  },
+  {
+    "id": "golden-037",
+    "input": {
+      "glucose": 6,
+      "carbs": 30,
+      "icr": 10,
+      "isf": 2,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 3.0
+  },
+  {
+    "id": "golden-038",
+    "input": {
+      "glucose": 6,
+      "carbs": 30,
+      "icr": 10,
+      "isf": 2,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 2.0
+  },
+  {
+    "id": "golden-039",
+    "input": {
+      "glucose": 6,
+      "carbs": 30,
+      "icr": 10,
+      "isf": 3,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 3.0
+  },
+  {
+    "id": "golden-040",
+    "input": {
+      "glucose": 6,
+      "carbs": 30,
+      "icr": 10,
+      "isf": 3,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 2.0
+  },
+  {
+    "id": "golden-041",
+    "input": {
+      "glucose": 6,
+      "carbs": 62,
+      "icr": 8,
+      "isf": 2,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 7.7
+  },
+  {
+    "id": "golden-042",
+    "input": {
+      "glucose": 6,
+      "carbs": 62,
+      "icr": 8,
+      "isf": 2,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 6.7
+  },
+  {
+    "id": "golden-043",
+    "input": {
+      "glucose": 6,
+      "carbs": 62,
+      "icr": 8,
+      "isf": 3,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 7.7
+  },
+  {
+    "id": "golden-044",
+    "input": {
+      "glucose": 6,
+      "carbs": 62,
+      "icr": 8,
+      "isf": 3,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 6.7
+  },
+  {
+    "id": "golden-045",
+    "input": {
+      "glucose": 6,
+      "carbs": 62,
+      "icr": 10,
+      "isf": 2,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 6.2
+  },
+  {
+    "id": "golden-046",
+    "input": {
+      "glucose": 6,
+      "carbs": 62,
+      "icr": 10,
+      "isf": 2,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 5.2
+  },
+  {
+    "id": "golden-047",
+    "input": {
+      "glucose": 6,
+      "carbs": 62,
+      "icr": 10,
+      "isf": 3,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 6.2
+  },
+  {
+    "id": "golden-048",
+    "input": {
+      "glucose": 6,
+      "carbs": 62,
+      "icr": 10,
+      "isf": 3,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 5.2
+  },
+  {
+    "id": "golden-049",
+    "input": {
+      "glucose": 7,
+      "carbs": 0,
+      "icr": 8,
+      "isf": 2,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 0.0
+  },
+  {
+    "id": "golden-050",
+    "input": {
+      "glucose": 7,
+      "carbs": 0,
+      "icr": 8,
+      "isf": 2,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 0.0
+  },
+  {
+    "id": "golden-051",
+    "input": {
+      "glucose": 7,
+      "carbs": 0,
+      "icr": 8,
+      "isf": 3,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 0.0
+  },
+  {
+    "id": "golden-052",
+    "input": {
+      "glucose": 7,
+      "carbs": 0,
+      "icr": 8,
+      "isf": 3,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 0.0
+  },
+  {
+    "id": "golden-053",
+    "input": {
+      "glucose": 7,
+      "carbs": 0,
+      "icr": 10,
+      "isf": 2,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 0.0
+  },
+  {
+    "id": "golden-054",
+    "input": {
+      "glucose": 7,
+      "carbs": 0,
+      "icr": 10,
+      "isf": 2,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 0.0
+  },
+  {
+    "id": "golden-055",
+    "input": {
+      "glucose": 7,
+      "carbs": 0,
+      "icr": 10,
+      "isf": 3,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 0.0
+  },
+  {
+    "id": "golden-056",
+    "input": {
+      "glucose": 7,
+      "carbs": 0,
+      "icr": 10,
+      "isf": 3,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 0.0
+  },
+  {
+    "id": "golden-057",
+    "input": {
+      "glucose": 7,
+      "carbs": 30,
+      "icr": 8,
+      "isf": 2,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 3.7
+  },
+  {
+    "id": "golden-058",
+    "input": {
+      "glucose": 7,
+      "carbs": 30,
+      "icr": 8,
+      "isf": 2,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 2.7
+  },
+  {
+    "id": "golden-059",
+    "input": {
+      "glucose": 7,
+      "carbs": 30,
+      "icr": 8,
+      "isf": 3,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 3.7
+  },
+  {
+    "id": "golden-060",
+    "input": {
+      "glucose": 7,
+      "carbs": 30,
+      "icr": 8,
+      "isf": 3,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 2.7
+  },
+  {
+    "id": "golden-061",
+    "input": {
+      "glucose": 7,
+      "carbs": 30,
+      "icr": 10,
+      "isf": 2,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 3.0
+  },
+  {
+    "id": "golden-062",
+    "input": {
+      "glucose": 7,
+      "carbs": 30,
+      "icr": 10,
+      "isf": 2,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 2.0
+  },
+  {
+    "id": "golden-063",
+    "input": {
+      "glucose": 7,
+      "carbs": 30,
+      "icr": 10,
+      "isf": 3,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 3.0
+  },
+  {
+    "id": "golden-064",
+    "input": {
+      "glucose": 7,
+      "carbs": 30,
+      "icr": 10,
+      "isf": 3,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 2.0
+  },
+  {
+    "id": "golden-065",
+    "input": {
+      "glucose": 7,
+      "carbs": 62,
+      "icr": 8,
+      "isf": 2,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 7.7
+  },
+  {
+    "id": "golden-066",
+    "input": {
+      "glucose": 7,
+      "carbs": 62,
+      "icr": 8,
+      "isf": 2,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 6.7
+  },
+  {
+    "id": "golden-067",
+    "input": {
+      "glucose": 7,
+      "carbs": 62,
+      "icr": 8,
+      "isf": 3,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 7.7
+  },
+  {
+    "id": "golden-068",
+    "input": {
+      "glucose": 7,
+      "carbs": 62,
+      "icr": 8,
+      "isf": 3,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 6.7
+  },
+  {
+    "id": "golden-069",
+    "input": {
+      "glucose": 7,
+      "carbs": 62,
+      "icr": 10,
+      "isf": 2,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 6.2
+  },
+  {
+    "id": "golden-070",
+    "input": {
+      "glucose": 7,
+      "carbs": 62,
+      "icr": 10,
+      "isf": 2,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 5.2
+  },
+  {
+    "id": "golden-071",
+    "input": {
+      "glucose": 7,
+      "carbs": 62,
+      "icr": 10,
+      "isf": 3,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 6.2
+  },
+  {
+    "id": "golden-072",
+    "input": {
+      "glucose": 7,
+      "carbs": 62,
+      "icr": 10,
+      "isf": 3,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 5.2
+  },
+  {
+    "id": "golden-073",
+    "input": {
+      "glucose": 10,
+      "carbs": 0,
+      "icr": 8,
+      "isf": 2,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 2.0
+  },
+  {
+    "id": "golden-074",
+    "input": {
+      "glucose": 10,
+      "carbs": 0,
+      "icr": 8,
+      "isf": 2,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 1.0
+  },
+  {
+    "id": "golden-075",
+    "input": {
+      "glucose": 10,
+      "carbs": 0,
+      "icr": 8,
+      "isf": 3,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 1.3
+  },
+  {
+    "id": "golden-076",
+    "input": {
+      "glucose": 10,
+      "carbs": 0,
+      "icr": 8,
+      "isf": 3,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 0.3
+  },
+  {
+    "id": "golden-077",
+    "input": {
+      "glucose": 10,
+      "carbs": 0,
+      "icr": 10,
+      "isf": 2,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 2.0
+  },
+  {
+    "id": "golden-078",
+    "input": {
+      "glucose": 10,
+      "carbs": 0,
+      "icr": 10,
+      "isf": 2,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 1.0
+  },
+  {
+    "id": "golden-079",
+    "input": {
+      "glucose": 10,
+      "carbs": 0,
+      "icr": 10,
+      "isf": 3,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 1.3
+  },
+  {
+    "id": "golden-080",
+    "input": {
+      "glucose": 10,
+      "carbs": 0,
+      "icr": 10,
+      "isf": 3,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 0.3
+  },
+  {
+    "id": "golden-081",
+    "input": {
+      "glucose": 10,
+      "carbs": 30,
+      "icr": 8,
+      "isf": 2,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 5.7
+  },
+  {
+    "id": "golden-082",
+    "input": {
+      "glucose": 10,
+      "carbs": 30,
+      "icr": 8,
+      "isf": 2,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 4.7
+  },
+  {
+    "id": "golden-083",
+    "input": {
+      "glucose": 10,
+      "carbs": 30,
+      "icr": 8,
+      "isf": 3,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 5.0
+  },
+  {
+    "id": "golden-084",
+    "input": {
+      "glucose": 10,
+      "carbs": 30,
+      "icr": 8,
+      "isf": 3,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 4.0
+  },
+  {
+    "id": "golden-085",
+    "input": {
+      "glucose": 10,
+      "carbs": 30,
+      "icr": 10,
+      "isf": 2,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 5.0
+  },
+  {
+    "id": "golden-086",
+    "input": {
+      "glucose": 10,
+      "carbs": 30,
+      "icr": 10,
+      "isf": 2,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 4.0
+  },
+  {
+    "id": "golden-087",
+    "input": {
+      "glucose": 10,
+      "carbs": 30,
+      "icr": 10,
+      "isf": 3,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 4.3
+  },
+  {
+    "id": "golden-088",
+    "input": {
+      "glucose": 10,
+      "carbs": 30,
+      "icr": 10,
+      "isf": 3,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 3.3
+  },
+  {
+    "id": "golden-089",
+    "input": {
+      "glucose": 10,
+      "carbs": 62,
+      "icr": 8,
+      "isf": 2,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 9.7
+  },
+  {
+    "id": "golden-090",
+    "input": {
+      "glucose": 10,
+      "carbs": 62,
+      "icr": 8,
+      "isf": 2,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 8.7
+  },
+  {
+    "id": "golden-091",
+    "input": {
+      "glucose": 10,
+      "carbs": 62,
+      "icr": 8,
+      "isf": 3,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 9.0
+  },
+  {
+    "id": "golden-092",
+    "input": {
+      "glucose": 10,
+      "carbs": 62,
+      "icr": 8,
+      "isf": 3,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 8.0
+  },
+  {
+    "id": "golden-093",
+    "input": {
+      "glucose": 10,
+      "carbs": 62,
+      "icr": 10,
+      "isf": 2,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 8.2
+  },
+  {
+    "id": "golden-094",
+    "input": {
+      "glucose": 10,
+      "carbs": 62,
+      "icr": 10,
+      "isf": 2,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 7.2
+  },
+  {
+    "id": "golden-095",
+    "input": {
+      "glucose": 10,
+      "carbs": 62,
+      "icr": 10,
+      "isf": 3,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 7.5
+  },
+  {
+    "id": "golden-096",
+    "input": {
+      "glucose": 10,
+      "carbs": 62,
+      "icr": 10,
+      "isf": 3,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 6.5
+  },
+  {
+    "id": "golden-097",
+    "input": {
+      "glucose": 14,
+      "carbs": 0,
+      "icr": 8,
+      "isf": 2,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 4.0
+  },
+  {
+    "id": "golden-098",
+    "input": {
+      "glucose": 14,
+      "carbs": 0,
+      "icr": 8,
+      "isf": 2,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 3.0
+  },
+  {
+    "id": "golden-099",
+    "input": {
+      "glucose": 14,
+      "carbs": 0,
+      "icr": 8,
+      "isf": 3,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 2.6
+  },
+  {
+    "id": "golden-100",
+    "input": {
+      "glucose": 14,
+      "carbs": 0,
+      "icr": 8,
+      "isf": 3,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 1.6
+  },
+  {
+    "id": "golden-101",
+    "input": {
+      "glucose": 14,
+      "carbs": 0,
+      "icr": 10,
+      "isf": 2,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 4.0
+  },
+  {
+    "id": "golden-102",
+    "input": {
+      "glucose": 14,
+      "carbs": 0,
+      "icr": 10,
+      "isf": 2,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 3.0
+  },
+  {
+    "id": "golden-103",
+    "input": {
+      "glucose": 14,
+      "carbs": 0,
+      "icr": 10,
+      "isf": 3,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 2.6
+  },
+  {
+    "id": "golden-104",
+    "input": {
+      "glucose": 14,
+      "carbs": 0,
+      "icr": 10,
+      "isf": 3,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 1.6
+  },
+  {
+    "id": "golden-105",
+    "input": {
+      "glucose": 14,
+      "carbs": 30,
+      "icr": 8,
+      "isf": 2,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 7.7
+  },
+  {
+    "id": "golden-106",
+    "input": {
+      "glucose": 14,
+      "carbs": 30,
+      "icr": 8,
+      "isf": 2,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 6.7
+  },
+  {
+    "id": "golden-107",
+    "input": {
+      "glucose": 14,
+      "carbs": 30,
+      "icr": 8,
+      "isf": 3,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 6.4
+  },
+  {
+    "id": "golden-108",
+    "input": {
+      "glucose": 14,
+      "carbs": 30,
+      "icr": 8,
+      "isf": 3,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 5.4
+  },
+  {
+    "id": "golden-109",
+    "input": {
+      "glucose": 14,
+      "carbs": 30,
+      "icr": 10,
+      "isf": 2,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 7.0
+  },
+  {
+    "id": "golden-110",
+    "input": {
+      "glucose": 14,
+      "carbs": 30,
+      "icr": 10,
+      "isf": 2,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 6.0
+  },
+  {
+    "id": "golden-111",
+    "input": {
+      "glucose": 14,
+      "carbs": 30,
+      "icr": 10,
+      "isf": 3,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 5.6
+  },
+  {
+    "id": "golden-112",
+    "input": {
+      "glucose": 14,
+      "carbs": 30,
+      "icr": 10,
+      "isf": 3,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 4.6
+  },
+  {
+    "id": "golden-113",
+    "input": {
+      "glucose": 14,
+      "carbs": 62,
+      "icr": 8,
+      "isf": 2,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "blocked",
+    "expected_bolus": null
+  },
+  {
+    "id": "golden-114",
+    "input": {
+      "glucose": 14,
+      "carbs": 62,
+      "icr": 8,
+      "isf": 2,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "blocked",
+    "expected_bolus": null
+  },
+  {
+    "id": "golden-115",
+    "input": {
+      "glucose": 14,
+      "carbs": 62,
+      "icr": 8,
+      "isf": 3,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "blocked",
+    "expected_bolus": null
+  },
+  {
+    "id": "golden-116",
+    "input": {
+      "glucose": 14,
+      "carbs": 62,
+      "icr": 8,
+      "isf": 3,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 9.4
+  },
+  {
+    "id": "golden-117",
+    "input": {
+      "glucose": 14,
+      "carbs": 62,
+      "icr": 10,
+      "isf": 2,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "blocked",
+    "expected_bolus": null
+  },
+  {
+    "id": "golden-118",
+    "input": {
+      "glucose": 14,
+      "carbs": 62,
+      "icr": 10,
+      "isf": 2,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 9.2
+  },
+  {
+    "id": "golden-119",
+    "input": {
+      "glucose": 14,
+      "carbs": 62,
+      "icr": 10,
+      "isf": 3,
+      "iob": 0,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 8.8
+  },
+  {
+    "id": "golden-120",
+    "input": {
+      "glucose": 14,
+      "carbs": 62,
+      "icr": 10,
+      "isf": 3,
+      "iob": 1,
+      "max_bolus": 10
+    },
+    "expected_status": "ok",
+    "expected_bolus": 7.8
+  }
+]
