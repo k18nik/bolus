@@ -20,9 +20,9 @@ HealthKit capability предоставляется нативным прило�
 - [Configuring HealthKit access](https://developer.apple.com/documentation/xcode/configuring-healthkit-access)
 - [Authorizing access to health data](https://developer.apple.com/documentation/healthkit/authorizing-access-to-health-data)
 
-В `ios/` добавлен SwiftUI/Xcode-проект с read-only HealthKit и ручной синхронизацией. Инструкция установки и точные ограничения — в [ios/README.md](../ios/README.md). Endpoint `POST /api/imports/healthkit` принимает тренировки с UUID и дневные агрегаты. Он проверяет сессию, CSRF и ожидаемый user_id, обновляет записи атомарно, не создаёт повторных UUID и не затрагивает дозы или профиль.
+В `ios/` находится нативное local-first приложение с read-only HealthKit и ручной синхронизацией **HealthKit → SwiftData**, без сервера и без интернета. Инструкция установки — в [ios/README.md](../ios/README.md), архитектура — в [LOCAL_FIRST.md](LOCAL_FIRST.md).
 
-На телефоне после подготовки показываются сервер, аккаунт и число записей; отправка — отдельной кнопкой. Базовые показатели активности формирует HKStatisticsCollectionQuery; недоступные поля не подменяются нулями. Сводки не суммируются с тренировками в расходе активности.
+Читаются тренировки, шаги, activeEnergyBurned, appleExerciseTime и distanceWalkingRunning; дневные показатели агрегирует HKStatisticsCollectionQuery по локальным дням. Перед сохранением приложение показывает число тренировок и дней. Тренировки сохраняются с UUID HealthKit в `dedupeKey`, дневные сводки — по дате, поэтому повторная синхронизация обновляет записи и не создаёт копий. Недоступные поля не подменяются нулями, сводки не суммируются с тренировками, активность не меняет дозу и IOB. Endpoint `POST /api/imports/healthkit` остаётся только для веб-версии.
 
 Для дальнейшей автоматической фоновой синхронизации остаются:
 
@@ -30,4 +30,4 @@ HealthKit capability предоставляется нативным прило�
 2. Ограниченная долговременная сессия устройства для фоновой доставки.
 3. Интеграционные тесты на физическом iPhone. Background delivery — best effort, не обещание постоянной синхронизации.
 
-Проект собран для Simulator и arm64 iPhone без подписи. Нативный интерфейс проверен в Simulator. Подпись Apple Team и проверка реального HealthKit на iPhone остаются установочными шагами; доступ к данным пользователя ещё не выдавался.
+Сборка и тесты приложения на симуляторе выполняются в GitHub Actions. Разрешения HealthKit и реальные данные часов проверяются только на физическом iPhone с подписью владельца.

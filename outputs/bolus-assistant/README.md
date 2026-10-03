@@ -1,12 +1,14 @@
 # Bolus Assistant
 
-Русскоязычный mobile-first дневник диабета на Next.js / FastAPI. Личная версия с общей формой записей, учётом шага устройства, импортом тренировок Apple «Здоровье» и подключением OpenAI / Tokenn.
+Русскоязычный дневник диабета. Основная версия — **нативное local-first приложение для iPhone** ([ios/](ios/README.md)): SwiftUI + SwiftData, все данные на устройстве, работает в Airplane Mode и не требует сервера, Docker, аккаунта или адреса сервера. Интернет нужен только для поиска во внешних каталогах еды и для необязательного AI. Архитектура, офлайн-матрица, резервные копии и перенос данных с сервера: [docs/LOCAL_FIRST.md](docs/LOCAL_FIRST.md).
+
+Веб-версия на Next.js / FastAPI (описана ниже) сохранена: backend служит эталонной реализацией (reference) расчётов, с которой iOS-ядро сверяется общими тестовыми векторами. Личная версия с общей формой записей, учётом шага устройства, импортом тренировок Apple «Здоровье» и подключением OpenAI / Tokenn.
 
 В текущей локальной установке расчёт включён по запросу владельца для личного использования (`CLINICAL_USE_ENABLED=true`); владелец сообщил о проведённой клинической валидации. Этот статус не является результатом независимой проверки разработчиком. Техническая модель IOB и правила расчёта описаны в `docs/ALGORITHMS.md`. Автоматический демо-вход отключён, личные аккаунты начинают с пустого дневника.
 
 ## Запуск через Docker Compose
 
-Для iPhone добавлен нативный проект **[ios/Bolus.xcodeproj](ios/Bolus.xcodeproj)**: SwiftUI, существующий дневник, HealthKit и системное скачивание отчётов. [Установка на iPhone и адрес сервера](ios/README.md). Сборки Simulator и arm64 Release проверены без подписи; для установки нужна ваша Apple Team. Сервер запускается отдельно следующими командами.
+Docker Compose нужен только для веб-версии. Приложению для iPhone (**[ios/Bolus.xcodeproj](ios/Bolus.xcodeproj)**) сервер не нужен: [установка через Xcode](ios/README.md), для установки на устройство нужна ваша Apple Team. Веб-сервер запускается следующими командами.
 
 ```sh
 cp .env.example .env
@@ -57,7 +59,7 @@ docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
 
 Лимиты MVP: файл до 20 МБ, XML внутри ZIP до 60 МБ, до 10 000 импортируемых записей. Оригинальный файл не сохраняется после обработки. Для больших архивов нужен дальнейший потоковый импорт.
 
-**Прямой доступ HealthKit доступен в отдельном iOS-приложении `ios/`.** Оно читает разрешённую активность и отправляет её после подтверждения в личный дневник. Синхронизация запускается вручную. В PWA сохраняется импорт XML/ZIP. Ни веб-версия, ни iOS-приложение не записывают инсулин в «Здоровье».
+**Прямой доступ HealthKit доступен в iOS-приложении `ios/`.** Оно читает разрешённую активность и после подтверждения сохраняет её в локальный дневник на iPhone, без сервера. Синхронизация запускается вручную. В PWA сохраняется импорт XML/ZIP. Ни веб-версия, ни iOS-приложение не записывают инсулин в «Здоровье».
 
 [Документация Apple по доступу к HealthKit](https://developer.apple.com/documentation/xcode/configuring-healthkit-access).
 
@@ -94,6 +96,8 @@ npm audit --audit-level=high
 
 Тесты охватывают 140 статических golden cases (независимый рациональный oracle), Hypothesis, IOB, safety, единицы, часовой пояс, изоляцию аккаунтов, CSRF, каскадное удаление, идемпотентность подтверждения, версии профиля, импорт Apple Health, форматы отчётов и разделение AI/дозы. CI выполняет также `pip-audit`.
 
+Приложение для iPhone: `cd ios && swift test` проверяет ядро (golden cases и общие с Python векторы bolus / IOB / аналитики / арифметики), `xcodebuild test -scheme Bolus` — сценарии SwiftData на симуляторе. GitHub Actions `.github/workflows/bolus-local-first.yml` в корне репозитория запускает Python-эталон, проверку воспроизводимости векторов, `swift test` на Linux и macOS, сборку приложения, тесты на симуляторе и Release-сборку для устройства.
+
 [Результаты проверок](docs/VERIFICATION.md) и [статус ТЗ / план версий](docs/STATUS.md).
 
 ## PWA и HTTPS
@@ -120,6 +124,7 @@ SQLite и синхронный Celery-режим используются тол
 
 ## Структура
 
+`ios/` — local-first приложение для iPhone: `Sources/BolusCore` (детерминированное ядро, паритет с Python), `Bolus/` (SwiftData, HealthKit, SwiftUI), тесты и генератор Xcode-проекта.
 `frontend/` — Next.js, React, TypeScript, Tailwind CSS, Radix Dialog, Recharts.
 `backend/app/` — API, модели, схемы, repositories, bolus, iob, safety, analytics, food, cycle, reports, imports, AI integration и personalization contracts.
 `backend/alembic/` — версионируемые миграции.

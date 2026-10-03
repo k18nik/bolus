@@ -53,3 +53,11 @@ IOB = sum(U_i * remaining(t_i,D_i))
 ## AI и персонализация
 
 Responses API выбранного провайдера (OpenAI / Tokenn) получает агрегаты и при запросе выбранный snapshot. Structured Outputs проверяются отдельным `safety/ai_output.py`. Ни один AI endpoint не возвращает исполняемое `bolus_units`. Методов управления введением инсулина или изменения дозы у AI нет. Персонализация и изменение профиля по серии наблюдений остаются отдельным будущим модулем.
+
+## Swift-порт для iPhone (local-first)
+
+Те же алгоритмы перенесены в `ios/Sources/BolusCore` и выполняются на iPhone без сервера: `BolusEngine` (bolus-v1.1.0), `SafetyLayer`, `IOBEngine` (linear-remaining-v1.0.0), `CycleEngine`, выбор сегмента профиля, аналитика. Ядро не зависит от сети, AI, базы данных и UI.
+
+Чтобы результаты совпадали побитово, в Swift воспроизведена арифметика Python: `Decimal` с точностью 28 знаков и ROUND_HALF_EVEN (в том числе `Decimal(str(float))`), `round()`, `statistics.mean/median/pstdev`, `sum()` и `datetime/timedelta` с микросекундами. Эталоном считается Python 3.12 (`backend/Dockerfile`): с 3.12 `sum()` для float компенсирует ошибки округления, и ядро повторяет это, включая смешанные суммы `int` и `float`.
+
+Совпадение проверяется общими векторами: `backend/scripts/generate_shared_vectors.py` записывает их в `ios/Tests/BolusCoreTests/Fixtures`, pytest проверяет Python, XCTest — Swift. Golden cases `backend/tests/golden/bolus_cases.json` перенесены в Swift-тесты без изменений. Отличие одно и намеренное: суточные суммы инсулина, углеводов, калорий и коррекций равны `null`, а не 0, если за период нет таких записей. Подробнее: [LOCAL_FIRST.md](LOCAL_FIRST.md).
