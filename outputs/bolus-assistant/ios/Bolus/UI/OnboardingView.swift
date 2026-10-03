@@ -45,7 +45,7 @@ struct OnboardingView: View {
                 if let error { Notice(text: error, style: .error) }
                 HStack {
                     if step > 0 {
-                        Button("Назад") { step -= 1; error = nil }.buttonStyle(SecondaryButtonStyle())
+                        Button("Назад", action: back).buttonStyle(SecondaryButtonStyle())
                     }
                     Spacer()
                     Button(step == 10 ? "Открыть дневник" : "Продолжить", action: next)
@@ -168,6 +168,12 @@ struct OnboardingView: View {
                 }
             }
         }
+    }
+
+    /// Going back from the cycle step skips the therapy steps that were skipped forward.
+    private func back() {
+        error = nil
+        step = step == 7 && skipTherapy ? 2 : step - 1
     }
 
     private func next() {
