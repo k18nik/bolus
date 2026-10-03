@@ -112,15 +112,6 @@ jobs:
       - name: Compiler errors
         if: failure()
         run: grep -E "error:" "$RUNNER_TEMP/build.log" | sort -u | head -300 || true
-      - name: SwiftData flows on the simulator
-        run: |
-          set -o pipefail
-          xcodebuild test-without-building \
-            -project "$PROJECT" -scheme Bolus -configuration Debug \
-            -destination "id=$SIMULATOR" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
-            -resultBundlePath "$RUNNER_TEMP/BolusAppTests.xcresult" \
-            CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/test.log" | grep -E "Test Case|error:|failed|passed|\*\* TEST" || true
-          grep -q "\*\* TEST SUCCEEDED \*\*" "$RUNNER_TEMP/test.log"
       - name: Release build for a device (unsigned)
         run: |
           set -o pipefail
@@ -128,3 +119,23 @@ jobs:
             -project "$PROJECT" -scheme Bolus -configuration Release \
             -destination "generic/platform=iOS" -derivedDataPath "$RUNNER_TEMP/DerivedDataRelease" \
             CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/release.log"
+      - name: Boot the simulator
+        timeout-minutes: 15
+        run: |
+          xcrun simctl boot "$SIMULATOR" || true
+          time xcrun simctl bootstatus "$SIMULATOR" -b
+      - name: SwiftData flows on the simulator
+        timeout-minutes: 20
+        run: |
+          set -o pipefail
+          xcodebuild test-without-building \
+            -project "$PROJECT" -scheme Bolus -configuration Debug \
+            -destination "id=$SIMULATOR" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+            -resultBundlePath "$RUNNER_TEMP/BolusAppTests.xcresult" \
+            -test-timeouts-enabled YES -default-test-execution-time-allowance 120 -maximum-test-execution-time-allowance 300 \
+            CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/test.log" \
+            | grep -E --line-buffered "Test Case|Test Suite|error:|Testing|\*\* TEST" || true
+          grep -q "\*\* TEST SUCCEEDED \*\*" "$RUNNER_TEMP/test.log"
+      - name: Test log tail
+        if: failure()
+        run: tail -n 150 "$RUNNER_TEMP/test.log" || true
