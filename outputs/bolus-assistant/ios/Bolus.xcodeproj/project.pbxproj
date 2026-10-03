@@ -49,6 +49,7 @@
 		BFCFEE4FF04F193394CC6C5D /* Records.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DA05372832423B8AD8B462 /* Records.swift */; };
 		C2353776BCF2CD77BC12FD9A /* FoodCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A029CFD14AF7A7429E41248 /* FoodCatalog.swift */; };
 		C5B55315FA0084430306FBD1 /* JSONValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437EF7D6F4510617C7E59502 /* JSONValue.swift */; };
+		C79859DB7B80FD71591E3EFB /* legacy_server_backup.json in Resources */ = {isa = PBXBuildFile; fileRef = F123D40F5D5E77E2FA64EB6D /* legacy_server_backup.json */; };
 		C7B6DDBF005AA4528AA30FF6 /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A22ADB7E3E706E2A87FDF2E /* AnalyticsView.swift */; };
 		CC1FC37CC1FE6C413D784220 /* AddEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7893D34BCC27147C063BF60 /* AddEntryView.swift */; };
 		CD223EFCD346EEF8A23D4B94 /* Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46692D3BC47C06240839C16 /* Formatting.swift */; };
@@ -124,6 +125,7 @@
 		E8C53B66E896EA6FA8809BA2 /* Bolus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bolus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF84827A89F02B6DFFBD537B /* TimeSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSupport.swift; sourceTree = "<group>"; };
 		F004DD5C650DDAC1F35C2D2D /* Bolus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bolus.entitlements; sourceTree = "<group>"; };
+		F123D40F5D5E77E2FA64EB6D /* legacy_server_backup.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = legacy_server_backup.json; sourceTree = "<group>"; };
 		F6B8FA6F5A1DC8D7D1723C1D /* BolusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BolusApp.swift; sourceTree = "<group>"; };
 		F8F492E2E8EC8F363A30B5A3 /* CycleEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CycleEngine.swift; sourceTree = "<group>"; };
 		FD8D6EB29C193B30B1AC3860 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
@@ -148,6 +150,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A6472C90C6983914B634B47 /* Fixtures */ = {
+			isa = PBXGroup;
+			children = (
+				F123D40F5D5E77E2FA64EB6D /* legacy_server_backup.json */,
+			);
+			path = Fixtures;
+			sourceTree = "<group>";
+		};
 		38687730184EF9F400A833D6 /* Reports */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +182,7 @@
 				646FC59D9002F0E7EC3CB721 /* Bolus */,
 				3D79B36561C232047BAC5231 /* BolusAppTests */,
 				BFB54E2AE2C8B86FF2185FFD /* Sources */,
+				DB3239AB0197F7CA48F258FC /* Tests */,
 				8241ED42B56CC1DA7F726566 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -336,6 +347,22 @@
 			path = AI;
 			sourceTree = "<group>";
 		};
+		DB3239AB0197F7CA48F258FC /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				E15B5BC6F861954FB2E081C2 /* BolusCoreTests */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		E15B5BC6F861954FB2E081C2 /* BolusCoreTests */ = {
+			isa = PBXGroup;
+			children = (
+				2A6472C90C6983914B634B47 /* Fixtures */,
+			);
+			path = BolusCoreTests;
+			sourceTree = "<group>";
+		};
 		E473E057601540F9CB20A7DA /* HealthKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -466,6 +493,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C79859DB7B80FD71591E3EFB /* legacy_server_backup.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

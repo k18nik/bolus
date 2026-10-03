@@ -142,6 +142,44 @@ final class DiaryStoreTests: XCTestCase {
         XCTAssertFalse(store.preferences.onboardingCompleted)
     }
 
+    /// Server → iPhone: the JSON export of the former server lands in SwiftData once.
+    func testServerBackupMigratesIntoTheLocalStore() throws {
+        let url = try XCTUnwrap(Bundle(for: DiaryStoreTests.self).url(forResource: "legacy_server_backup", withExtension: "json"))
+        let data = try Data(contentsOf: url)
+        let store = try makeStore()
+        let plan = try store.planImport(data)
+        XCTAssertTrue(plan.applyPreferences, "an empty device takes the settings from the copy")
+        try store.applyImport(plan)
+
+        XCTAssertEqual(store.allEntries().count, 9)
+        XCTAssertEqual(store.profiles().count, 2)
+        XCTAssertEqual(store.activeProfile()?.version, 2)
+        XCTAssertEqual(store.preferences.name, "Мария")
+        XCTAssertEqual(store.preferences.timezoneIdentifier, "Europe/Moscow")
+        XCTAssertTrue(store.preferences.onboardingCompleted)
+        XCTAssertEqual(store.cycles().first?.cycleLength, 29)
+        XCTAssertEqual(store.foods().filter(\.isFavorite).count, 2)
+        XCTAssertEqual(store.allInsights().first?.totalTokens, 153)
+
+        // The confirmed server calculation stays confirmed: no second insulin entry.
+        let confirmed = try XCTUnwrap(store.calculations(limit: nil).first { $0.actualBolus != nil })
+        let insulinBefore = store.allEntries().filter { $0.kind == .insulin }.count
+        let entry = try store.confirmBolus(calculationID: confirmed.id, units: 1, administeredAt: Date())
+        XCTAssertEqual(entry?.id, confirmed.confirmedEntryID)
+        XCTAssertEqual(store.allEntries().filter { $0.kind == .insulin }.count, insulinBefore)
+
+        // A later HealthKit sync recognises the imported workout by its UUID.
+        let now = Date()
+        let workout = HealthWorkout(id: "8f4c3a5e-1b2d-4c6e-9f00-112233445566", name: "Бег", sourceName: "Apple Watch",
+                                    startedAt: now.addingTimeInterval(-3600), endedAt: now.addingTimeInterval(-1800), durationMinutes: 30,
+                                    activeEnergy: 250, distanceKm: 4.2)
+        XCTAssertEqual(try store.applyHealth(HealthPayload(timezone: "Europe/Moscow", workouts: [workout], days: [])).inserted, 0)
+        XCTAssertEqual(store.allEntries().count, 9)
+
+        let again = try store.planImport(data)
+        XCTAssertEqual(again.newCount, 0, "importing the same copy twice adds nothing")
+    }
+
     func testReportsAreGeneratedLocally() throws {
         let store = try makeStore()
         try store.saveProfile(settings())

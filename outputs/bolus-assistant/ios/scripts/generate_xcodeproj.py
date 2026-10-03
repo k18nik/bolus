@@ -30,6 +30,8 @@ BUILD_NUMBER = '2'
 APP_SOURCE_DIRS = ['Bolus', 'Sources/BolusCore']
 TEST_SOURCE_DIRS = ['BolusAppTests']
 APP_RESOURCES = ['Bolus/Assets.xcassets', 'Bolus/PrivacyInfo.xcprivacy']
+# The former server's JSON export, shared with the BolusCore tests (server → iPhone migration).
+TEST_RESOURCES = ['Tests/BolusCoreTests/Fixtures/legacy_server_backup.json']
 REFERENCE_ONLY = ['Bolus/Info.plist', 'Bolus/Bolus.entitlements']
 
 FILE_TYPES = {
@@ -38,6 +40,7 @@ FILE_TYPES = {
     '.xcprivacy': 'text.xml',
     '.plist': 'text.plist.xml',
     '.entitlements': 'text.plist.entitlements',
+    '.json': 'text.json',
 }
 
 
@@ -89,7 +92,7 @@ class Ref:
 def main():
     app_sources = swift_files(APP_SOURCE_DIRS)
     test_sources = swift_files(TEST_SOURCE_DIRS)
-    all_files = app_sources + test_sources + APP_RESOURCES + REFERENCE_ONLY
+    all_files = app_sources + test_sources + APP_RESOURCES + TEST_RESOURCES + REFERENCE_ONLY
     for path in all_files:
         if not (ROOT / path).exists():
             raise SystemExit(f'missing {path}')
@@ -247,7 +250,7 @@ def main():
         'buildPhases': [
             phase('PBXSourcesBuildPhase', 'Sources', TESTS, build_files(test_sources, 'Sources')),
             phase('PBXFrameworksBuildPhase', 'Frameworks', TESTS, []),
-            phase('PBXResourcesBuildPhase', 'Resources', TESTS, []),
+            phase('PBXResourcesBuildPhase', 'Resources', TESTS, build_files(TEST_RESOURCES, 'Resources')),
         ],
         'buildRules': [], 'dependencies': [dependency], 'name': TESTS, 'productName': TESTS,
         'productReference': products[TESTS], 'productType': 'com.apple.product-type.bundle.unit-test',
