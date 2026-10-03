@@ -1,0 +1,146 @@
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.29kB done
+#1 DONE 0.0s
+
+#2 [frontend internal] load build definition from Dockerfile
+#2 transferring dockerfile: 765B done
+#2 DONE 0.0s
+
+#3 [backend internal] load build definition from Dockerfile
+#3 transferring dockerfile: 438B done
+#3 DONE 0.0s
+
+#4 [frontend internal] load metadata for docker.io/library/node:22-alpine
+#4 DONE 2.5s
+
+#5 [backend internal] load metadata for docker.io/library/python:3.12-slim
+#5 DONE 2.5s
+
+#6 [frontend internal] load .dockerignore
+#6 transferring context: 79B done
+#6 DONE 0.0s
+
+#7 [backend internal] load .dockerignore
+#7 transferring context: 112B done
+#7 DONE 0.0s
+
+#8 [frontend deps 1/4] FROM docker.io/library/node:22-alpine@sha256:0a7108bf6c7bf5de370ffb1a3ed6be93d405b43ff159f681a8d18c0e2bc2e402
+#8 DONE 0.0s
+
+#9 [backend 1/5] FROM docker.io/library/python:3.12-slim@sha256:dddfd7e07f9d15aeeca61529320492139d21cac7f0070c00609243e51e4e0016
+#9 DONE 0.0s
+
+#10 [frontend internal] load build context
+#10 transferring context: 37.41kB done
+#10 DONE 0.0s
+
+#11 [frontend deps 3/4] COPY package*.json ./
+#11 CACHED
+
+#12 [frontend deps 2/4] WORKDIR /app
+#12 CACHED
+
+#13 [frontend deps 4/4] RUN npm ci --no-audit --no-fund
+#13 CACHED
+
+#14 [frontend builder 3/5] COPY --from=deps /app/node_modules ./node_modules
+#14 CACHED
+
+#15 [backend internal] load build context
+#15 transferring context: 44.51kB done
+#15 DONE 0.0s
+
+#16 [backend 3/5] COPY requirements.txt .
+#16 CACHED
+
+#17 [backend 2/5] WORKDIR /app
+#17 CACHED
+
+#18 [backend 4/5] RUN pip install --no-cache-dir -r requirements.txt && useradd --create-home --uid 10001 bolus && mkdir -p /data/reports && chown bolus:bolus /data/reports
+#18 CACHED
+
+#19 [frontend builder 4/5] COPY . .
+#19 DONE 0.0s
+
+#20 [backend 5/5] COPY --chown=bolus:bolus . .
+#20 DONE 0.0s
+
+#21 [backend] exporting to image
+#21 exporting layers 0.0s done
+#21 writing image sha256:e8aad9cd248e531082675d3620e1d85273b21dd90512a40b683b1587b33b4b64 done
+#21 naming to docker.io/library/bolus-assistant-backend done
+#21 DONE 0.0s
+
+#22 [backend] resolving provenance for metadata file
+#22 DONE 0.0s
+
+#23 [frontend builder 5/5] RUN npm run build
+#23 0.207 
+#23 0.207 > bolus-assistant@1.0.0 build
+#23 0.207 > next build
+#23 0.207 
+#23 0.377 ▲ Next.js 16.3.8 (Turbopack)
+#23 0.395 ✓ Running next.config.ts took 18ms
+#23 0.403 
+#23 0.415   Creating an optimized production build ...
+#23 2.811 ✓ Compiled successfully in 2.3s
+#23 2.823   Running TypeScript ...
+#23 4.743   Finished TypeScript in 1923ms ...
+#23 4.745   Collecting page data using 4 workers ...
+#23 4.930   Generating static pages using 4 workers (0/3) ...
+#23 5.179 ✓ Generating static pages using 4 workers (3/3) in 250ms
+#23 5.182   Finalizing page optimization ...
+#23 5.262 
+#23 5.263 Route (app)
+#23 5.263 ┌ ○ /
+#23 5.263 └ ○ /_not-found
+#23 5.263 
+#23 5.263 
+#23 5.263 ○  (Static)  prerendered as static content
+#23 5.263 
+#23 5.276 npm notice
+#23 5.276 npm notice New major version of npm available! 10.9.9 -> 12.2.0
+#23 5.276 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+#23 5.276 npm notice To update run: npm install -g npm@12.2.0
+#23 5.276 npm notice
+#23 DONE 5.3s
+
+#24 [frontend runner 3/6] RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs
+#24 CACHED
+
+#25 [frontend runner 4/6] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+#25 DONE 0.1s
+
+#26 [frontend runner 5/6] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+#26 DONE 0.0s
+
+#27 [frontend runner 6/6] COPY --from=builder --chown=nextjs:nodejs /app/public ./public
+#27 DONE 0.0s
+
+#28 [frontend] exporting to image
+#28 exporting layers 0.1s done
+#28 writing image sha256:19f3512ef8ad5582574d09f3a3d2fdbbf256ed0850c63f630d19c430f8c1fdba
+#28 writing image sha256:19f3512ef8ad5582574d09f3a3d2fdbbf256ed0850c63f630d19c430f8c1fdba done
+#28 naming to docker.io/library/bolus-assistant-frontend done
+#28 DONE 0.1s
+
+#29 [frontend] resolving provenance for metadata file
+#29 DONE 0.0s
+ bolus-assistant-frontend  Built
+ bolus-assistant-backend  Built
+ Container bolus-assistant-postgres-1  Running
+ Container bolus-assistant-redis-1  Running
+ Container bolus-assistant-backend-1  Recreate
+ Container bolus-assistant-backend-1  Recreated
+ Container bolus-assistant-frontend-1  Recreate
+ Container bolus-assistant-frontend-1  Recreated
+ Container bolus-assistant-redis-1  Waiting
+ Container bolus-assistant-postgres-1  Waiting
+ Container bolus-assistant-redis-1  Healthy
+ Container bolus-assistant-postgres-1  Healthy
+ Container bolus-assistant-backend-1  Starting
+ Container bolus-assistant-backend-1  Started
+ Container bolus-assistant-backend-1  Waiting
+ Container bolus-assistant-backend-1  Healthy
+ Container bolus-assistant-frontend-1  Starting
+ Container bolus-assistant-frontend-1  Started

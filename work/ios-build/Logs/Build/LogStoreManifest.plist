@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>11</integer>
+	<key>logs</key>
+	<dict>
+		<key>BDD49FA3-35B7-49E0-B864-5A3E112DE320</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>BDD49FA3-35B7-49E0-B864-5A3E112DE320.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Bolus project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Bolus</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project Bolus with scheme Bolus and configuration Debug</string>
+			<key>timeStartedRecording</key>
+			<real>812728389.06835997</real>
+			<key>timeStoppedRecording</key>
+			<real>812728405.34719598</real>
+			<key>title</key>
+			<string>Building project Bolus with scheme Bolus and configuration Debug</string>
+			<key>uniqueIdentifier</key>
+			<string>BDD49FA3-35B7-49E0-B864-5A3E112DE320</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

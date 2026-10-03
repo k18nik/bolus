@@ -1,0 +1,1 @@
+Celery worker reuses backend/Dockerfile and `app.reports.tasks:celery` so the engine and report code have one version. Docker Compose always uses Redis and asynchronous tasks. Local development without Redis uses `TASK_ALWAYS_EAGER=true` inside a FastAPI background task. Job payloads contain only the job UUID, never health data.

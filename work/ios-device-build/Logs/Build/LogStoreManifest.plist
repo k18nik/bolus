@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>11</integer>
+	<key>logs</key>
+	<dict>
+		<key>6CC0D398-EC0E-49B5-B039-71940E495F21</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>6CC0D398-EC0E-49B5-B039-71940E495F21.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Bolus project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Bolus</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Archiving project Bolus with scheme Bolus</string>
+			<key>timeStartedRecording</key>
+			<real>812731487.09623098</real>
+			<key>timeStoppedRecording</key>
+			<real>812731491.99810398</real>
+			<key>title</key>
+			<string>Archiving project Bolus with scheme Bolus</string>
+			<key>uniqueIdentifier</key>
+			<string>6CC0D398-EC0E-49B5-B039-71940E495F21</string>
+		</dict>
+		<key>EFB04C38-AB0A-45DB-AD21-B0824691C189</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>EFB04C38-AB0A-45DB-AD21-B0824691C189.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>Bolus project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>Bolus</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Archiving project Bolus with scheme Bolus</string>
+			<key>timeStartedRecording</key>
+			<real>812730795.62946498</real>
+			<key>timeStoppedRecording</key>
+			<real>812730804.07558596</real>
+			<key>title</key>
+			<string>Archiving project Bolus with scheme Bolus</string>
+			<key>uniqueIdentifier</key>
+			<string>EFB04C38-AB0A-45DB-AD21-B0824691C189</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

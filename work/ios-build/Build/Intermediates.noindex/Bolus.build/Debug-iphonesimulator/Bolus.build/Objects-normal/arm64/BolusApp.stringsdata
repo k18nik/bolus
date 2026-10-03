@@ -1,0 +1,152 @@
+{
+  "source": "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/outputs/bolus-assistant/ios/Bolus/BolusApp.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "bolus.",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 31
+        }
+      },
+      {
+        "comment": "",
+        "key": "Не удалось открыть дневник",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 22
+        }
+      },
+      {
+        "comment": "",
+        "key": "Повторить",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 24
+        }
+      },
+      {
+        "comment": "",
+        "key": "Адрес сервера",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 25
+        }
+      },
+      {
+        "comment": "",
+        "key": "Настройки приложения",
+        "location": {
+          "startingColumn": 109,
+          "startingLine": 35
+        }
+      },
+      {
+        "comment": "",
+        "key": "Здоровье",
+        "location": {
+          "startingColumn": 61,
+          "startingLine": 38
+        }
+      },
+      {
+        "comment": "",
+        "key": "Назад",
+        "location": {
+          "startingColumn": 49,
+          "startingLine": 41
+        }
+      },
+      {
+        "comment": "",
+        "key": "Сервер дневника",
+        "location": {
+          "startingColumn": 126,
+          "startingLine": 44
+        }
+      },
+      {
+        "comment": "",
+        "key": "Готово",
+        "location": {
+          "startingColumn": 176,
+          "startingLine": 44
+        }
+      },
+      {
+        "comment": "",
+        "key": "Адрес приложения",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 63
+        }
+      },
+      {
+        "comment": "",
+        "key": "Apple «Здоровье»",
+        "location": {
+          "startingColumn": 21,
+          "startingLine": 72
+        }
+      },
+      {
+        "comment": "",
+        "key": "Приложение подключается к вашему Bolus-серверу. Войдите в тот же аккаунт — записи и настройки появятся здесь.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 61
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ваш дневник на iPhone",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 60
+        }
+      },
+      {
+        "comment": "",
+        "key": "На iPhone localhost означает сам телефон. Для сервера на Mac нужен его сетевой адрес или HTTPS-домен.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 65
+        }
+      },
+      {
+        "comment": "",
+        "key": "https://…",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 64
+        }
+      },
+      {
+        "comment": "",
+        "key": "Подключиться",
+        "location": {
+          "startingColumn": 24,
+          "startingLine": 67
+        }
+      },
+      {
+        "comment": "",
+        "key": "Доступ к тренировкам и активности запрашивается отдельно. Перед отправкой вы увидите выбранный сервер, аккаунт и количество записей.",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 73
+        }
+      },
+      {
+        "comment": "",
+        "key": "Синхронизация запускается вручную. Приложение не записывает инсулин и не изменяет данные в «Здоровье».",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 74
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,90 @@
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.27kB done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 765B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:22-alpine
+#3 DONE 7.6s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 79B done
+#4 DONE 0.0s
+
+#5 [deps 1/4] FROM docker.io/library/node:22-alpine@sha256:0a7108bf6c7bf5de370ffb1a3ed6be93d405b43ff159f681a8d18c0e2bc2e402
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 77.91kB done
+#6 DONE 0.0s
+
+#7 [deps 4/4] RUN npm ci --no-audit --no-fund
+#7 CACHED
+
+#8 [deps 2/4] WORKDIR /app
+#8 CACHED
+
+#9 [deps 3/4] COPY package*.json ./
+#9 CACHED
+
+#10 [builder 3/5] COPY --from=deps /app/node_modules ./node_modules
+#10 CACHED
+
+#11 [builder 4/5] COPY . .
+#11 DONE 0.0s
+
+#12 [builder 5/5] RUN npm run build
+#12 0.232 
+#12 0.232 > bolus-assistant@1.0.0 build
+#12 0.232 > next build
+#12 0.232 
+#12 0.445 ▲ Next.js 16.3.8 (Turbopack)
+#12 0.469 ✓ Running next.config.ts took 24ms
+#12 0.476 
+#12 0.490   Creating an optimized production build ...
+#12 3.094 ✓ Compiled successfully in 2.5s
+#12 3.103   Running TypeScript ...
+#12 5.383   Finished TypeScript in 2.3s ...
+#12 5.386   Collecting page data using 4 workers ...
+#12 5.593   Generating static pages using 4 workers (0/3) ...
+#12 5.858 ✓ Generating static pages using 4 workers (3/3) in 264ms
+#12 5.860   Finalizing page optimization ...
+#12 5.937 
+#12 5.937 Route (app)
+#12 5.937 ┌ ○ /
+#12 5.937 └ ○ /_not-found
+#12 5.937 
+#12 5.937 
+#12 5.938 ○  (Static)  prerendered as static content
+#12 5.938 
+#12 5.954 npm notice
+#12 5.954 npm notice New major version of npm available! 10.9.9 -> 12.2.0
+#12 5.954 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+#12 5.954 npm notice To update run: npm install -g npm@12.2.0
+#12 5.954 npm notice
+#12 DONE 6.0s
+
+#13 [runner 3/6] RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs
+#13 CACHED
+
+#14 [runner 4/6] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+#14 DONE 0.1s
+
+#15 [runner 5/6] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+#15 DONE 0.0s
+
+#16 [runner 6/6] COPY --from=builder --chown=nextjs:nodejs /app/public ./public
+#16 DONE 0.0s
+
+#17 exporting to image
+#17 exporting layers 0.1s done
+#17 writing image sha256:08baaeb206a80b6cbc2474ebffa7f41c451ccaa90522a1ff5e03c3403e2c5dd2 done
+#17 naming to docker.io/library/bolus-assistant-frontend
+#17 naming to docker.io/library/bolus-assistant-frontend done
+#17 DONE 0.1s
+
+#18 resolving provenance for metadata file
+#18 DONE 0.0s
+ bolus-assistant-frontend  Built

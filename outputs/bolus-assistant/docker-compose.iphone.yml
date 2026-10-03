@@ -1,0 +1,10 @@
+# Optional LAN development override. Does not run with the default Compose command.
+# Set IPHONE_BIND_IP to this Mac's private LAN IPv4 address, and IPHONE_ORIGIN
+# to its full .local URL (e.g. http://Your-Mac.local:8080). Never forward this port publicly.
+services:
+  backend:
+    environment:
+      ALLOWED_ORIGIN: ${IPHONE_ORIGIN:?Set the exact iPhone server origin}
+  nginx:
+    ports: !override
+      - '${IPHONE_BIND_IP:?Set this Mac LAN IPv4 address}:${APP_PORT:-8080}:80'

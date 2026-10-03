@@ -1,0 +1,8 @@
+#!/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/.venv/bin/python3
+# -*- coding: utf-8 -*-
+import re
+import sys
+from pip_audit._cli import audit
+if __name__ == '__main__':
+    sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
+    sys.exit(audit())

@@ -1,0 +1,143 @@
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.88kB done
+#1 DONE 0.0s
+
+#2 [backend internal] load build definition from Dockerfile
+#2 transferring dockerfile: 438B done
+#2 DONE 0.0s
+
+#3 [frontend internal] load build definition from Dockerfile
+#3 transferring dockerfile: 765B done
+#3 DONE 0.0s
+
+#4 [worker internal] load metadata for docker.io/library/python:3.12-slim
+#4 ...
+
+#5 [frontend internal] load metadata for docker.io/library/node:22-alpine
+#5 DONE 3.6s
+
+#6 [frontend internal] load .dockerignore
+#6 transferring context: 79B done
+#6 DONE 0.0s
+
+#7 [frontend deps 1/4] FROM docker.io/library/node:22-alpine@sha256:0a7108bf6c7bf5de370ffb1a3ed6be93d405b43ff159f681a8d18c0e2bc2e402
+#7 DONE 0.0s
+
+#8 [frontend internal] load build context
+#8 transferring context: 52.75kB done
+#8 DONE 0.0s
+
+#9 [frontend deps 3/4] COPY package*.json ./
+#9 CACHED
+
+#10 [frontend deps 4/4] RUN npm ci --no-audit --no-fund
+#10 CACHED
+
+#11 [frontend deps 2/4] WORKDIR /app
+#11 CACHED
+
+#12 [frontend builder 3/5] COPY --from=deps /app/node_modules ./node_modules
+#12 CACHED
+
+#4 [backend internal] load metadata for docker.io/library/python:3.12-slim
+#4 DONE 3.6s
+
+#13 [worker internal] load .dockerignore
+#13 transferring context: 112B done
+#13 DONE 0.0s
+
+#14 [worker 1/5] FROM docker.io/library/python:3.12-slim@sha256:dddfd7e07f9d15aeeca61529320492139d21cac7f0070c00609243e51e4e0016
+#14 DONE 0.0s
+
+#15 [frontend builder 4/5] COPY . .
+#15 DONE 0.0s
+
+#16 [backend internal] load build context
+#16 transferring context: 79.92kB 0.0s done
+#16 DONE 0.0s
+
+#17 [backend 3/5] COPY requirements.txt .
+#17 CACHED
+
+#18 [backend 2/5] WORKDIR /app
+#18 CACHED
+
+#19 [backend 4/5] RUN pip install --no-cache-dir -r requirements.txt && useradd --create-home --uid 10001 bolus && mkdir -p /data/reports && chown bolus:bolus /data/reports
+#19 CACHED
+
+#20 [backend 5/5] COPY --chown=bolus:bolus . .
+#20 DONE 0.0s
+
+#21 [backend] exporting to image
+#21 exporting layers done
+#21 writing image sha256:99d93392c03585ff84ea10f2a0279bc34431c6a541480561c82bff8bfdc9c635 done
+#21 naming to docker.io/library/bolus-assistant-backend done
+#21 DONE 0.0s
+
+#22 [worker] exporting to image
+#22 exporting layers 0.0s done
+#22 writing image sha256:35957102330041db8c114b7b02ff7afdce7deec054132d49eb45c0f2d6ea7a5c done
+#22 naming to docker.io/library/bolus-assistant-worker done
+#22 DONE 0.0s
+
+#23 [backend] resolving provenance for metadata file
+#23 DONE 0.0s
+
+#24 [worker] resolving provenance for metadata file
+#24 DONE 0.0s
+
+#25 [frontend builder 5/5] RUN npm run build
+#25 0.250 
+#25 0.250 > bolus-assistant@1.0.0 build
+#25 0.250 > next build
+#25 0.250 
+#25 0.440 ▲ Next.js 16.3.8 (Turbopack)
+#25 0.460 ✓ Running next.config.ts took 19ms
+#25 0.467 
+#25 0.480   Creating an optimized production build ...
+#25 3.322 ✓ Compiled successfully in 2.7s
+#25 3.333   Running TypeScript ...
+#25 5.440   Finished TypeScript in 2.1s ...
+#25 5.442   Collecting page data using 4 workers ...
+#25 5.650   Generating static pages using 4 workers (0/3) ...
+#25 5.916 ✓ Generating static pages using 4 workers (3/3) in 266ms
+#25 5.919   Finalizing page optimization ...
+#25 6.004 
+#25 6.006 Route (app)
+#25 6.006 ┌ ○ /
+#25 6.006 └ ○ /_not-found
+#25 6.006 
+#25 6.006 
+#25 6.006 ○  (Static)  prerendered as static content
+#25 6.006 
+#25 6.022 npm notice
+#25 6.022 npm notice New major version of npm available! 10.9.9 -> 12.2.0
+#25 6.022 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+#25 6.022 npm notice To update run: npm install -g npm@12.2.0
+#25 6.022 npm notice
+#25 DONE 6.1s
+
+#26 [frontend runner 3/6] RUN addgroup --system --gid 1001 nodejs && adduser --system --uid 1001 nextjs
+#26 CACHED
+
+#27 [frontend runner 4/6] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+#27 DONE 0.1s
+
+#28 [frontend runner 5/6] COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+#28 DONE 0.0s
+
+#29 [frontend runner 6/6] COPY --from=builder --chown=nextjs:nodejs /app/public ./public
+#29 DONE 0.0s
+
+#30 [frontend] exporting to image
+#30 exporting layers 0.1s done
+#30 writing image sha256:d89b5b3ae917f54da9099bd97c828d89412348950d5d7e827eb1bd1d92b01ec7
+#30 writing image sha256:d89b5b3ae917f54da9099bd97c828d89412348950d5d7e827eb1bd1d92b01ec7 done
+#30 naming to docker.io/library/bolus-assistant-frontend done
+#30 DONE 0.1s
+
+#31 [frontend] resolving provenance for metadata file
+#31 DONE 0.0s
+ bolus-assistant-backend  Built
+ bolus-assistant-worker  Built
+ bolus-assistant-frontend  Built

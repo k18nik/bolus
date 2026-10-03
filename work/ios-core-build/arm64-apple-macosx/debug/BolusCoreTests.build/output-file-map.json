@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCoreTests.build/master.swiftdeps"
+  },
+  "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/outputs/bolus-assistant/ios/Tests/BolusCoreTests/BolusCoreTests.swift": {
+    "dependencies": "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCoreTests.build/BolusCoreTests.d",
+    "object": "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCoreTests.build/BolusCoreTests.swift.o",
+    "swiftmodule": "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCoreTests.build/BolusCoreTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCoreTests.build/BolusCoreTests.swiftdeps",
+    "diagnostics": "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCoreTests.build/BolusCoreTests.dia"
+  }
+}

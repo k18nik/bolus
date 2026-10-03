@@ -1,0 +1,236 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D00000000000000000000001 /* Bolus/BolusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000001 /* Bolus/BolusApp.swift */; };
+		D00000000000000000000002 /* Bolus/AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000002 /* Bolus/AppModel.swift */; };
+		D00000000000000000000003 /* Bolus/HealthReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000003 /* Bolus/HealthReader.swift */; };
+		D00000000000000000000004 /* Bolus/HealthSyncView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000004 /* Bolus/HealthSyncView.swift */; };
+		D00000000000000000000005 /* Sources/BolusCore/BolusCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000005 /* Sources/BolusCore/BolusCore.swift */; };
+		D00000000000000000000006 /* Bolus/Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000006 /* Bolus/Assets.xcassets */; };
+		D00000000000000000000007 /* Bolus/PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000007 /* Bolus/PrivacyInfo.xcprivacy */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A00000000000000000000010 /* Bolus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bolus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C00000000000000000000001 /* Bolus/BolusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bolus/BolusApp.swift; sourceTree = "<group>"; };
+		C00000000000000000000002 /* Bolus/AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bolus/AppModel.swift; sourceTree = "<group>"; };
+		C00000000000000000000003 /* Bolus/HealthReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bolus/HealthReader.swift; sourceTree = "<group>"; };
+		C00000000000000000000004 /* Bolus/HealthSyncView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bolus/HealthSyncView.swift; sourceTree = "<group>"; };
+		C00000000000000000000005 /* Sources/BolusCore/BolusCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/BolusCore/BolusCore.swift; sourceTree = "<group>"; };
+		C00000000000000000000006 /* Bolus/Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Bolus/Assets.xcassets; sourceTree = "<group>"; };
+		C00000000000000000000007 /* Bolus/PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Bolus/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		C00000000000000000000008 /* Bolus/Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Bolus/Info.plist; sourceTree = "<group>"; };
+		C00000000000000000000009 /* Bolus/Bolus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bolus/Bolus.entitlements; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A00000000000000000000008 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A00000000000000000000004 = {
+			isa = PBXGroup;
+			children = (
+				C00000000000000000000001 /* Bolus/BolusApp.swift */,
+				C00000000000000000000002 /* Bolus/AppModel.swift */,
+				C00000000000000000000003 /* Bolus/HealthReader.swift */,
+				C00000000000000000000004 /* Bolus/HealthSyncView.swift */,
+				C00000000000000000000005 /* Sources/BolusCore/BolusCore.swift */,
+				C00000000000000000000006 /* Bolus/Assets.xcassets */,
+				C00000000000000000000007 /* Bolus/PrivacyInfo.xcprivacy */,
+				C00000000000000000000008 /* Bolus/Info.plist */,
+				C00000000000000000000009 /* Bolus/Bolus.entitlements */,
+				A00000000000000000000005 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A00000000000000000000005 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A00000000000000000000010 /* Bolus.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A00000000000000000000002 /* Bolus */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A00000000000000000000006 /* Build configuration list for PBXNativeTarget "Bolus" */;
+			buildPhases = (
+				A00000000000000000000007 /* Sources */,
+				A00000000000000000000008 /* Frameworks */,
+				A00000000000000000000009 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Bolus;
+			productName = Bolus;
+			productReference = A00000000000000000000010 /* Bolus.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A00000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 2610;
+				TargetAttributes = {
+					A00000000000000000000002 = {
+						CreatedOnToolsVersion = 26.1;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = A00000000000000000000003 /* Build configuration list for PBXProject "Bolus" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = ru;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				ru,
+				en,
+				Base,
+			);
+			mainGroup = A00000000000000000000004;
+			productRefGroup = A00000000000000000000005 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A00000000000000000000002 /* Bolus */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A00000000000000000000009 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D00000000000000000000006 /* Bolus/Assets.xcassets in Resources */,
+				D00000000000000000000007 /* Bolus/PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A00000000000000000000007 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D00000000000000000000001 /* Bolus/BolusApp.swift in Sources */,
+				D00000000000000000000002 /* Bolus/AppModel.swift in Sources */,
+				D00000000000000000000003 /* Bolus/HealthReader.swift in Sources */,
+				D00000000000000000000004 /* Bolus/HealthSyncView.swift in Sources */,
+				D00000000000000000000005 /* Sources/BolusCore/BolusCore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		B00000000000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		B00000000000000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B00000000000000000000003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Bolus/Bolus.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 22U845G3B8;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Bolus/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = app.bolus.diary.personal;
+				PRODUCT_NAME = Bolus;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B00000000000000000000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Bolus/Bolus.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 22U845G3B8;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Bolus/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = app.bolus.diary.personal;
+				PRODUCT_NAME = Bolus;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A00000000000000000000003 /* Build configuration list for PBXProject "Bolus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B00000000000000000000001 /* Debug */,
+				B00000000000000000000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A00000000000000000000006 /* Build configuration list for PBXNativeTarget "Bolus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B00000000000000000000003 /* Debug */,
+				B00000000000000000000004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A00000000000000000000001 /* Project object */;
+}

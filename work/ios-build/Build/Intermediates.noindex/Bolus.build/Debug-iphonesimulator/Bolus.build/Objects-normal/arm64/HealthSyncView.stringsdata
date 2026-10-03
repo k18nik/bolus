@@ -1,0 +1,168 @@
+{
+  "source": "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/outputs/bolus-assistant/ios/Bolus/HealthSyncView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Apple «Здоровье»",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 43
+        }
+      },
+      {
+        "comment": "",
+        "key": "Подготовка",
+        "location": {
+          "startingColumn": 25,
+          "startingLine": 22
+        }
+      },
+      {
+        "comment": "",
+        "key": "Перед отправкой",
+        "location": {
+          "startingColumn": 29,
+          "startingLine": 29
+        }
+      },
+      {
+        "comment": "",
+        "key": "Читаем только разрешённые тренировки, шаги, активную энергию, минуты упражнений и дистанцию ходьбы/бега.",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 19
+        }
+      },
+      {
+        "comment": "",
+        "key": "Данные будут отправлены в ваш аккаунт на выбранном сервере после отдельного нажатия. Ничего не записываем в Apple «Здоровье».",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 20
+        }
+      },
+      {
+        "comment": "",
+        "key": "Активность рядом с дневником",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 18
+        }
+      },
+      {
+        "comment": "",
+        "key": "Период",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 23
+        }
+      },
+      {
+        "comment": "",
+        "key": "Разрешить чтение и подготовить данные",
+        "location": {
+          "startingColumn": 28,
+          "startingLine": 24
+        }
+      },
+      {
+        "comment": "",
+        "key": "Обрабатываем…",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 25
+        }
+      },
+      {
+        "comment": "",
+        "key": "7 дней",
+        "location": {
+          "startingColumn": 69,
+          "startingLine": 23
+        }
+      },
+      {
+        "comment": "",
+        "key": "30 дней",
+        "location": {
+          "startingColumn": 96,
+          "startingLine": 23
+        }
+      },
+      {
+        "comment": "",
+        "key": "90 дней",
+        "location": {
+          "startingColumn": 125,
+          "startingLine": 23
+        }
+      },
+      {
+        "comment": "",
+        "key": "Нет данных — не обязательно нет активности: часть доступа могла быть не разрешена. Изменить доступ можно в Apple «Здоровье».",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 34
+        }
+      },
+      {
+        "comment": "",
+        "key": "Сервер",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 30
+        }
+      },
+      {
+        "comment": "",
+        "key": "Аккаунт",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 31
+        }
+      },
+      {
+        "comment": "",
+        "key": "Тренировки",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 32
+        }
+      },
+      {
+        "comment": "",
+        "key": "Дни активности",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 33
+        }
+      },
+      {
+        "comment": "",
+        "key": "Отправить в мой дневник",
+        "location": {
+          "startingColumn": 32,
+          "startingLine": 35
+        }
+      },
+      {
+        "comment": "",
+        "key": "Повторная синхронизация обновляет записи по идентификатору. Удалённые из «Здоровья» записи нужно удалять из дневника отдельно. Автоматическая фоновая синхронизация не включена.",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 40
+        }
+      },
+      {
+        "comment": "",
+        "key": "Готово",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 45
+        }
+      }
+    ]
+  },
+  "version": 1
+}

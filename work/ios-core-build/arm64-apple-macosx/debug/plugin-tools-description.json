@@ -1,0 +1,638 @@
+{
+  "builtTestProducts" : [
+    {
+      "binaryPath" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCorePackageTests.xctest/Contents/MacOS/BolusCorePackageTests",
+      "packagePath" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/outputs/bolus-assistant/ios",
+      "productName" : "BolusCorePackageTests"
+    }
+  ],
+  "copyCommands" : {
+
+  },
+  "explicitTargetDependencyImportCheckingMode" : {
+    "none" : {
+
+    }
+  },
+  "generatedSourceTargetSet" : [
+
+  ],
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.BolusCore-arm64-apple-macosx15.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCore.build/sources",
+      "importPath" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/outputs/bolus-assistant/ios/Sources/BolusCore/BolusCore.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCore.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "BolusCore",
+      "moduleOutputPath" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/Modules/BolusCore.swiftmodule",
+      "objects" : [
+        "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCore.build/BolusCore.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx13.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-j14",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCore.build/include/BolusCore-Swift.h",
+        "-swift-version",
+        "5",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "ios"
+      ],
+      "outputFileMapPath" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCore.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCore.build/BolusCore.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/Modules/BolusCore.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/outputs/bolus-assistant/ios/Sources/BolusCore/BolusCore.swift"
+      ],
+      "tempsPath" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCore.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.BolusCorePackageTests-arm64-apple-macosx15.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCorePackageTests.build/sources",
+      "importPath" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCorePackageTests.derived/runner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/Modules/BolusCoreTests.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCorePackageTests.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "BolusCorePackageTests",
+      "moduleOutputPath" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/Modules/BolusCorePackageTests.swiftmodule",
+      "objects" : [
+        "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCorePackageTests.build/runner.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx13.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-Xfrontend",
+        "-enable-cross-import-overlays",
+        "-j14",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCorePackageTests.build/include/BolusCorePackageTests-Swift.h",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "ios"
+      ],
+      "outputFileMapPath" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCorePackageTests.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCorePackageTests.build/runner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/Modules/BolusCorePackageTests.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCorePackageTests.derived/runner.swift"
+      ],
+      "tempsPath" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCorePackageTests.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.BolusCoreTests-arm64-apple-macosx15.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCoreTests.build/sources",
+      "importPath" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/outputs/bolus-assistant/ios/Tests/BolusCoreTests/BolusCoreTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/Modules/BolusCore.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCoreTests.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "BolusCoreTests",
+      "moduleOutputPath" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/Modules/BolusCoreTests.swiftmodule",
+      "objects" : [
+        "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCoreTests.build/BolusCoreTests.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx14.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-Xfrontend",
+        "-enable-cross-import-overlays",
+        "-j14",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-swift-version",
+        "5",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "ios"
+      ],
+      "outputFileMapPath" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCoreTests.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCoreTests.build/BolusCoreTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/Modules/BolusCoreTests.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/outputs/bolus-assistant/ios/Tests/BolusCoreTests/BolusCoreTests.swift"
+      ],
+      "tempsPath" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCoreTests.build",
+      "wholeModuleOptimization" : false
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "swiftTargetScanArgs" : {
+    "BolusCore" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "BolusCore",
+      "-package-name",
+      "ios",
+      "-c",
+      "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/outputs/bolus-assistant/ios/Sources/BolusCore/BolusCore.swift",
+      "-I",
+      "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx13.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-j14",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCore.build/include/BolusCore-Swift.h",
+      "-swift-version",
+      "5",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "ios",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "BolusCorePackageTests" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "BolusCorePackageTests",
+      "-package-name",
+      "ios",
+      "-c",
+      "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCorePackageTests.derived/runner.swift",
+      "-I",
+      "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx13.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-Xfrontend",
+      "-enable-cross-import-overlays",
+      "-j14",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCorePackageTests.build/include/BolusCorePackageTests-Swift.h",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "ios",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "BolusCoreTests" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "BolusCoreTests",
+      "-package-name",
+      "ios",
+      "-c",
+      "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/outputs/bolus-assistant/ios/Tests/BolusCoreTests/BolusCoreTests.swift",
+      "-I",
+      "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx14.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-Xfrontend",
+      "-enable-cross-import-overlays",
+      "-j14",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-swift-version",
+      "5",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "ios",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ]
+  },
+  "targetDependencyMap" : {
+    "BolusCore" : [
+
+    ],
+    "BolusCorePackageTests" : [
+      "BolusCoreTests",
+      "BolusCore"
+    ],
+    "BolusCoreTests" : [
+      "BolusCore"
+    ]
+  },
+  "testDiscoveryCommands" : {
+
+  },
+  "testEntryPointCommands" : {
+    "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCorePackageTests.derived/runner.swift" : {
+      "inputs" : [
+
+      ],
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCorePackageTests.derived/runner.swift"
+        }
+      ]
+    }
+  },
+  "traitConfiguration" : {
+    "default" : {
+
+    }
+  },
+  "writeCommands" : {
+    "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCore.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/outputs/bolus-assistant/ios/Sources/BolusCore/BolusCore.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCore.build/sources"
+    },
+    "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCorePackageTests.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCorePackageTests.derived/runner.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCorePackageTests.build/sources"
+    },
+    "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCorePackageTests.product/Objects.LinkFileList" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<link-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCore.build/BolusCore.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCorePackageTests.build/runner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCoreTests.build/BolusCoreTests.swift.o"
+        }
+      ],
+      "outputFilePath" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCorePackageTests.product/Objects.LinkFileList"
+    },
+    "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCoreTests.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/outputs/bolus-assistant/ios/Tests/BolusCoreTests/BolusCoreTests.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/BolusCoreTests.build/sources"
+    },
+    "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt" : {
+      "alwaysOutOfDate" : true,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<swift-get-version>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+        }
+      ],
+      "outputFilePath" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-core-build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+    }
+  }
+}

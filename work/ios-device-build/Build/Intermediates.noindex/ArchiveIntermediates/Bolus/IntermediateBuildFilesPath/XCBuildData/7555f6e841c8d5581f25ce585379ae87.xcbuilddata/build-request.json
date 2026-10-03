@@ -1,0 +1,85 @@
+{
+  "buildCommand" : {
+    "command" : "build",
+    "skipDependencies" : false,
+    "style" : "buildAndRun"
+  },
+  "configuredTargets" : [
+    {
+      "guid" : "888ca703276e9d8fc6a286d8fd350aac75ad23e95831b7a0980cc2a7bd41882a"
+    }
+  ],
+  "containerPath" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/outputs/bolus-assistant/ios/Bolus.xcodeproj",
+  "continueBuildingAfterErrors" : false,
+  "dependencyScope" : "workspace",
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "install",
+    "activeArchitecture" : "undefined_arch",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : true,
+      "platform" : "iphoneos",
+      "sdk" : "iphoneos26.1",
+      "sdkVariant" : "iphoneos",
+      "supportedArchitectures" : [
+        "armv4t",
+        "armv5",
+        "armv6",
+        "armv7",
+        "armv7f",
+        "armv7s",
+        "armv7k",
+        "arm64",
+        "arm64e"
+      ],
+      "targetArchitecture" : "undefined_arch"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-device-build/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-device-build/Build/Products",
+      "derivedDataPath" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-device-build",
+      "indexDataStoreFolderPath" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-device-build/Index.noindex/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-device-build/Index.noindex/PrecompiledHeaders",
+      "pchPath" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-device-build/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Release",
+    "overrides" : {
+      "commandLine" : {
+        "table" : {
+          "CODE_SIGNING_ALLOWED" : "NO"
+        }
+      },
+      "synthesized" : {
+        "table" : {
+          "ACTION" : "install",
+          "ASSET_PACK_FOLDER_PATH" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-device-build/Build/Intermediates.noindex/ArchiveIntermediates/Bolus/InstallationBuildProductsLocation/OnDemandResources",
+          "ASSETCATALOG_COMPILER_FLATTENED_APP_ICON_PATH" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-device-build/Build/Intermediates.noindex/ArchiveIntermediates/Bolus/BuildProductsPath/ProductIcon.png",
+          "DEPLOYMENT_LOCATION" : "YES",
+          "DEPLOYMENT_POSTPROCESSING" : "YES",
+          "DSTROOT" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-device-build/Build/Intermediates.noindex/ArchiveIntermediates/Bolus/InstallationBuildProductsLocation",
+          "EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE" : "NO",
+          "ENABLE_PREVIEWS" : "NO",
+          "ENABLE_SIGNATURE_AGGREGATION" : "YES",
+          "ENABLE_XOJIT_PREVIEWS" : "YES",
+          "INDEX_ENABLE_DATA_STORE" : "NO",
+          "MESSAGES_APPLICATION_EXTENSION_SUPPORT_FOLDER_PATH" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-device-build/Build/Intermediates.noindex/ArchiveIntermediates/Bolus/BuildProductsPath/MessagesApplicationExtensionSupport",
+          "MESSAGES_APPLICATION_SUPPORT_FOLDER_PATH" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-device-build/Build/Intermediates.noindex/ArchiveIntermediates/Bolus/BuildProductsPath/MessagesApplicationSupport",
+          "OBJROOT" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-device-build/Build/Intermediates.noindex/ArchiveIntermediates/Bolus/IntermediateBuildFilesPath",
+          "SHARED_PRECOMPS_DIR" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-device-build/Build/Intermediates.noindex/ArchiveIntermediates/Bolus/PrecompiledHeaders",
+          "SIGNATURE_METADATA_FOLDER_PATH" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-device-build/Build/Intermediates.noindex/ArchiveIntermediates/Bolus/BuildProductsPath/Signatures",
+          "SWIFT_STDLIB_TOOL_UNSIGNED_DESTINATION_DIR" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-device-build/Build/Intermediates.noindex/ArchiveIntermediates/Bolus/BuildProductsPath/SwiftSupport",
+          "SYMROOT" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-device-build/Build/Intermediates.noindex/ArchiveIntermediates/Bolus/BuildProductsPath",
+          "WATCHKIT_2_SUPPORT_FOLDER_PATH" : "/Users/katerinanik/Documents/Codex/2026-10-02/bolus-assistant-1-0-1-mobile/work/ios-device-build/Build/Intermediates.noindex/ArchiveIntermediates/Bolus/BuildProductsPath/WatchKitSupport2"
+        }
+      }
+    }
+  },
+  "schemeCommand" : "archive",
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}

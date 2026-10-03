@@ -1,0 +1,14 @@
+{
+  "stack": "Docker Compose / PostgreSQL / Redis / Celery / Nginx",
+  "health": "ok",
+  "concurrent_confirm": "one InsulinEntry",
+  "async_reports": {
+    "pdf": 49546,
+    "xlsx": 25564,
+    "csv": 8386,
+    "json": 257515
+  },
+  "latest_glucose": "ok",
+  "rolling_analytics": "ok",
+  "favorites_migration": "ok"
+}
