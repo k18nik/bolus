@@ -7,30 +7,138 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D00000000000000000000001 /* Bolus/BolusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000001 /* Bolus/BolusApp.swift */; };
-		D00000000000000000000002 /* Bolus/AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000002 /* Bolus/AppModel.swift */; };
-		D00000000000000000000003 /* Bolus/HealthReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000003 /* Bolus/HealthReader.swift */; };
-		D00000000000000000000004 /* Bolus/HealthSyncView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000004 /* Bolus/HealthSyncView.swift */; };
-		D00000000000000000000005 /* Sources/BolusCore/BolusCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000005 /* Sources/BolusCore/BolusCore.swift */; };
-		D00000000000000000000006 /* Bolus/Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000006 /* Bolus/Assets.xcassets */; };
-		D00000000000000000000007 /* Bolus/PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = C00000000000000000000007 /* Bolus/PrivacyInfo.xcprivacy */; };
+		0234819D4F1676A6A755E850 /* DiaryStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C2622C06967F64CE19F07F9 /* DiaryStoreTests.swift */; };
+		04869D29D7433853DFE58A21 /* HealthReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBAC23F2B4EF4AFB8C018AB /* HealthReader.swift */; };
+		0DE37D1F28D747055B7FAA0E /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C72853F17A88A3C681C5EF /* Components.swift */; };
+		0EF9AE2137DCC244832AA132 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73E9B0DE8DB339C525AD5C7 /* RootView.swift */; };
+		184567B248E909FBA8E8419A /* PyFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DF22CAE720B9B6ACCBE8E0 /* PyFloat.swift */; };
+		1A28F3A0B8FAEDBA341E0A12 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = C54729A846477947AD1DA074 /* Models.swift */; };
+		1B7DF582DBDDDAC227A51082 /* ReportTables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6764EBCB4C26B256296D2BBC /* ReportTables.swift */; };
+		2451C3FD77B23F7EA44CD5C8 /* GlucoseChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13650BBB48F622F65056DAF /* GlucoseChartView.swift */; };
+		2989805A4D55209310B30FA5 /* FoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EAE3DBA174BD1B8B01CFB7 /* FoodView.swift */; };
+		3EC4A1052EC3384548F5194A /* BolusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B8FA6F5A1DC8D7D1723C1D /* BolusApp.swift */; };
+		408515F2A0E2F03E1C37FF78 /* PyDecimal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A67C8817C736894886FF7C9 /* PyDecimal.swift */; };
+		4661B055AC7C3C612EB0DF71 /* BigUInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A4AE816DFB522CCFE2C976 /* BigUInt.swift */; };
+		47FBE75A80CE56D030ECCE38 /* AIAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C0FE19C4E6AC720E7C8ADF /* AIAssistant.swift */; };
+		4811F013587848A0DAB8999E /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8D6EB29C193B30B1AC3860 /* TodayView.swift */; };
+		52795A695B4AB92125BFE9F1 /* AnalyticsEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AAB60131704B3C8B07B1FB6 /* AnalyticsEngine.swift */; };
+		66083B45A0DE910DBA8A6C55 /* ReportsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286ADB9C6FE9E3551DCC1D84 /* ReportsView.swift */; };
+		69833F1A8543625135BF34F9 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA4DD1C9E7499B8C11FEBBC /* Theme.swift */; };
+		69F89D53EA149219209A9640 /* AIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4385D71B6E16D388D4EBBC7F /* AIView.swift */; };
+		6AE34D2393F5B9D0E66B85A2 /* BolusWorkflow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30A50B51CCB6DC30A5B4185E /* BolusWorkflow.swift */; };
+		6B901AB0C865DF13EA6E6E29 /* IOBEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44361F586A83AE90ABD8AEF3 /* IOBEngine.swift */; };
+		76B8E6A52AC1118C74C182C8 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51532D8E94DF050AF14CFEE7 /* ProfileView.swift */; };
+		7702ED5C95B4DD870A099176 /* TherapySegments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16456124D52F571BF6B7CBE4 /* TherapySegments.swift */; };
+		7FD7B578189352FE92D64F8D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677728570E0D051A912A0D5A /* SettingsView.swift */; };
+		84441D6DEA266E996165E773 /* CycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9DD822D02C9A444FDA4FEE /* CycleView.swift */; };
+		888A191671AA9BD5315B1553 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443DBA6E3E3228EAA7E06B28 /* OnboardingView.swift */; };
+		8FAAC4D2D36F3C868953F186 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79D9D7805FDBDDD9CE4976AC /* Assets.xcassets */; };
+		91FC68B9712E0095E4C56F7C /* TimeSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF84827A89F02B6DFFBD537B /* TimeSupport.swift */; };
+		92AC454C4038FB6C4E81F398 /* Insulins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8296391DB89C6A1A42C0084A /* Insulins.swift */; };
+		9369B4351924365229A48446 /* ArchiveWriters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0F3E6C72C90A3A76F8D8B8 /* ArchiveWriters.swift */; };
+		9472A3627C9EB2B03584626E /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1146B25A27264929CACE07D /* HTTP.swift */; };
+		94B4C8C5464915B6976E6E09 /* SystemServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02303CE6D3E8A22AC4F17D4E /* SystemServices.swift */; };
+		96933C1EE6AAAD0F827392C1 /* DiaryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9F852B7D82ED6FA5E23CD5 /* DiaryStore.swift */; };
+		9D1AD8608322B114552BEA0D /* HealthSyncView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF916BA465B6CBE3290404F8 /* HealthSyncView.swift */; };
+		A2D47571D5582AB3B491C246 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 75D4D4D40071649ADBDAE4A9 /* PrivacyInfo.xcprivacy */; };
+		AB89B6E037D83137B4A91161 /* BolusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0255305D0867C82A8430A8F5 /* BolusView.swift */; };
+		B1D7DC86C27B5DD6C1861551 /* CycleEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F492E2E8EC8F363A30B5A3 /* CycleEngine.swift */; };
+		B6FD832EB017F65A3C9233F8 /* Payloads.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219304D1B242111F87BB3EB5 /* Payloads.swift */; };
+		B927DB380613E64E0AD9E0F7 /* DiaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3B965DD22AF70665104379 /* DiaryView.swift */; };
+		BF80F41C95970AEE1F30DDB1 /* FoodNutrition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C75F91C4574E319B0BA176 /* FoodNutrition.swift */; };
+		BFCFEE4FF04F193394CC6C5D /* Records.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DA05372832423B8AD8B462 /* Records.swift */; };
+		C2353776BCF2CD77BC12FD9A /* FoodCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A029CFD14AF7A7429E41248 /* FoodCatalog.swift */; };
+		C5B55315FA0084430306FBD1 /* JSONValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437EF7D6F4510617C7E59502 /* JSONValue.swift */; };
+		C7B6DDBF005AA4528AA30FF6 /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A22ADB7E3E706E2A87FDF2E /* AnalyticsView.swift */; };
+		CC1FC37CC1FE6C413D784220 /* AddEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7893D34BCC27147C063BF60 /* AddEntryView.swift */; };
+		CD223EFCD346EEF8A23D4B94 /* Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C46692D3BC47C06240839C16 /* Formatting.swift */; };
+		D101475581915865A6B9D3C3 /* Backup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58F3A0AF4603632BF5A406CD /* Backup.swift */; };
+		D119C04E7A937AF3F34FDEC3 /* BolusEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2508775967B5748D2AFEFD9 /* BolusEngine.swift */; };
+		DAD0B3803AD9E1BCF6F302EC /* EntryFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F57C06806CDCBD1C33546D8 /* EntryFactory.swift */; };
+		E8D81BC7468ECA18FCFD01FF /* SafetyLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C7397B21E10205416F04AEC /* SafetyLayer.swift */; };
+		ED7213778D1797FA1D35FFC9 /* HealthImport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711C66B7826047C10D11B846 /* HealthImport.swift */; };
+		EF85D1C17480CA1C09BA2ED4 /* ReportContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D712442AD42C1493C6A3034E /* ReportContent.swift */; };
+		F32257FA1D2AA905D937987B /* ReportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CAA45C827B2B442E1FBA78 /* ReportService.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		CB8137081FD03D06712B93E6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 94004FDDAF54C8E41874B6A1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3118ACCB359E3D9D64519D9F;
+			remoteInfo = Bolus;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		A00000000000000000000010 /* Bolus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bolus.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C00000000000000000000001 /* Bolus/BolusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bolus/BolusApp.swift; sourceTree = "<group>"; };
-		C00000000000000000000002 /* Bolus/AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bolus/AppModel.swift; sourceTree = "<group>"; };
-		C00000000000000000000003 /* Bolus/HealthReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bolus/HealthReader.swift; sourceTree = "<group>"; };
-		C00000000000000000000004 /* Bolus/HealthSyncView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bolus/HealthSyncView.swift; sourceTree = "<group>"; };
-		C00000000000000000000005 /* Sources/BolusCore/BolusCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sources/BolusCore/BolusCore.swift; sourceTree = "<group>"; };
-		C00000000000000000000006 /* Bolus/Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Bolus/Assets.xcassets; sourceTree = "<group>"; };
-		C00000000000000000000007 /* Bolus/PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Bolus/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		C00000000000000000000008 /* Bolus/Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Bolus/Info.plist; sourceTree = "<group>"; };
-		C00000000000000000000009 /* Bolus/Bolus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bolus/Bolus.entitlements; sourceTree = "<group>"; };
+		02303CE6D3E8A22AC4F17D4E /* SystemServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemServices.swift; sourceTree = "<group>"; };
+		0255305D0867C82A8430A8F5 /* BolusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BolusView.swift; sourceTree = "<group>"; };
+		04CDFAE7939FF5C845A51D60 /* BolusAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BolusAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		05CAA45C827B2B442E1FBA78 /* ReportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportService.swift; sourceTree = "<group>"; };
+		0AAB60131704B3C8B07B1FB6 /* AnalyticsEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsEngine.swift; sourceTree = "<group>"; };
+		0E9DD822D02C9A444FDA4FEE /* CycleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CycleView.swift; sourceTree = "<group>"; };
+		16456124D52F571BF6B7CBE4 /* TherapySegments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapySegments.swift; sourceTree = "<group>"; };
+		1C7397B21E10205416F04AEC /* SafetyLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafetyLayer.swift; sourceTree = "<group>"; };
+		1D0F3E6C72C90A3A76F8D8B8 /* ArchiveWriters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveWriters.swift; sourceTree = "<group>"; };
+		219304D1B242111F87BB3EB5 /* Payloads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payloads.swift; sourceTree = "<group>"; };
+		286ADB9C6FE9E3551DCC1D84 /* ReportsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportsView.swift; sourceTree = "<group>"; };
+		2A029CFD14AF7A7429E41248 /* FoodCatalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCatalog.swift; sourceTree = "<group>"; };
+		30A50B51CCB6DC30A5B4185E /* BolusWorkflow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BolusWorkflow.swift; sourceTree = "<group>"; };
+		37DA05372832423B8AD8B462 /* Records.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Records.swift; sourceTree = "<group>"; };
+		433B199E3FFB764E0DA4BE81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		437EF7D6F4510617C7E59502 /* JSONValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONValue.swift; sourceTree = "<group>"; };
+		4385D71B6E16D388D4EBBC7F /* AIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIView.swift; sourceTree = "<group>"; };
+		44361F586A83AE90ABD8AEF3 /* IOBEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IOBEngine.swift; sourceTree = "<group>"; };
+		443DBA6E3E3228EAA7E06B28 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		47EAE3DBA174BD1B8B01CFB7 /* FoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodView.swift; sourceTree = "<group>"; };
+		51532D8E94DF050AF14CFEE7 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		58F3A0AF4603632BF5A406CD /* Backup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Backup.swift; sourceTree = "<group>"; };
+		5A22ADB7E3E706E2A87FDF2E /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
+		6764EBCB4C26B256296D2BBC /* ReportTables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTables.swift; sourceTree = "<group>"; };
+		677728570E0D051A912A0D5A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		711C66B7826047C10D11B846 /* HealthImport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthImport.swift; sourceTree = "<group>"; };
+		75D4D4D40071649ADBDAE4A9 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		79C75F91C4574E319B0BA176 /* FoodNutrition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodNutrition.swift; sourceTree = "<group>"; };
+		79D9D7805FDBDDD9CE4976AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7DA4DD1C9E7499B8C11FEBBC /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		7F57C06806CDCBD1C33546D8 /* EntryFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryFactory.swift; sourceTree = "<group>"; };
+		7FBAC23F2B4EF4AFB8C018AB /* HealthReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthReader.swift; sourceTree = "<group>"; };
+		8296391DB89C6A1A42C0084A /* Insulins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insulins.swift; sourceTree = "<group>"; };
+		83A4AE816DFB522CCFE2C976 /* BigUInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigUInt.swift; sourceTree = "<group>"; };
+		8C2622C06967F64CE19F07F9 /* DiaryStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryStoreTests.swift; sourceTree = "<group>"; };
+		95C0FE19C4E6AC720E7C8ADF /* AIAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIAssistant.swift; sourceTree = "<group>"; };
+		9A67C8817C736894886FF7C9 /* PyDecimal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PyDecimal.swift; sourceTree = "<group>"; };
+		B13650BBB48F622F65056DAF /* GlucoseChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseChartView.swift; sourceTree = "<group>"; };
+		C46692D3BC47C06240839C16 /* Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatting.swift; sourceTree = "<group>"; };
+		C54729A846477947AD1DA074 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		C5C72853F17A88A3C681C5EF /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
+		C73E9B0DE8DB339C525AD5C7 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		CB9F852B7D82ED6FA5E23CD5 /* DiaryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryStore.swift; sourceTree = "<group>"; };
+		CF3B965DD22AF70665104379 /* DiaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryView.swift; sourceTree = "<group>"; };
+		D1146B25A27264929CACE07D /* HTTP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTP.swift; sourceTree = "<group>"; };
+		D4DF22CAE720B9B6ACCBE8E0 /* PyFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PyFloat.swift; sourceTree = "<group>"; };
+		D712442AD42C1493C6A3034E /* ReportContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportContent.swift; sourceTree = "<group>"; };
+		E2508775967B5748D2AFEFD9 /* BolusEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BolusEngine.swift; sourceTree = "<group>"; };
+		E7893D34BCC27147C063BF60 /* AddEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEntryView.swift; sourceTree = "<group>"; };
+		E8C53B66E896EA6FA8809BA2 /* Bolus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bolus.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF84827A89F02B6DFFBD537B /* TimeSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSupport.swift; sourceTree = "<group>"; };
+		F004DD5C650DDAC1F35C2D2D /* Bolus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Bolus.entitlements; sourceTree = "<group>"; };
+		F6B8FA6F5A1DC8D7D1723C1D /* BolusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BolusApp.swift; sourceTree = "<group>"; };
+		F8F492E2E8EC8F363A30B5A3 /* CycleEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CycleEngine.swift; sourceTree = "<group>"; };
+		FD8D6EB29C193B30B1AC3860 /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
+		FF916BA465B6CBE3290404F8 /* HealthSyncView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthSyncView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A00000000000000000000008 /* Frameworks */ = {
+		AE2475D17E49B92D6A95B2C1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D40241B281EF7A7E89D9A29A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -40,40 +148,238 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A00000000000000000000004 = {
+		38687730184EF9F400A833D6 /* Reports */ = {
 			isa = PBXGroup;
 			children = (
-				C00000000000000000000001 /* Bolus/BolusApp.swift */,
-				C00000000000000000000002 /* Bolus/AppModel.swift */,
-				C00000000000000000000003 /* Bolus/HealthReader.swift */,
-				C00000000000000000000004 /* Bolus/HealthSyncView.swift */,
-				C00000000000000000000005 /* Sources/BolusCore/BolusCore.swift */,
-				C00000000000000000000006 /* Bolus/Assets.xcassets */,
-				C00000000000000000000007 /* Bolus/PrivacyInfo.xcprivacy */,
-				C00000000000000000000008 /* Bolus/Info.plist */,
-				C00000000000000000000009 /* Bolus/Bolus.entitlements */,
-				A00000000000000000000005 /* Products */,
+				1D0F3E6C72C90A3A76F8D8B8 /* ArchiveWriters.swift */,
+				D712442AD42C1493C6A3034E /* ReportContent.swift */,
+				6764EBCB4C26B256296D2BBC /* ReportTables.swift */,
+			);
+			path = Reports;
+			sourceTree = "<group>";
+		};
+		3D79B36561C232047BAC5231 /* BolusAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				8C2622C06967F64CE19F07F9 /* DiaryStoreTests.swift */,
+			);
+			path = BolusAppTests;
+			sourceTree = "<group>";
+		};
+		420807CD9587EFE87C8153AA /* mainGroup */ = {
+			isa = PBXGroup;
+			children = (
+				646FC59D9002F0E7EC3CB721 /* Bolus */,
+				3D79B36561C232047BAC5231 /* BolusAppTests */,
+				BFB54E2AE2C8B86FF2185FFD /* Sources */,
+				8241ED42B56CC1DA7F726566 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		A00000000000000000000005 /* Products */ = {
+		4D2E3F12BDBEE2372A6B2EA0 /* BolusCore */ = {
 			isa = PBXGroup;
 			children = (
-				A00000000000000000000010 /* Bolus.app */,
+				DA1E93B1E18A03AA13E11F5B /* AI */,
+				F84C707AE8E91D1AE2F920AB /* Analytics */,
+				8E44B7A479D20FCA9C54CB5C /* Backup */,
+				6CD3E82E74D4D83828AB687E /* Domain */,
+				A3582A923C6D5D3C4C19DF70 /* Engine */,
+				FF4F15281E2B9D4974901588 /* Food */,
+				E473E057601540F9CB20A7DA /* HealthKit */,
+				776562D0CDAC4E526F77496C /* Numerics */,
+				38687730184EF9F400A833D6 /* Reports */,
+				97651037D75A44E7F59985D7 /* Support */,
+				F1B0837CB744C276B31AF633 /* Workflows */,
+			);
+			path = BolusCore;
+			sourceTree = "<group>";
+		};
+		54AD6C438AC91F4EFE5A782B /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				CB9F852B7D82ED6FA5E23CD5 /* DiaryStore.swift */,
+				C54729A846477947AD1DA074 /* Models.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		646FC59D9002F0E7EC3CB721 /* Bolus */ = {
+			isa = PBXGroup;
+			children = (
+				7485C1DF1DDD871376AF7095 /* App */,
+				54AD6C438AC91F4EFE5A782B /* Persistence */,
+				CBDCFA399F024BC50B972186 /* Services */,
+				C9F94A313C0253A161248BE9 /* UI */,
+				79D9D7805FDBDDD9CE4976AC /* Assets.xcassets */,
+				F004DD5C650DDAC1F35C2D2D /* Bolus.entitlements */,
+				433B199E3FFB764E0DA4BE81 /* Info.plist */,
+				75D4D4D40071649ADBDAE4A9 /* PrivacyInfo.xcprivacy */,
+			);
+			path = Bolus;
+			sourceTree = "<group>";
+		};
+		6CD3E82E74D4D83828AB687E /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				219304D1B242111F87BB3EB5 /* Payloads.swift */,
+				37DA05372832423B8AD8B462 /* Records.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		7485C1DF1DDD871376AF7095 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				F6B8FA6F5A1DC8D7D1723C1D /* BolusApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		776562D0CDAC4E526F77496C /* Numerics */ = {
+			isa = PBXGroup;
+			children = (
+				83A4AE816DFB522CCFE2C976 /* BigUInt.swift */,
+				9A67C8817C736894886FF7C9 /* PyDecimal.swift */,
+				D4DF22CAE720B9B6ACCBE8E0 /* PyFloat.swift */,
+			);
+			path = Numerics;
+			sourceTree = "<group>";
+		};
+		8241ED42B56CC1DA7F726566 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E8C53B66E896EA6FA8809BA2 /* Bolus.app */,
+				04CDFAE7939FF5C845A51D60 /* BolusAppTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		8E44B7A479D20FCA9C54CB5C /* Backup */ = {
+			isa = PBXGroup;
+			children = (
+				58F3A0AF4603632BF5A406CD /* Backup.swift */,
+			);
+			path = Backup;
+			sourceTree = "<group>";
+		};
+		97651037D75A44E7F59985D7 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				C46692D3BC47C06240839C16 /* Formatting.swift */,
+				D1146B25A27264929CACE07D /* HTTP.swift */,
+				437EF7D6F4510617C7E59502 /* JSONValue.swift */,
+				EF84827A89F02B6DFFBD537B /* TimeSupport.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		A3582A923C6D5D3C4C19DF70 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				E2508775967B5748D2AFEFD9 /* BolusEngine.swift */,
+				F8F492E2E8EC8F363A30B5A3 /* CycleEngine.swift */,
+				8296391DB89C6A1A42C0084A /* Insulins.swift */,
+				44361F586A83AE90ABD8AEF3 /* IOBEngine.swift */,
+				1C7397B21E10205416F04AEC /* SafetyLayer.swift */,
+				16456124D52F571BF6B7CBE4 /* TherapySegments.swift */,
+			);
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		BFB54E2AE2C8B86FF2185FFD /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				4D2E3F12BDBEE2372A6B2EA0 /* BolusCore */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		C9F94A313C0253A161248BE9 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				E7893D34BCC27147C063BF60 /* AddEntryView.swift */,
+				4385D71B6E16D388D4EBBC7F /* AIView.swift */,
+				5A22ADB7E3E706E2A87FDF2E /* AnalyticsView.swift */,
+				0255305D0867C82A8430A8F5 /* BolusView.swift */,
+				C5C72853F17A88A3C681C5EF /* Components.swift */,
+				0E9DD822D02C9A444FDA4FEE /* CycleView.swift */,
+				CF3B965DD22AF70665104379 /* DiaryView.swift */,
+				47EAE3DBA174BD1B8B01CFB7 /* FoodView.swift */,
+				B13650BBB48F622F65056DAF /* GlucoseChartView.swift */,
+				FF916BA465B6CBE3290404F8 /* HealthSyncView.swift */,
+				443DBA6E3E3228EAA7E06B28 /* OnboardingView.swift */,
+				51532D8E94DF050AF14CFEE7 /* ProfileView.swift */,
+				286ADB9C6FE9E3551DCC1D84 /* ReportsView.swift */,
+				C73E9B0DE8DB339C525AD5C7 /* RootView.swift */,
+				677728570E0D051A912A0D5A /* SettingsView.swift */,
+				7DA4DD1C9E7499B8C11FEBBC /* Theme.swift */,
+				FD8D6EB29C193B30B1AC3860 /* TodayView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		CBDCFA399F024BC50B972186 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7FBAC23F2B4EF4AFB8C018AB /* HealthReader.swift */,
+				05CAA45C827B2B442E1FBA78 /* ReportService.swift */,
+				02303CE6D3E8A22AC4F17D4E /* SystemServices.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		DA1E93B1E18A03AA13E11F5B /* AI */ = {
+			isa = PBXGroup;
+			children = (
+				95C0FE19C4E6AC720E7C8ADF /* AIAssistant.swift */,
+			);
+			path = AI;
+			sourceTree = "<group>";
+		};
+		E473E057601540F9CB20A7DA /* HealthKit */ = {
+			isa = PBXGroup;
+			children = (
+				711C66B7826047C10D11B846 /* HealthImport.swift */,
+			);
+			path = HealthKit;
+			sourceTree = "<group>";
+		};
+		F1B0837CB744C276B31AF633 /* Workflows */ = {
+			isa = PBXGroup;
+			children = (
+				30A50B51CCB6DC30A5B4185E /* BolusWorkflow.swift */,
+				7F57C06806CDCBD1C33546D8 /* EntryFactory.swift */,
+			);
+			path = Workflows;
+			sourceTree = "<group>";
+		};
+		F84C707AE8E91D1AE2F920AB /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				0AAB60131704B3C8B07B1FB6 /* AnalyticsEngine.swift */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		FF4F15281E2B9D4974901588 /* Food */ = {
+			isa = PBXGroup;
+			children = (
+				2A029CFD14AF7A7429E41248 /* FoodCatalog.swift */,
+				79C75F91C4574E319B0BA176 /* FoodNutrition.swift */,
+			);
+			path = Food;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A00000000000000000000002 /* Bolus */ = {
+		3118ACCB359E3D9D64519D9F /* Bolus */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A00000000000000000000006 /* Build configuration list for PBXNativeTarget "Bolus" */;
+			buildConfigurationList = 03352BF0FDF1283AEB52EAA3 /* Build configuration list for PBXNativeTarget "Bolus" */;
 			buildPhases = (
-				A00000000000000000000007 /* Sources */,
-				A00000000000000000000008 /* Frameworks */,
-				A00000000000000000000009 /* Resources */,
+				8483A952A20C1C93FFC44E03 /* Sources */,
+				D40241B281EF7A7E89D9A29A /* Frameworks */,
+				52564A9FE1DC462F0E35800A /* Resources */,
 			);
 			buildRules = (
 			);
@@ -81,18 +387,38 @@
 			);
 			name = Bolus;
 			productName = Bolus;
-			productReference = A00000000000000000000010 /* Bolus.app */;
+			productReference = E8C53B66E896EA6FA8809BA2 /* Bolus.app */;
 			productType = "com.apple.product-type.application";
+		};
+		39286B56DBD3357B2F7AFB29 /* BolusAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8FDE0C2713391D676B51277 /* Build configuration list for PBXNativeTarget "BolusAppTests" */;
+			buildPhases = (
+				49C6BF74B18184291956A261 /* Sources */,
+				AE2475D17E49B92D6A95B2C1 /* Frameworks */,
+				FB2A9E1AD701A62482756BCE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CA3C7D0C31C00AF369D04459 /* PBXTargetDependency */,
+			);
+			name = BolusAppTests;
+			productName = BolusAppTests;
+			productReference = 04CDFAE7939FF5C845A51D60 /* BolusAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		A00000000000000000000001 /* Project object */ = {
+		94004FDDAF54C8E41874B6A1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2610;
 				LastUpgradeCheck = 2610;
 				TargetAttributes = {
-					A00000000000000000000002 = {
+					3118ACCB359E3D9D64519D9F = {
 						CreatedOnToolsVersion = 26.1;
 						SystemCapabilities = {
 							com.apple.HealthKit = {
@@ -100,9 +426,13 @@
 							};
 						};
 					};
+					39286B56DBD3357B2F7AFB29 = {
+						CreatedOnToolsVersion = 26.1;
+						TestTargetID = 3118ACCB359E3D9D64519D9F;
+					};
 				};
 			};
-			buildConfigurationList = A00000000000000000000003 /* Build configuration list for PBXProject "Bolus" */;
+			buildConfigurationList = BEE1607168D4EBCB69E53BCE /* Build configuration list for PBXProject "Bolus" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = ru;
 			hasScannedForEncodings = 0;
@@ -111,126 +441,299 @@
 				en,
 				Base,
 			);
-			mainGroup = A00000000000000000000004;
-			productRefGroup = A00000000000000000000005 /* Products */;
+			mainGroup = 420807CD9587EFE87C8153AA /* mainGroup */;
+			productRefGroup = 8241ED42B56CC1DA7F726566 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A00000000000000000000002 /* Bolus */,
+				3118ACCB359E3D9D64519D9F /* Bolus */,
+				39286B56DBD3357B2F7AFB29 /* BolusAppTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A00000000000000000000009 /* Resources */ = {
+		52564A9FE1DC462F0E35800A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D00000000000000000000006 /* Bolus/Assets.xcassets in Resources */,
-				D00000000000000000000007 /* Bolus/PrivacyInfo.xcprivacy in Resources */,
+				8FAAC4D2D36F3C868953F186 /* Assets.xcassets in Resources */,
+				A2D47571D5582AB3B491C246 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB2A9E1AD701A62482756BCE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A00000000000000000000007 /* Sources */ = {
+		49C6BF74B18184291956A261 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D00000000000000000000001 /* Bolus/BolusApp.swift in Sources */,
-				D00000000000000000000002 /* Bolus/AppModel.swift in Sources */,
-				D00000000000000000000003 /* Bolus/HealthReader.swift in Sources */,
-				D00000000000000000000004 /* Bolus/HealthSyncView.swift in Sources */,
-				D00000000000000000000005 /* Sources/BolusCore/BolusCore.swift in Sources */,
+				0234819D4F1676A6A755E850 /* DiaryStoreTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8483A952A20C1C93FFC44E03 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EC4A1052EC3384548F5194A /* BolusApp.swift in Sources */,
+				96933C1EE6AAAD0F827392C1 /* DiaryStore.swift in Sources */,
+				1A28F3A0B8FAEDBA341E0A12 /* Models.swift in Sources */,
+				04869D29D7433853DFE58A21 /* HealthReader.swift in Sources */,
+				F32257FA1D2AA905D937987B /* ReportService.swift in Sources */,
+				94B4C8C5464915B6976E6E09 /* SystemServices.swift in Sources */,
+				69F89D53EA149219209A9640 /* AIView.swift in Sources */,
+				CC1FC37CC1FE6C413D784220 /* AddEntryView.swift in Sources */,
+				C7B6DDBF005AA4528AA30FF6 /* AnalyticsView.swift in Sources */,
+				AB89B6E037D83137B4A91161 /* BolusView.swift in Sources */,
+				0DE37D1F28D747055B7FAA0E /* Components.swift in Sources */,
+				84441D6DEA266E996165E773 /* CycleView.swift in Sources */,
+				B927DB380613E64E0AD9E0F7 /* DiaryView.swift in Sources */,
+				2989805A4D55209310B30FA5 /* FoodView.swift in Sources */,
+				2451C3FD77B23F7EA44CD5C8 /* GlucoseChartView.swift in Sources */,
+				9D1AD8608322B114552BEA0D /* HealthSyncView.swift in Sources */,
+				888A191671AA9BD5315B1553 /* OnboardingView.swift in Sources */,
+				76B8E6A52AC1118C74C182C8 /* ProfileView.swift in Sources */,
+				66083B45A0DE910DBA8A6C55 /* ReportsView.swift in Sources */,
+				0EF9AE2137DCC244832AA132 /* RootView.swift in Sources */,
+				7FD7B578189352FE92D64F8D /* SettingsView.swift in Sources */,
+				69833F1A8543625135BF34F9 /* Theme.swift in Sources */,
+				4811F013587848A0DAB8999E /* TodayView.swift in Sources */,
+				47FBE75A80CE56D030ECCE38 /* AIAssistant.swift in Sources */,
+				52795A695B4AB92125BFE9F1 /* AnalyticsEngine.swift in Sources */,
+				D101475581915865A6B9D3C3 /* Backup.swift in Sources */,
+				B6FD832EB017F65A3C9233F8 /* Payloads.swift in Sources */,
+				BFCFEE4FF04F193394CC6C5D /* Records.swift in Sources */,
+				D119C04E7A937AF3F34FDEC3 /* BolusEngine.swift in Sources */,
+				B1D7DC86C27B5DD6C1861551 /* CycleEngine.swift in Sources */,
+				6B901AB0C865DF13EA6E6E29 /* IOBEngine.swift in Sources */,
+				92AC454C4038FB6C4E81F398 /* Insulins.swift in Sources */,
+				E8D81BC7468ECA18FCFD01FF /* SafetyLayer.swift in Sources */,
+				7702ED5C95B4DD870A099176 /* TherapySegments.swift in Sources */,
+				C2353776BCF2CD77BC12FD9A /* FoodCatalog.swift in Sources */,
+				BF80F41C95970AEE1F30DDB1 /* FoodNutrition.swift in Sources */,
+				ED7213778D1797FA1D35FFC9 /* HealthImport.swift in Sources */,
+				4661B055AC7C3C612EB0DF71 /* BigUInt.swift in Sources */,
+				408515F2A0E2F03E1C37FF78 /* PyDecimal.swift in Sources */,
+				184567B248E909FBA8E8419A /* PyFloat.swift in Sources */,
+				9369B4351924365229A48446 /* ArchiveWriters.swift in Sources */,
+				EF85D1C17480CA1C09BA2ED4 /* ReportContent.swift in Sources */,
+				1B7DF582DBDDDAC227A51082 /* ReportTables.swift in Sources */,
+				CD223EFCD346EEF8A23D4B94 /* Formatting.swift in Sources */,
+				9472A3627C9EB2B03584626E /* HTTP.swift in Sources */,
+				C5B55315FA0084430306FBD1 /* JSONValue.swift in Sources */,
+				91FC68B9712E0095E4C56F7C /* TimeSupport.swift in Sources */,
+				6AE34D2393F5B9D0E66B85A2 /* BolusWorkflow.swift in Sources */,
+				DAD0B3803AD9E1BCF6F302EC /* EntryFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		CA3C7D0C31C00AF369D04459 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3118ACCB359E3D9D64519D9F /* Bolus */;
+			targetProxy = CB8137081FD03D06712B93E6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
-		B00000000000000000000001 /* Debug */ = {
+		1F5A4B277731CC04AF3B65C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 22U845G3B8;
+				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.bolus.diary.personal.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bolus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Bolus";
 			};
 			name = Debug;
 		};
-		B00000000000000000000002 /* Release */ = {
+		2A7C6A1AD1AA72C5C0856229 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Bolus/Bolus.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 22U845G3B8;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Bolus/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.bolus.diary.personal;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		431C9EF35F5C4983D210AA89 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Bolus/Bolus.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 22U845G3B8;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Bolus/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.bolus.diary.personal;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		79202D6F05A2EB0B50AEA796 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BA9524E20EE286DFD03FCC44 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		B00000000000000000000003 /* Debug */ = {
+		DF9A595B657536DEAC263A66 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Bolus/Bolus.entitlements;
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 22U845G3B8;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = Bolus/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = app.bolus.diary.personal;
-				PRODUCT_NAME = Bolus;
-				SWIFT_EMIT_LOC_STRINGS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.bolus.diary.personal.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		B00000000000000000000004 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Bolus/Bolus.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 22U845G3B8;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = Bolus/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = app.bolus.diary.personal;
-				PRODUCT_NAME = Bolus;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Bolus.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Bolus";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A00000000000000000000003 /* Build configuration list for PBXProject "Bolus" */ = {
+		03352BF0FDF1283AEB52EAA3 /* Build configuration list for PBXNativeTarget "Bolus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B00000000000000000000001 /* Debug */,
-				B00000000000000000000002 /* Release */,
+				431C9EF35F5C4983D210AA89 /* Debug */,
+				2A7C6A1AD1AA72C5C0856229 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A00000000000000000000006 /* Build configuration list for PBXNativeTarget "Bolus" */ = {
+		BEE1607168D4EBCB69E53BCE /* Build configuration list for PBXProject "Bolus" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B00000000000000000000003 /* Debug */,
-				B00000000000000000000004 /* Release */,
+				79202D6F05A2EB0B50AEA796 /* Debug */,
+				BA9524E20EE286DFD03FCC44 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8FDE0C2713391D676B51277 /* Build configuration list for PBXNativeTarget "BolusAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F5A4B277731CC04AF3B65C9 /* Debug */,
+				DF9A595B657536DEAC263A66 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = A00000000000000000000001 /* Project object */;
+	rootObject = 94004FDDAF54C8E41874B6A1 /* Project object */;
 }

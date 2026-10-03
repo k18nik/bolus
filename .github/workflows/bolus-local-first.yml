@@ -1,0 +1,130 @@
+name: Bolus local-first
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'outputs/bolus-assistant/ios/**'
+      - 'outputs/bolus-assistant/backend/**'
+      - '.github/workflows/bolus-local-first.yml'
+  pull_request:
+    paths:
+      - 'outputs/bolus-assistant/ios/**'
+      - 'outputs/bolus-assistant/backend/**'
+      - '.github/workflows/bolus-local-first.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  python-reference:
+    name: Python reference + shared vectors
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: outputs/bolus-assistant/backend
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: |
+            outputs/bolus-assistant/backend
+            outputs/bolus-assistant/ios/Tests
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - name: Backend tests (BolusEngine, IOB, Safety, analytics, golden cases)
+        run: python -m pytest -q
+      - name: Shared vectors are reproducible from the Python reference
+        run: |
+          python scripts/generate_shared_vectors.py
+          git diff --exit-code -- ../ios/Tests/BolusCoreTests/Fixtures
+
+  core-linux:
+    name: BolusCore (Linux, swift test)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: outputs/bolus-assistant/ios
+      - run: swift --version
+      - name: Parity tests against Python vectors
+        run: swift test --package-path outputs/bolus-assistant/ios
+
+  ios-app:
+    name: iOS app (Xcode, simulator)
+    runs-on: macos-latest
+    timeout-minutes: 60
+    env:
+      PROJECT: outputs/bolus-assistant/ios/Bolus.xcodeproj
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout: outputs/bolus-assistant/ios
+      - name: Toolchain
+        run: |
+          xcodebuild -version
+          swift --version
+      - name: Xcode project is up to date
+        run: |
+          python3 outputs/bolus-assistant/ios/scripts/generate_xcodeproj.py
+          git diff --exit-code -- "$PROJECT"
+      - name: BolusCore tests (macOS)
+        run: swift test --package-path outputs/bolus-assistant/ios
+      - name: Pick an iPhone simulator
+        run: |
+          UDID=$(xcrun simctl list devices available -j | python3 -c '
+          import json, re, sys
+          best = None
+          for runtime, devices in json.load(sys.stdin)["devices"].items():
+              match = re.search(r"iOS-(\d+)-(\d+)", runtime)
+              if not match:
+                  continue
+              version = tuple(int(part) for part in match.groups())
+              for device in devices:
+                  if device.get("isAvailable") and device["name"].startswith("iPhone"):
+                      key = (version, device["name"])
+                      if best is None or key > best[0]:
+                          best = (key, device["udid"])
+          if best is None:
+              sys.exit("no iPhone simulator available")
+          print(best[0], file=sys.stderr)
+          print(best[1])
+          ')
+          echo "SIMULATOR=$UDID" >> "$GITHUB_ENV"
+      - name: Build app and tests
+        run: |
+          set -o pipefail
+          xcodebuild build-for-testing -quiet \
+            -project "$PROJECT" -scheme Bolus -configuration Debug \
+            -destination "id=$SIMULATOR" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+            CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/build.log"
+      - name: Compiler errors
+        if: failure()
+        run: grep -E "error:" "$RUNNER_TEMP/build.log" | sort -u | head -300 || true
+      - name: SwiftData flows on the simulator
+        run: |
+          set -o pipefail
+          xcodebuild test-without-building \
+            -project "$PROJECT" -scheme Bolus -configuration Debug \
+            -destination "id=$SIMULATOR" -derivedDataPath "$RUNNER_TEMP/DerivedData" \
+            -resultBundlePath "$RUNNER_TEMP/BolusAppTests.xcresult" \
+            CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/test.log" | grep -E "Test Case|error:|failed|passed|\*\* TEST" || true
+          grep -q "\*\* TEST SUCCEEDED \*\*" "$RUNNER_TEMP/test.log"
+      - name: Release build for a device (unsigned)
+        run: |
+          set -o pipefail
+          xcodebuild build -quiet \
+            -project "$PROJECT" -scheme Bolus -configuration Release \
+            -destination "generic/platform=iOS" -derivedDataPath "$RUNNER_TEMP/DerivedDataRelease" \
+            CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/release.log"

@@ -178,13 +178,16 @@ def analytics_vectors(rng):
                 data = {'value_mmol': rng.choice([round(rng.uniform(2.2, 24), 1), rng.randint(40, 430) / 18, rng.choice([3.9, 10, 10.0, 3.8, 10.1])])}
             elif kind == 'insulin':
                 basal = rng.random() < 0.3
-                data = {'units': rng.choice([1, 2, 0.5, round(rng.uniform(0.5, 24), 1)]), 'insulin_type': 'basal' if basal else 'rapid',
+                data = {'units': rng.choice([1.0, 2.0, 0.5, round(rng.uniform(0.5, 24), 1)]), 'insulin_type': 'basal' if basal else 'rapid',
                         'purpose': 'basal' if basal else rng.choice(['meal', 'correction', 'meal_and_correction', 'manual'])}
             elif kind == 'meal':
                 data = {'total_carbs': round(rng.uniform(0, 120), rng.choice([0, 1, 4])), 'total_calories': round(rng.uniform(0, 900), rng.choice([0, 2]))}
             elif kind == 'activity':
-                data = {'name': rng.choice(['Ходьба', 'Бег', 'Йога']), 'duration_minutes': rng.choice([20, 45, 61, round(rng.uniform(5, 120), 1)]),
-                        'source': rng.choice(['manual', 'apple_health'])}
+                # Types as the backend stores them: `units: float`; manual `duration_minutes: int`,
+                # Apple Health `duration_minutes: float` (Python 3.12 sums the mix differently).
+                source = rng.choice(['manual', 'apple_health'])
+                minutes = rng.choice([20, 45, 61, rng.randint(5, 120)]) if source == 'manual' else rng.choice([20.0, 45.0, round(rng.uniform(5, 120), 1)])
+                data = {'name': rng.choice(['Ходьба', 'Бег', 'Йога']), 'duration_minutes': minutes, 'source': source}
             else:
                 data = {'note': 'note'}
             entries.append({'id': str(uuid.UUID(int=rng.getrandbits(128))), 'kind': kind, 'occurred_at': iso(at), 'data': data})
@@ -211,7 +214,18 @@ def numeric_vectors(rng):
     for _ in range(150):
         values = [rng.choice([round(rng.uniform(2, 25), 1), rng.randint(36, 450) / 18, rng.uniform(0, 30)]) for _ in range(rng.choice([1, 2, 3, 7, 40, 150]))]
         stats.append({'values': values, 'mean': statistics.mean(values), 'median': statistics.median(values), 'pstdev': statistics.pstdev(values)})
-    return {'round': rounds, 'statistics': stats}
+    sums = []
+    tricky = [0.1, 0.2, 0.3, 0.7, 1e16, 1e-3, 2.675, 1 / 3, 26.45, 8.15, 62.0]
+    for _ in range(300):
+        values = [rng.choice([round(rng.uniform(0, 120), rng.choice([1, 2, 4])), rng.choice(tricky) * rng.choice([1, -1, 3, 7]),
+                              rng.uniform(0, 3000)]) for _ in range(rng.choice([0, 1, 2, 3, 10, 40, 150]))]
+        sums.append({'values': values, 'expected': float(sum(values))})
+    mixed = []
+    for _ in range(300):
+        items = [rng.choice([rng.randint(0, 300), round(rng.uniform(0, 120), 1), rng.choice(tricky) * rng.choice([1, -1, 3])])
+                 for _ in range(rng.choice([1, 2, 3, 5, 12, 40]))]
+        mixed.append({'items': [['int' if type(v) is int else 'float', v] for v in items], 'expected': float(sum(items))})
+    return {'round': rounds, 'statistics': stats, 'sum': sums, 'mixed_sum': mixed}
 
 
 def write(name, payload):
@@ -231,6 +245,8 @@ def write(name, payload):
 
 
 def main():
+    if sys.version_info < (3, 12):
+        raise SystemExit('Use Python 3.12+ like the backend image: sum() of floats is compensated since 3.12.')
     rng = random.Random(SEED)
     OUT.mkdir(parents=True, exist_ok=True)
     meta = {'generator': 'backend/scripts/generate_shared_vectors.py', 'seed': SEED}

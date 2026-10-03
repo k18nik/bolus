@@ -245,10 +245,10 @@ public struct MealPayload: Codable, Equatable, Sendable {
         self.mealType = mealType
         self.items = items
         self.note = note
-        totalCarbs = PyFloat.round(items.reduce(0) { $0 + $1.carbs }, 4)
-        totalProtein = PyFloat.round(items.reduce(0) { $0 + $1.protein }, 4)
-        totalFat = PyFloat.round(items.reduce(0) { $0 + $1.fat }, 4)
-        totalCalories = PyFloat.round(items.reduce(0) { $0 + $1.calories }, 4)
+        totalCarbs = PyFloat.round(PyFloat.sum(items.map(\.carbs)), 4)
+        totalProtein = PyFloat.round(PyFloat.sum(items.map(\.protein)), 4)
+        totalFat = PyFloat.round(PyFloat.sum(items.map(\.fat)), 4)
+        totalCalories = PyFloat.round(PyFloat.sum(items.map(\.calories)), 4)
     }
 
     enum CodingKeys: String, CodingKey {

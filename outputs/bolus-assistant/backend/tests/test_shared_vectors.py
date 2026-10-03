@@ -5,7 +5,7 @@ produced by `scripts/generate_shared_vectors.py`. This test proves that the Pyth
 reference still yields exactly the stored values; the Swift test suite checks the same
 files against the native port.
 """
-import json, math, statistics
+import json, math, statistics, sys
 from datetime import date, datetime
 from pathlib import Path
 import pytest
@@ -14,6 +14,9 @@ from app.iob.engine import AdministeredDose, calculate_iob
 from app.analytics.engine import summarize, hourly_profile, daily_breakdown, activity_response
 
 FIXTURES = Path(__file__).resolve().parents[2] / 'ios' / 'Tests' / 'BolusCoreTests' / 'Fixtures'
+# The backend image runs Python 3.12; since 3.12 `sum()` of floats is compensated, which
+# changes a few rounded totals. Vectors (and the Swift port) follow 3.12+.
+needs_py312 = pytest.mark.skipif(sys.version_info < (3, 12), reason='reference semantics are Python 3.12+ (backend image)')
 
 
 def load(name):
@@ -66,6 +69,7 @@ def test_iob_vectors():
             assert calculate_iob(doses, datetime.fromisoformat(case['at'])) == case['expected'], case['id']
 
 
+@needs_py312
 def test_analytics_vectors():
     cases = load('analytics_vectors.json')['cases']
     for case in cases:
@@ -77,6 +81,7 @@ def test_analytics_vectors():
         assert same(actual, dec(case['expected'])), case['id']
 
 
+@needs_py312
 def test_numeric_vectors():
     data = load('numeric_vectors.json')
     for case in data['round']:
@@ -86,3 +91,9 @@ def test_numeric_vectors():
         assert statistics.mean(values) == case['mean']
         assert statistics.median(values) == case['median']
         assert statistics.pstdev(values) == case['pstdev']
+    assert len(data['sum']) > 100
+    for case in data['sum']:
+        assert sum(case['values']) == case['expected']
+    for case in data['mixed_sum']:
+        items = [int(v) if kind == 'int' else float(v) for kind, v in case['items']]
+        assert sum(items) == case['expected']

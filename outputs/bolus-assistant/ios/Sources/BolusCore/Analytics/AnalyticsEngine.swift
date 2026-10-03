@@ -73,6 +73,17 @@ public enum AnalyticsEngine {
         entries.filter { $0.kind == kind }.compactMap { $0.data.double(key) }
     }
 
+    /// Workout durations typed as the reference stores them: `int` for manual entries
+    /// (`duration_minutes: int`), `float` for Apple Health workouts.
+    static func durations(_ entries: [DiaryRecord]) -> [PyNumber] {
+        entries.filter { $0.kind == .activity }.compactMap { entry in
+            guard let minutes = entry.data.double("duration_minutes") else { return nil }
+            let fromHealth = entry.data.string("source") == "apple_health"
+            if !fromHealth, minutes.rounded(.towardZero) == minutes, Swift.abs(minutes) < 1e15 { return .int(Int(minutes)) }
+            return .float(minutes)
+        }
+    }
+
     public static func summarize(_ entries: [DiaryRecord], days: Int) -> Summary {
         let glucose = values(entries, .glucose, "value_mmol")
         let doses = entries.filter { $0.kind == .insulin }.compactMap(\.data.objectValue)
@@ -84,7 +95,7 @@ public enum AnalyticsEngine {
         func share(_ predicate: (Double) -> Bool) -> Double? {
             n == 0 ? nil : PyFloat.round(Double(glucose.filter(predicate).count) / Double(n) * 100, 1)
         }
-        func units(_ list: [[String: JSONValue]]) -> Double { list.reduce(0) { $0 + ($1["units"]?.doubleValue ?? 0) } }
+        func units(_ list: [[String: JSONValue]]) -> Double { PyFloat.sum(list.map { $0["units"]?.doubleValue ?? 0 }) }
         let basal = doses.filter { $0["insulin_type"]?.stringValue == "basal" }
         let bolus = doses.filter { $0["insulin_type"]?.stringValue != "basal" }
         let corrections = doses.filter { ["correction", "meal_and_correction"].contains($0["purpose"]?.stringValue ?? "") }.count
@@ -99,8 +110,8 @@ public enum AnalyticsEngine {
             dailyInsulin: doses.isEmpty ? nil : PyFloat.round(units(doses) / perDay, 2),
             basalInsulin: basal.isEmpty ? nil : PyFloat.round(units(basal) / perDay, 2),
             bolusInsulin: bolus.isEmpty ? nil : PyFloat.round(units(bolus) / perDay, 2),
-            carbsPerDay: meals.isEmpty ? nil : PyFloat.round(meals.reduce(0) { $0 + ($1["total_carbs"]?.doubleValue ?? 0) } / perDay, 1),
-            caloriesPerDay: meals.isEmpty ? nil : PyFloat.round(meals.reduce(0) { $0 + ($1["total_calories"]?.doubleValue ?? 0) } / perDay, 1),
+            carbsPerDay: meals.isEmpty ? nil : PyFloat.round(PyFloat.sum(meals.map { $0["total_carbs"]?.doubleValue ?? 0 }) / perDay, 1),
+            caloriesPerDay: meals.isEmpty ? nil : PyFloat.round(PyFloat.sum(meals.map { $0["total_calories"]?.doubleValue ?? 0 }) / perDay, 1),
             correctionsPerDay: doses.isEmpty ? nil : PyFloat.round(Double(corrections) / perDay, 2),
             days: days, insulinRecords: doses.count, basalRecords: basal.count, bolusRecords: bolus.count, mealRecords: meals.count)
     }
@@ -124,9 +135,9 @@ public enum AnalyticsEngine {
         return (0...to.days(since: from)).map { offset in
             let day = from.adding(days: offset)
             let rows = byDay[day] ?? []
-            let activities = values(rows, .activity, "duration_minutes")
+            let activities = durations(rows)
             return DailyRow(date: day, summary: summarize(rows, days: 1),
-                            activityMinutes: activities.isEmpty ? nil : activities.reduce(0, +))
+                            activityMinutes: activities.isEmpty ? nil : PyFloat.sum(activities))
         }
     }
 
@@ -195,7 +206,7 @@ public enum AnalyticsEngine {
         let days = hours == nil ? to.days(since: from) + 1 : 1
         let metrics = summarize(rows, days: days)
         let activities = rows.filter { $0.kind == .activity }
-        let durations = activities.compactMap { $0.data.double("duration_minutes") }
+        let minutes = durations(rows)
         let summaries = rows.compactMap(\.activitySummary)
         let steps = summaries.compactMap(\.steps)
         let energy = summaries.compactMap(\.activeEnergy)
@@ -215,14 +226,14 @@ public enum AnalyticsEngine {
             from: from, to: to, entries: rows, metrics: metrics,
             daily: dailyBreakdown(rows, from: from, to: to, timeZone: timeZone),
             hourly: hourlyProfile(rows, timeZone: timeZone), activityResponse: activityResponse(rows),
-            activityMinutes: durations.isEmpty ? nil : durations.reduce(0, +), workouts: activities.count,
+            activityMinutes: minutes.isEmpty ? nil : PyFloat.sum(minutes), workouts: activities.count,
             appleHealthWorkouts: activities.filter { $0.data.string("source") == "apple_health" }.count,
             daysWithSteps: steps.count,
-            meanStepsOnRecordedDays: steps.isEmpty ? nil : (steps.reduce(0, +) / Double(steps.count)).rounded(.toNearestOrEven),
-            activeEnergyPerRecordedDay: energy.isEmpty ? nil : PyFloat.round(energy.reduce(0, +) / Double(energy.count), 1),
+            meanStepsOnRecordedDays: steps.isEmpty ? nil : (PyFloat.sum(steps) / Double(steps.count)).rounded(.toNearestOrEven),
+            activeEnergyPerRecordedDay: energy.isEmpty ? nil : PyFloat.round(PyFloat.sum(energy) / Double(energy.count), 1),
             insulinByPurpose: byPurpose, carbsByMealType: byMealType,
-            proteinPerDay: meals.isEmpty ? nil : PyFloat.round(meals.reduce(0) { $0 + $1.totalProtein } / perDay, 1),
-            fatPerDay: meals.isEmpty ? nil : PyFloat.round(meals.reduce(0) { $0 + $1.totalFat } / perDay, 1),
+            proteinPerDay: meals.isEmpty ? nil : PyFloat.round(PyFloat.sum(meals.map(\.totalProtein)) / perDay, 1),
+            fatPerDay: meals.isEmpty ? nil : PyFloat.round(PyFloat.sum(meals.map(\.totalFat)) / perDay, 1),
             mealsPerDay: meals.isEmpty ? nil : PyFloat.round(Double(meals.count) / perDay, 2),
             topFoods: Array(topFoods.prefix(40)))
     }

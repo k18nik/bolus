@@ -49,7 +49,7 @@ public enum FoodNutrition {
         func total(_ value: (MealItem) -> Double?) -> Double? {
             let values = ingredients.map(value)
             guard values.allSatisfy({ $0 != nil }) else { return nil }
-            return values.reduce(0) { $0 + $1! }
+            return PyFloat.sum(values.map { $0! })
         }
         let totals = NutrientTotals(carbs: total { $0.carbs }, protein: total { $0.protein }, fat: total { $0.fat },
                                     calories: total { $0.calories }, fiber: total { $0.fiber }, sugar: total { $0.sugar })
@@ -101,7 +101,7 @@ public enum FoodNutrition {
     public static func totals(_ items: [MealItem]) -> NutrientTotals {
         func sum(_ value: (MealItem) -> Double?) -> Double? {
             let values = items.map(value)
-            return values.contains { $0 == nil } ? nil : values.reduce(0) { $0 + $1! }
+            return values.contains { $0 == nil } ? nil : PyFloat.sum(values.map { $0! })
         }
         return NutrientTotals(carbs: sum { $0.carbs }, protein: sum { $0.protein }, fat: sum { $0.fat },
                               calories: sum { $0.calories }, fiber: sum { $0.fiber }, sugar: sum { $0.sugar })

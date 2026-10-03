@@ -21,8 +21,66 @@ public struct BinaryRational: Sendable {
     }
 }
 
+/// A number as Python typed it, where `int` versus `float` changes a result.
+public enum PyNumber: Sendable, Equatable {
+    case int(Int)
+    case float(Double)
+}
+
 /// Python float semantics that are not plain IEEE operations.
 public enum PyFloat {
+    /// Python 3.12+ `sum()` of floats (the backend image runs Python 3.12): Neumaier
+    /// compensated summation exactly as in CPython's `builtin_sum_impl`, with the
+    /// compensation added once at the end and skipped when it is not finite.
+    /// Whole numbers below 2^53 add exactly, so integer data matches Python's int path.
+    public static func sum<S: Sequence>(_ values: S) -> Double where S.Element == Double {
+        var total = 0.0
+        var compensation = 0.0
+        for x in values {
+            let t = total + x
+            if Swift.abs(total) >= Swift.abs(x) {
+                compensation += (total - t) + x
+            } else {
+                compensation += (x - t) + total
+            }
+            total = t
+        }
+        if compensation != 0, compensation.isFinite { total += compensation }
+        return total
+    }
+
+    /// `sum()` over a list that mixes Python `int` and `float`. CPython 3.12 adds leading
+    /// ints exactly, converts at the first float and compensates only float additions;
+    /// later ints are added plainly. Matters for `duration_minutes`, an `int` for manual
+    /// activity and a `float` for Apple Health workouts.
+    public static func sum(_ items: [PyNumber]) -> Double {
+        var index = items.startIndex
+        var integer = 0
+        while index < items.endIndex, case .int(let value) = items[index] {
+            integer += value
+            index += 1
+        }
+        guard index < items.endIndex, case .float(let first) = items[index] else { return Double(integer) }
+        var total = Double(integer) + first
+        var compensation = 0.0
+        for item in items[(index + 1)...] {
+            switch item {
+            case .float(let x):
+                let t = total + x
+                if Swift.abs(total) >= Swift.abs(x) {
+                    compensation += (total - t) + x
+                } else {
+                    compensation += (x - t) + total
+                }
+                total = t
+            case .int(let value):
+                total += Double(value)
+            }
+        }
+        if compensation != 0, compensation.isFinite { total += compensation }
+        return total
+    }
+
     /// Python `round(x, ndigits)` for floats: correctly rounded half-even on the exact
     /// binary value, then converted back with correctly rounded parsing.
     public static func round(_ value: Double, _ digits: Int) -> Double {

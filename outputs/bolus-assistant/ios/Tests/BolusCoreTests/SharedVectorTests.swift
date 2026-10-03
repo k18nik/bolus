@@ -83,6 +83,22 @@ final class SharedVectorTests: XCTestCase {
             XCTAssertEqual(PyStatistics.median(values), item.double("median"))
             XCTAssertEqual(PyStatistics.pstdev(values), item.double("pstdev"))
         }
+        let sums = root["sum"]?.arrayValue ?? []
+        XCTAssertGreaterThan(sums.count, 100)
+        for item in sums {
+            let values = (item["values"]?.arrayValue ?? []).compactMap(\.doubleValue)
+            XCTAssertEqual(PyFloat.sum(values).bitPattern, try XCTUnwrap(item.double("expected")).bitPattern, "sum(\(values))")
+        }
+        let mixed = root["mixed_sum"]?.arrayValue ?? []
+        XCTAssertGreaterThan(mixed.count, 100)
+        for item in mixed {
+            let numbers: [PyNumber] = try (item["items"]?.arrayValue ?? []).map { pair in
+                let parts = try XCTUnwrap(pair.arrayValue)
+                let value = try XCTUnwrap(parts.last?.doubleValue)
+                return parts.first?.stringValue == "int" ? .int(Int(value)) : .float(value)
+            }
+            XCTAssertEqual(PyFloat.sum(numbers).bitPattern, try XCTUnwrap(item.double("expected")).bitPattern, "sum(\(numbers))")
+        }
     }
 }
 
