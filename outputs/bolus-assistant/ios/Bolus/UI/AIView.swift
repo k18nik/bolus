@@ -130,7 +130,7 @@ struct InsightCard: View {
     @ViewBuilder private func list(_ title: String, _ items: [String]) -> some View {
         if !items.isEmpty {
             Text(title).font(.caption.weight(.semibold)).foregroundStyle(theme.accent)
-            ForEach(items, id: \.self) { Text("• " + $0).font(.footnote).foregroundStyle(theme.text) }
+            ForEach(Array(items.enumerated()), id: \.offset) { _, item in Text("• " + item).font(.footnote).foregroundStyle(theme.text) }
         }
     }
 }
@@ -243,7 +243,7 @@ struct AISettingsView: View {
         do {
             guard let saved = KeychainStore.get(KeychainStore.aiKeyAccount(provider)) else { throw AIError.message("Сначала сохраните ключ.") }
             let usage = try await AIAssistant.testConnection(provider: provider, key: saved, model: store.preferences.aiModel, transport: HTTPClient.transport)
-            message = "\(provider.name): ключ и модель работают. Тест использовал \(Int(usage.double("total_tokens") ?? 0)) токенов."
+            message = "\(provider.name): ключ и модель работают. Тест использовал \(AIInsightRecord.tokenCount(usage)) токенов."
         } catch {
             self.error = error.localizedDescription
         }

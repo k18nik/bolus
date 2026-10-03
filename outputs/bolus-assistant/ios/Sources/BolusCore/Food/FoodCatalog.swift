@@ -146,13 +146,16 @@ public enum USDACatalog {
         for food in body["foods"]?.arrayValue ?? [] {
             var nutrients: [Int: Double] = [:]
             for nutrient in food["foodNutrients"]?.arrayValue ?? [] {
-                if let id = nutrient.double("nutrientId"), let value = nutrient.double("value"), value.isFinite, value >= 0 {
-                    nutrients[Int(id)] = value
+                if let id = nutrient.double("nutrientId").flatMap({ Int(exactly: $0) }), let value = nutrient.double("value"), value.isFinite, value >= 0 {
+                    nutrients[id] = value
                 }
             }
             guard let carbs = nutrients[1005], let name = food.string("description"),
-                  let fdcID = food.double("fdcId") ?? food.string("fdcId").flatMap(Double.init) else { skipped += 1; continue }
-            result.append(CatalogFood(externalID: String(Int(fdcID)), name: String(name.prefix(150)),
+                  let fdcID = (food.double("fdcId") ?? food.string("fdcId").flatMap(Double.init)).flatMap({ Int(exactly: $0) }) else {
+                skipped += 1
+                continue
+            }
+            result.append(CatalogFood(externalID: String(fdcID), name: String(name.prefix(150)),
                                       brand: String((food.string("brandName") ?? "").prefix(100)), provider: "usda", baseUnit: "g",
                                       servingWeight: 100, servingName: "100 г", carbs: carbs, protein: nutrients[1003] ?? 0,
                                       fat: nutrients[1004] ?? 0, calories: nutrients[1008] ?? 0, fiber: nutrients[1079],

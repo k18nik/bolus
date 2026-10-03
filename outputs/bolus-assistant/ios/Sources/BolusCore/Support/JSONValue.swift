@@ -14,8 +14,10 @@ public enum JSONValue: Codable, Equatable, Hashable, Sendable {
         let container = try decoder.singleValueContainer()
         if container.decodeNil() { self = .null; return }
         if let value = try? container.decode(Bool.self) { self = .bool(value); return }
-        if let value = try? container.decode(Double.self) { self = .number(value); return }
+        // Strings first: with the NaN/Infinity decoding strategy a text such as "NaN" would
+        // otherwise turn into a number. Typed `Double` fields still decode those strings.
         if let value = try? container.decode(String.self) { self = .string(value); return }
+        if let value = try? container.decode(Double.self) { self = .number(value); return }
         if let value = try? container.decode([JSONValue].self) { self = .array(value); return }
         if let value = try? container.decode([String: JSONValue].self) { self = .object(value); return }
         throw DecodingError.dataCorruptedError(in: container, debugDescription: "Unsupported JSON value")

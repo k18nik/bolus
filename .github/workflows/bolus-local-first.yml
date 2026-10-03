@@ -30,13 +30,13 @@ jobs:
       run:
         working-directory: outputs/bolus-assistant/backend
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           filter: blob:none
           sparse-checkout: |
             outputs/bolus-assistant/backend
             outputs/bolus-assistant/ios/Tests
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
       - run: pip install -r requirements.txt
@@ -52,7 +52,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           filter: blob:none
           sparse-checkout: outputs/bolus-assistant/ios
@@ -67,7 +67,7 @@ jobs:
     env:
       PROJECT: outputs/bolus-assistant/ios/Bolus.xcodeproj
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           filter: blob:none
           sparse-checkout: outputs/bolus-assistant/ios
@@ -135,7 +135,7 @@ jobs:
             -test-timeouts-enabled YES -default-test-execution-time-allowance 120 -maximum-test-execution-time-allowance 300 \
             CODE_SIGNING_ALLOWED=NO 2>&1 | tee "$RUNNER_TEMP/test.log" \
             | grep -E --line-buffered "Test Case|Test Suite|error:|Testing|\*\* TEST" || true
-          grep -q "\*\* TEST SUCCEEDED \*\*" "$RUNNER_TEMP/test.log"
+          grep -qE "\*\* TEST (EXECUTE )?SUCCEEDED \*\*" "$RUNNER_TEMP/test.log"
       - name: Test log tail
         if: failure()
         run: tail -n 150 "$RUNNER_TEMP/test.log" || true

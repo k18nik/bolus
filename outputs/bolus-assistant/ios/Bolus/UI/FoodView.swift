@@ -72,7 +72,7 @@ struct FoodPicker: View {
             ForEach(foods) { food in
                 FoodRow(food: food, onAdd: { onPick(food) }, onOpen: openAction(food))
             }
-            ForEach(warnings, id: \.self) { Text($0).font(.caption).foregroundStyle(theme.muted) }
+            ForEach(Array(warnings.enumerated()), id: \.offset) { _, warning in Text(warning).font(.caption).foregroundStyle(theme.muted) }
             Text("Значения на 100 г / 100 мл или на порцию. Сверяйте состав с упаковкой.").font(.caption2).foregroundStyle(theme.muted)
         }
         .task(id: "\(source.rawValue)|\(query)|\(network.isOnline)") { await searchCatalog() }
@@ -106,11 +106,11 @@ struct FoodPicker: View {
     }
 
     private func searchCatalog() async {
-        guard source == .catalog else { return }
         let text = query
-        guard network.isOnline, text.trimmingCharacters(in: .whitespaces).count >= 2 else {
+        guard source == .catalog, network.isOnline, text.trimmingCharacters(in: .whitespaces).count >= 2 else {
             catalog = []
             warnings = []
+            searching = false
             return
         }
         try? await Task.sleep(nanoseconds: 400_000_000)
@@ -212,6 +212,7 @@ struct FoodView: View {
     @State private var showCustom = false
     @State private var showRecipe = false
     @State private var mealDraft: FoodRecord?
+    @State private var pendingMeal: FoodRecord?
 
     var body: some View {
         Screen {
@@ -230,8 +231,11 @@ struct FoodView: View {
         }
         .navigationTitle("Еда")
         .navigationBarTitleDisplayMode(.inline)
-        .sheet(item: $detail) { food in
-            NavigationStack { FoodDetailView(food: food, onAddToMeal: { detail = nil; mealDraft = food }) }.environment(\.theme, theme)
+        .sheet(item: $detail, onDismiss: {
+            mealDraft = pendingMeal
+            pendingMeal = nil
+        }) { food in
+            NavigationStack { FoodDetailView(food: food, onAddToMeal: { pendingMeal = food; detail = nil }) }.environment(\.theme, theme)
         }
         .sheet(isPresented: $showCustom) { NavigationStack { CustomFoodForm() }.environment(\.theme, theme) }
         .sheet(isPresented: $showRecipe) { NavigationStack { RecipeForm() }.environment(\.theme, theme) }
@@ -405,7 +409,8 @@ struct RecipeForm: View {
                 NumberField(title: "Вес готового блюда", text: $weight, unit: "г")
                 NumberField(title: "Число порций", text: $servings)
                 if let cooked = BolusFormat.parse(weight), cooked > 0 {
-                    Notice(text: "Углеводы: \(BolusFormat.decimal(carbs / cooked * 100)) г на 100 г · \(BolusFormat.decimal(carbs / Double(max(Int(BolusFormat.parse(servings) ?? 1), 1)))) г на порцию")
+                    let portions = servingCount.map { max($0, 1) } ?? 1
+                    Notice(text: "Углеводы: \(BolusFormat.decimal(carbs / cooked * 100)) г на 100 г · \(BolusFormat.decimal(carbs / Double(portions))) г на порцию")
                 }
             }
             if let error { Notice(text: error, style: .error) }
@@ -416,12 +421,14 @@ struct RecipeForm: View {
         .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Отмена") { dismiss() } } }
     }
 
+    private var servingCount: Int? { BolusFormat.parse(servings).flatMap { Int(exactly: $0) } }
+
     private func save() {
         do {
             let ingredients = items.compactMap(\.item)
             guard ingredients.count == items.count else { throw BolusError.validation("Укажите количество каждого ингредиента") }
             let recipe = try FoodNutrition.recipe(name: name, ingredients: ingredients, cookedWeight: BolusFormat.parse(weight) ?? 0,
-                                                  servings: Int(BolusFormat.parse(servings) ?? 0))
+                                                  servings: servingCount ?? 0)
             try store.saveFood(recipe)
             dismiss()
         } catch {

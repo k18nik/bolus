@@ -323,6 +323,12 @@ enum BolusMigrationPlan: SchemaMigrationPlan {
 enum PersistenceController {
     /// Local-only store in Application Support. CloudKit is explicitly disabled for now.
     static func makeContainer(inMemory: Bool = false) throws -> ModelContainer {
+        if !inMemory {
+            // A fresh install has no Application Support folder yet; creating it first
+            // avoids Core Data's failed first attempt and recovery on initial launch.
+            let support = URL.applicationSupportDirectory
+            try FileManager.default.createDirectory(at: support, withIntermediateDirectories: true)
+        }
         let schema = Schema(versionedSchema: BolusSchemaV1.self)
         let configuration = ModelConfiguration("Bolus", schema: schema, isStoredInMemoryOnly: inMemory, allowsSave: true,
                                                groupContainer: .none, cloudKitDatabase: .none)

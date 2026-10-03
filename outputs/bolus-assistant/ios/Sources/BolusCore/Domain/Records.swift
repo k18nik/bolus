@@ -582,7 +582,13 @@ public struct AIInsightRecord: Codable, Identifiable, Equatable, Sendable {
         try c.encodeIfPresent(calculationID, forKey: .calculationID)
     }
 
-    public var totalTokens: Int { Int(usage.double("total_tokens") ?? 0) }
+    public var totalTokens: Int { Self.tokenCount(usage) }
+
+    /// Token count reported by the provider; anything that is not a sane whole number counts as 0.
+    public static func tokenCount(_ usage: JSONValue) -> Int {
+        guard let value = usage.double("total_tokens"), value >= 0, value < 1e12, let count = Int(exactly: value.rounded()) else { return 0 }
+        return count
+    }
 }
 
 public struct AuditRecord: Codable, Identifiable, Equatable, Sendable {

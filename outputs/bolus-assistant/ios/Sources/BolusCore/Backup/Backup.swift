@@ -110,7 +110,10 @@ public enum BackupMigrator {
         }
         var version: Int
         if let number = object["schemaVersion"]?.doubleValue {
-            version = Int(number)
+            guard let exact = Int(exactly: number) else {
+                throw BolusError.validation("Неизвестный формат резервной копии: schemaVersion должен быть целым числом.")
+            }
+            version = exact
         } else if object["schema_version"]?.stringValue == "1.0" {
             version = 1
         } else {

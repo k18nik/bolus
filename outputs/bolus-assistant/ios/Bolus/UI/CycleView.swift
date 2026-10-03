@@ -174,17 +174,17 @@ struct CycleForm: View {
     private func save() {
         error = nil
         do {
-            guard let days = BolusFormat.parse(length), days == days.rounded() else { throw BolusError.validation("Длина цикла: целое число дней") }
+            guard let days = BolusFormat.parse(length).flatMap({ Int(exactly: $0) }) else { throw BolusError.validation("Длина цикла: целое число дней") }
             let zone = store.timeZone
             let startDate = LocalDate(date: start, timeZone: zone)
             if var record = cycle {
                 record.startDate = startDate
-                record.cycleLength = Int(days)
+                record.cycleLength = days
                 record.endDate = hasEnd ? LocalDate(date: end, timeZone: zone) : nil
                 record.actualOvulationDate = hasOvulation ? LocalDate(date: ovulation, timeZone: zone) : nil
                 try store.updateCycle(record)
             } else {
-                try store.saveCycle(start: startDate, length: Int(days))
+                try store.saveCycle(start: startDate, length: days)
             }
             dismiss()
         } catch {

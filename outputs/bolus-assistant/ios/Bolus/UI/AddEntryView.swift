@@ -252,15 +252,22 @@ struct AddEntryView: View {
             guard mealItems.count == items.count else { throw BolusError.validation("Укажите количество каждого продукта") }
             var minutesValue: Int?
             if let value = try number(minutes, "Длительность") {
-                guard value == value.rounded() else { throw BolusError.validation("Длительность указывается в целых минутах") }
-                minutesValue = Int(value)
+                guard let whole = Int(exactly: value) else { throw BolusError.validation("Длительность указывается в целых минутах") }
+                minutesValue = whole
+            }
+            var lengthValue = 28
+            if trackCycle {
+                guard let whole = Int(exactly: try number(cycleLength, "Длина цикла") ?? 28) else {
+                    throw BolusError.validation("Длина цикла: целое число дней")
+                }
+                lengthValue = whole
             }
             let draft = EntryFactory.BatchDraft(
                 occurredAt: time, glucose: try number(glucose, "Глюкоза"), glucoseUnit: store.unit, mealName: mealName, mealType: mealType,
                 mealItems: mealItems, manualCarbs: try number(carbs, "Углеводы"), rapidUnits: try number(rapid, "Быстрый инсулин"),
                 basalUnits: try number(basal, "Базальный инсулин"), activityName: activity, activityMinutes: minutesValue,
                 activityIntensity: intensity, cycleStart: trackCycle ? LocalDate(date: cycleStart, timeZone: store.timeZone) : nil,
-                cycleLength: Int(try number(cycleLength, "Длина цикла") ?? 28), note: note)
+                cycleLength: lengthValue, note: note)
             saved = try store.saveBatch(draft)
             glucose = ""
             items = []
