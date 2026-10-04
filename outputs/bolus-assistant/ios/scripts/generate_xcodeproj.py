@@ -155,6 +155,8 @@ def main():
     app_settings = {
         **common,
         'ASSETCATALOG_COMPILER_APPICON_NAME': 'AppIcon',
+        # Theme-coloured alternate icons (AppIcon-<theme>) for UIApplication.setAlternateIconName.
+        'ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS': 'YES',
         'CODE_SIGN_ENTITLEMENTS': 'Bolus/Bolus.entitlements',
         'CURRENT_PROJECT_VERSION': BUILD_NUMBER,
         'ENABLE_PREVIEWS': 'YES',

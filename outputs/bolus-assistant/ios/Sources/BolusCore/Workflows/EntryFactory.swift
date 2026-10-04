@@ -219,7 +219,7 @@ public struct EntryFactory {
         if !draft.mealItems.isEmpty || draft.manualCarbs != nil {
             var items = draft.mealItems
             if let carbs = draft.manualCarbs {
-                items.append(MealItem(nameSnapshot: "Углеводы, введённые вручную", grams: 100, amount: 100, unit: .g, carbs: carbs))
+                items.append(MealItem(nameSnapshot: MealItem.manualCarbsName, grams: 100, amount: 100, unit: .g, carbs: carbs))
             }
             entries.append(try meal(name: draft.mealName, mealType: draft.mealType, eatenAt: at, items: items))
         }

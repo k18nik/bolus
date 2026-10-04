@@ -1,7 +1,7 @@
 import SwiftUI
 
 enum DiaryFilter: String, CaseIterable, Identifiable {
-    case all, glucose, meal, insulin, activity, note
+    case all, glucose, meal, insulin, activity, cycle, note
     var id: String { rawValue }
 
     var title: String {
@@ -11,6 +11,7 @@ enum DiaryFilter: String, CaseIterable, Identifiable {
         case .meal: return "Еда"
         case .insulin: return "Инсулин"
         case .activity: return "Активность"
+        case .cycle: return "Цикл"
         case .note: return "Заметки"
         }
     }
@@ -22,6 +23,7 @@ enum DiaryFilter: String, CaseIterable, Identifiable {
         case .meal: return kind == .meal
         case .insulin: return kind == .insulin
         case .activity: return kind == .activity || kind == .activitySummary
+        case .cycle: return false
         case .note: return kind == .note
         }
     }
@@ -34,11 +36,13 @@ struct DiaryView: View {
     @State private var day: LocalDate?
     @State private var filter: DiaryFilter = .all
     @State private var selected: DiaryRecord?
+    @State private var editingCycle: CycleRecord?
 
     var body: some View {
         let _ = store.revision
         let current = day ?? store.today
         let rows = store.entries(on: current).filter { filter.matches($0.kind) }.sorted { $0.occurredAt > $1.occurredAt }
+        let cycleStarts = filter == .all || filter == .cycle ? store.cycles().filter { $0.startDate == current } : []
         Screen {
             PageHeading(title: "Ваш дневник", subtitle: "Маленькие наблюдения складываются в большую картину.")
             Card {
@@ -68,7 +72,12 @@ struct DiaryView: View {
                         }
                     }
                 }
-                if rows.isEmpty {
+                ForEach(cycleStarts) { cycle in
+                    Button { editingCycle = cycle } label: { CycleDayRow(cycle: cycle) }
+                        .buttonStyle(.plain)
+                    Divider()
+                }
+                if rows.isEmpty && cycleStarts.isEmpty {
                     EmptyState(action: onAdd)
                 } else {
                     ForEach(rows) { entry in
@@ -92,6 +101,9 @@ struct DiaryView: View {
         .sheet(item: $selected) { entry in
             NavigationStack { EntryDetailView(entry: entry) }.environment(\.theme, theme)
         }
+        .sheet(item: $editingCycle) { cycle in
+            NavigationStack { CycleForm(cycle: cycle) }.environment(\.theme, theme)
+        }
     }
 
     private func dateBinding(_ current: LocalDate) -> Binding<Date> {
@@ -109,13 +121,19 @@ struct EntryDetailView: View {
     @State private var error: String?
 
     var body: some View {
+        let _ = store.revision
+        // The latest saved version (after a correction), or the opened one after deletion.
+        let entry = store.entry(id: self.entry.id) ?? self.entry
         Screen {
             Card {
                 EventRow(entry: entry, unit: store.unit, timeZone: store.timeZone)
                 Text(entry.occurredAt.dateTime(store.timeZone)).font(.footnote).foregroundStyle(theme.muted)
-                details
+                details(entry)
                 if !entry.noteText.isEmpty && entry.kind != .note {
                     Text(entry.noteText).font(.footnote).foregroundStyle(theme.text)
+                }
+                if entry.version > 1 {
+                    Text("Исправлено · версия \(entry.version) · \(entry.updatedAt.dateTime(store.timeZone))").font(.caption2).foregroundStyle(theme.muted)
                 }
             }
             if entry.kind == .meal {
@@ -125,6 +143,15 @@ struct EntryDetailView: View {
                 .buttonStyle(PrimaryButtonStyle(fullWidth: true))
             }
             if let error { Notice(text: error, style: .error) }
+            if EntryEditor.isEditable(entry) {
+                NavigationLink { EntryEditView(entry: entry) } label: {
+                    Label("Редактировать", systemImage: "pencil").frame(maxWidth: .infinity)
+                }
+                .buttonStyle(SecondaryButtonStyle(fullWidth: true))
+            } else {
+                Text("Данные из Apple «Здоровье» обновляются синхронизацией; исправить их можно в приложении «Здоровье».")
+                    .font(.caption).foregroundStyle(theme.muted)
+            }
             Button(role: .destructive) { confirmDelete = true } label: {
                 Label("Удалить запись", systemImage: "trash").frame(maxWidth: .infinity)
             }
@@ -149,7 +176,7 @@ struct EntryDetailView: View {
         }
     }
 
-    @ViewBuilder private var details: some View {
+    @ViewBuilder private func details(_ entry: DiaryRecord) -> some View {
         switch entry.kind {
         case .glucose:
             if let glucose = entry.glucose {

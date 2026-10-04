@@ -8,7 +8,7 @@ extension Color {
     }
 }
 
-/// The six themes of the web app (CSS variables of `globals.css`).
+/// The six themes of the web app (CSS variables of `globals.css`) plus Lilac.
 struct BolusTheme: Equatable {
     let id: String
     let name: String
@@ -41,8 +41,11 @@ struct BolusTheme: Equatable {
     static let oled = BolusTheme(id: "oled", name: "OLED Black", background: .black, surface: Color(hex: "#0c1212"), text: Color(hex: "#ecf5f1"),
                                  muted: Color(hex: "#a7bab1"), accent: Color(hex: "#85c9ae"), mint: Color(hex: "#16372a"), border: Color(hex: "#26332c"),
                                  radius: 20, isDark: true, swatch: Color(hex: "#030404"))
+    static let lilac = BolusTheme(id: "lilac", name: "Lilac", background: Color(hex: "#f6f2fb"), surface: Color(hex: "#fffdff"), text: Color(hex: "#4b3f5c"),
+                                  muted: Color(hex: "#8f84a3"), accent: Color(hex: "#8b6cc4"), mint: Color(hex: "#efe8f9"), border: Color(hex: "#ebe3f5"),
+                                  radius: 22, isDark: false, swatch: Color(hex: "#e5d9f5"))
 
-    static let all: [BolusTheme] = [light, dark, cat, pink, dino, oled]
+    static let all: [BolusTheme] = [light, dark, cat, pink, dino, oled, lilac]
 
     static func named(_ id: String) -> BolusTheme { all.first { $0.id == id } ?? light }
 
@@ -84,12 +87,12 @@ struct MascotArt: View {
     var size: CGFloat = 120
 
     var body: some View {
-        if id == "cat" {
-            Image("MascotCat")
+        if id == "cat" || id == "siamese" {
+            Image(id == "cat" ? "MascotCat" : "MascotSiamese")
                 .resizable()
                 .scaledToFit()
                 .frame(width: size, height: size)
-                .accessibilityLabel("Кот Персик, ваш помощник")
+                .accessibilityLabel(id == "cat" ? "Кот Персик, ваш помощник" : "Сиамский кот, ваш помощник")
         } else {
             Text(Mascot.named(id).emoji)
                 .font(.system(size: size * 0.62))

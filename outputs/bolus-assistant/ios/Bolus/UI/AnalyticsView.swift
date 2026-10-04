@@ -64,7 +64,7 @@ struct AnalyticsView: View {
         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
             stat("Средняя глюкоза", BolusFormat.glucose(m.meanGlucose, unit: unit), unit.label)
             stat("В диапазоне", BolusFormat.decimal(m.tir, 1), "% измерений")
-            stat("Инсулин в сутки", m.dailyInsulin.map { BolusFormat.decimal($0) } ?? "нет записей", "ЕД")
+            stat("Инсулин в сутки", m.bolusInsulin.map { BolusFormat.decimal($0) } ?? "нет записей", "ЕД · без базального")
             stat("Углеводы в сутки", m.carbsPerDay.map { BolusFormat.decimal($0, 1) } ?? "нет записей", "г")
         }
         Card {
@@ -111,8 +111,8 @@ struct AnalyticsView: View {
         }
         Card {
             SectionTitle(title: "Инсулин и питание")
-            DataRow(label: "Болюсный в сутки", value: m.bolusInsulin.map { BolusFormat.units($0) } ?? "нет записей")
-            DataRow(label: "Базальный в сутки", value: m.basalInsulin.map { BolusFormat.units($0) } ?? "нет записей")
+            DataRow(label: "Инсулин в сутки (без базального)", value: m.bolusInsulin.map { BolusFormat.units($0) } ?? "нет записей")
+            DataRow(label: "Базальный в сутки — отдельно", value: m.basalInsulin.map { BolusFormat.units($0) } ?? "нет записей")
             DataRow(label: "Коррекций в сутки", value: m.correctionsPerDay.map { BolusFormat.decimal($0) } ?? "нет записей")
             DataRow(label: "Энергия в сутки", value: m.caloriesPerDay.map { "\(BolusFormat.decimal($0, 0)) ккал" } ?? "нет записей")
             DataRow(label: "Белки / жиры в сутки", value: report.proteinPerDay.map { "\(BolusFormat.decimal($0, 1)) / \(BolusFormat.decimal(report.fatPerDay, 1)) г" } ?? "нет записей")
@@ -172,7 +172,7 @@ struct AnalyticsView: View {
                         Text("В диапазоне \(percent(row.summary.tir))")
                     }
                     HStack {
-                        Text("Инсулин \(row.summary.dailyInsulin.map { BolusFormat.units($0) } ?? "—")")
+                        Text("Инсулин \(row.summary.bolusInsulin.map { BolusFormat.units($0) } ?? "—")")
                         Spacer()
                         Text("Углеводы \(row.summary.carbsPerDay.map { "\(BolusFormat.decimal($0, 1)) г" } ?? "—")")
                         Spacer()

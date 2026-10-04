@@ -94,7 +94,8 @@ final class ReportTests: XCTestCase {
         guard case .table(_, let rows, _)? = emptyDocument.blocks.first(where: { if case .table = $0 { return true } else { return false } }) else {
             return XCTFail("metrics table")
         }
-        XCTAssertTrue(rows.contains(["Всего инсулина в сутки, ЕД", "нет записей"]))
+        XCTAssertTrue(rows.contains(["Инсулин в сутки (без базального), ЕД", "нет записей"]))
+        XCTAssertTrue(rows.contains(["Базальный инсулин в сутки (отдельно), ЕД", "нет записей"]))
         XCTAssertTrue(rows.contains(["Средняя глюкоза, ммоль/л", "—"]))
     }
 

@@ -110,8 +110,9 @@ public enum ReportBuilder {
             ["Средняя глюкоза, \(unitLabel)", f(m.meanGlucose.map { $0 * factor })],
             ["TIR / в диапазоне, % измерений", f(m.tir)], ["TBR / ниже диапазона, % измерений", f(m.tbr)],
             ["TAR / выше диапазона, % измерений", f(m.tar)], ["CV / коэффициент вариации, %", f(m.coefficientOfVariation)],
-            ["Всего инсулина в сутки, ЕД", m.dailyInsulin.map { f($0) } ?? "нет записей"],
-            ["Базальный / болюсный в сутки, ЕД", (m.basalInsulin.map { f($0) } ?? "нет записей") + " / " + (m.bolusInsulin.map { f($0) } ?? "нет записей")],
+            // Insulin per day excludes basal insulin, which is listed on its own.
+            ["Инсулин в сутки (без базального), ЕД", m.bolusInsulin.map { f($0) } ?? "нет записей"],
+            ["Базальный инсулин в сутки (отдельно), ЕД", m.basalInsulin.map { f($0) } ?? "нет записей"],
         ]
         if o.includeNutrition { metricRows.append(["Углеводы в сутки, г", m.carbsPerDay.map { f($0) } ?? "нет записей"]) }
         metricRows.append(["Записанных измерений", String(m.sampleSize)])
@@ -149,8 +150,8 @@ public enum ReportBuilder {
                 blocks.append(.pageBreak)
             }
             if [.doctor, .summary, .insulin, .raw].contains(o.type) {
-                blocks.append(.chart(ReportChart(title: "Фактически введённый инсулин по дням", kind: .bar,
-                                                 points: daily.enumerated().compactMap { index, row in row.summary.dailyInsulin.map { ReportPoint(Double(index), $0) } },
+                blocks.append(.chart(ReportChart(title: "Фактически введённый инсулин по дням (без базального)", kind: .bar,
+                                                 points: daily.enumerated().compactMap { index, row in row.summary.bolusInsulin.map { ReportPoint(Double(index), $0) } },
                                                  xLabels: labels, yLabel: "ЕД / сутки", minimumTop: 1, rangeBand: nil, color: "#9c90bd",
                                                  note: "Дни без записей инсулина не показаны как ноль.")))
                 let purposes: [InsulinPurpose] = [.meal, .correction, .mealAndCorrection, .basal, .manual, .other]

@@ -74,6 +74,10 @@ struct SettingsView: View {
                     }
                 }
                 Text("Ваш помощник всегда на вашей стороне. Его настроение не зависит от показателей глюкозы.").font(.caption).foregroundStyle(theme.muted)
+                Toggle("Иконка приложения в цвет темы", isOn: preference(\.iconFollowsTheme))
+                    .font(.footnote)
+                Text("Иконка на экране «Домой» меняется вместе с темой. iOS коротко сообщит о смене иконки.")
+                    .font(.caption).foregroundStyle(theme.muted)
             }
             Card {
                 SectionTitle(title: "Защита", systemImage: "faceid")

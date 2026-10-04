@@ -145,6 +145,31 @@ final class DiaryStore {
         return result
     }
 
+    func editor(now: Date = Date()) -> EntryEditor { EntryEditor(now: now, timeZone: timeZone) }
+
+    /// Limit for correcting a dose that confirms a bolus calculation (the calculation's max bolus).
+    func confirmationLimit(for entry: DiaryRecord) -> Double? {
+        guard let id = entry.insulin?.relatedBolusCalculationID.flatMap(UUID.init(uuidString:)) else { return nil }
+        return calculation(id: id)?.input?.maxBolus
+    }
+
+    /// Saves a corrected entry (from `EntryEditor`). The stored version must be the one that
+    /// was edited, so a change made elsewhere in the meantime is never overwritten.
+    func updateEntry(_ updated: DiaryRecord) throws {
+        guard let model = entryModel(id: updated.id), let current = model.record else { throw BolusError.notFound("Запись не найдена") }
+        guard current.version + 1 == updated.version, current.kind == updated.kind else {
+            throw BolusError.conflict("Запись уже изменилась. Откройте её заново.")
+        }
+        model.update(from: updated)
+        audit("entry_update", updated.kind.rawValue, updated.id.uuidString.lowercased(),
+              .object(["before": current.data, "after": updated.data, "version": .number(Double(updated.version))]))
+        if let calculation = current.insulin?.relatedBolusCalculationID {
+            // The calculation snapshot stays as it was; the corrected dose is what IOB uses.
+            audit("confirmed_insulin_entry_update", "calculation", calculation, .object(["entry_id": .string(updated.id.uuidString.lowercased())]))
+        }
+        try commit()
+    }
+
     func deleteEntry(id: UUID) throws {
         guard let model = entryModel(id: id), let record = model.record else { throw BolusError.notFound("Запись не найдена") }
         audit("entry_delete", record.kind.rawValue, id.uuidString.lowercased(), record.data)
@@ -425,8 +450,11 @@ final class DiaryStore {
         var restored = preferences
         if plan.applyPreferences, let imported = document.preferences {
             restored = imported
-            // Device-specific security settings are not taken from a file.
+            // Device-specific settings (lock, Health access, icon) are not taken from a file.
             restored.appLockEnabled = preferences.appLockEnabled
+            restored.healthAutoSync = preferences.healthAutoSync
+            restored.healthLastSync = preferences.healthLastSync
+            restored.iconFollowsTheme = preferences.iconFollowsTheme
             restored.onboardingCompleted = true
             if let row = settingsRow() {
                 row.payload = try BolusJSON.encoder.encode(restored)

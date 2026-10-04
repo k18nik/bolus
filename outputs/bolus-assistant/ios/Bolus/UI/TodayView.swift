@@ -17,19 +17,20 @@ struct TodayView: View {
             Notice(text: "Дневник работает без интернета. Данные хранятся только на этом iPhone.", systemImage: "lock.shield")
             GlucoseMetric(latest: store.latestGlucose(), todayEntries: todayEntries, onAdd: { onAdd(.glucose) })
             IOBMetric()
+            // The calculator comes before food: the bolus is planned before eating.
+            NavigationLink { BolusView() } label: {
+                ShortcutCard(icon: "function", title: "Рассчитать болюс перед едой", subtitle: "С понятной расшифровкой, без интернета")
+            }
             carbsMetric(todayEntries)
             chartCard
             eventsCard(todayEntries)
             mascotCard
-            NavigationLink { BolusView() } label: {
-                ShortcutCard(icon: "function", title: "Рассчитать болюс", subtitle: "С понятной расшифровкой")
-            }
             NavigationLink { CycleView() } label: { CycleShortcut() }
             NavigationLink { AnalyticsView() } label: {
                 ShortcutCard(icon: "sparkles", title: "Чуть больше понимания", subtitle: "Замечайте закономерности вместе с дневником")
             }
             NavigationLink { HealthSyncView() } label: {
-                ShortcutCard(icon: "heart.fill", title: "Apple «Здоровье»", subtitle: "Добавьте тренировки и активность в дневник")
+                ShortcutCard(icon: "heart.fill", title: "Apple «Здоровье»", subtitle: healthSubtitle)
             }
             Label("Только вы управляете своими данными", systemImage: "checkmark.shield")
                 .font(.caption).foregroundStyle(theme.muted).frame(maxWidth: .infinity)
@@ -47,6 +48,12 @@ struct TodayView: View {
         }
     }
 
+    private var healthSubtitle: String {
+        guard store.preferences.healthAutoSync else { return "Подключите автоматическую синхронизацию тренировок и активности" }
+        guard let last = store.preferences.healthLastSync else { return "Автосинхронизация включена" }
+        return "Автосинхронизация включена · \(last.dateTime(store.timeZone))"
+    }
+
     private var heading: some View {
         let hour = Calendar.current.component(.hour, from: Date())
         let greeting = hour < 5 ? "Доброй ночи" : hour < 12 ? "Доброе утро" : hour < 18 ? "Добрый день" : "Добрый вечер"
@@ -61,8 +68,12 @@ struct TodayView: View {
     private func carbsMetric(_ entries: [DiaryRecord]) -> some View {
         let meals = entries.filter { $0.kind == .meal }
         let carbs = meals.reduce(0.0) { $0 + ($1.data.double("total_carbs") ?? 0) }
-        let insulin = entries.filter { $0.kind == .insulin }
+        // Insulin per day excludes basal insulin, which is shown separately.
+        let doses = entries.filter { $0.kind == .insulin }
+        let insulin = doses.filter { $0.data.string("insulin_type") != InsulinType.basal.rawValue }
+        let basal = doses.filter { $0.data.string("insulin_type") == InsulinType.basal.rawValue }
         let units = insulin.reduce(0.0) { $0 + ($1.data.double("units") ?? 0) }
+        let basalUnits = basal.reduce(0.0) { $0 + ($1.data.double("units") ?? 0) }
         return Card {
             Label("Углеводы сегодня", systemImage: "fork.knife").font(.subheadline).foregroundStyle(theme.muted)
             HStack(alignment: .firstTextBaseline, spacing: 6) {
@@ -75,6 +86,10 @@ struct TodayView: View {
                 Text(insulin.isEmpty ? "Инсулин: нет записей" : "Инсулин за день: \(BolusFormat.decimal(units)) ЕД")
             }
             .font(.caption).foregroundStyle(theme.muted)
+            if !basal.isEmpty {
+                Text("Базальный отдельно: \(BolusFormat.decimal(basalUnits)) ЕД — не входит в инсулин за день")
+                    .font(.caption2).foregroundStyle(theme.muted)
+            }
         }
     }
 
@@ -123,6 +138,7 @@ struct TodayView: View {
 
     private func eventsCard(_ entries: [DiaryRecord]) -> some View {
         let recent = Array(entries.sorted { $0.occurredAt > $1.occurredAt }.prefix(4))
+        let cycleStarts = store.cycles().filter { $0.startDate == store.today }
         return Card {
             HStack {
                 Text("События сегодня").font(.headline).foregroundStyle(theme.text)
@@ -130,7 +146,10 @@ struct TodayView: View {
                     .background(theme.mint).clipShape(Capsule()).foregroundStyle(theme.accent)
                 Spacer()
             }
-            if recent.isEmpty {
+            ForEach(cycleStarts) { cycle in
+                NavigationLink { CycleView() } label: { CycleDayRow(cycle: cycle) }.buttonStyle(.plain)
+            }
+            if recent.isEmpty && cycleStarts.isEmpty {
                 EmptyState(action: { onAdd(.glucose) })
             } else {
                 ForEach(recent) { entry in
@@ -273,7 +292,8 @@ struct CycleShortcut: View {
     @Environment(\.theme) private var theme
 
     var body: some View {
-        let status = store.latestCycle()?.status(today: store.today)
+        let latest = store.latestCycle()
+        let status = latest?.status(today: store.today)
         let length = status?.cycleLength ?? 28
         VStack(alignment: .leading, spacing: 10) {
             HStack {
@@ -282,6 +302,9 @@ struct CycleShortcut: View {
                     Text("ВАШ ЦИКЛ").font(.caption2.weight(.semibold)).foregroundStyle(theme.muted)
                     Text(status.map { "День \($0.day)" } ?? "В вашем ритме").font(.headline).foregroundStyle(theme.text)
                     Text(status?.label ?? "Добавить начало цикла").font(.caption).foregroundStyle(theme.muted)
+                    if let latest {
+                        Text("Начало: \(latest.startDate.title("d MMMM yyyy"))").font(.caption).foregroundStyle(theme.muted)
+                    }
                 }
                 Spacer()
                 Image(systemName: "chevron.right").foregroundStyle(theme.accent)

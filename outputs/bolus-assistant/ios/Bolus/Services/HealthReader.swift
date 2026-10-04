@@ -9,11 +9,38 @@ final class HealthReader {
 
     static var isAvailable: Bool { HKHealthStore.isHealthDataAvailable() }
 
-    func read(days: Int, timeZone: TimeZone) async throws -> HealthPayload {
+    private var sampleTypes: [HKSampleType] {
+        types.compactMap { HKObjectType.quantityType(forIdentifier: $0) } + [HKObjectType.workoutType()]
+    }
+
+    /// Asks for read access once; later calls return without showing anything.
+    func requestAccess() async throws {
         guard HKHealthStore.isHealthDataAvailable() else { throw BolusError.validation("Apple «Здоровье» недоступно на этом устройстве.") }
-        let quantities = types.compactMap { HKObjectType.quantityType(forIdentifier: $0) }
-        let readTypes: Set<HKObjectType> = Set(quantities + [HKObjectType.workoutType()])
-        try await store.requestAuthorization(toShare: [], read: readTypes)
+        try await store.requestAuthorization(toShare: [], read: Set(sampleTypes.map { $0 as HKObjectType }))
+    }
+
+    /// Direct link: observer queries fire when Health gets new workouts or activity, and
+    /// background delivery wakes the app for them (entitlement `healthkit.background-delivery`).
+    /// `onChange` must call the completion handler when the new data is saved.
+    func observeChanges(_ onChange: @escaping (@escaping () -> Void) -> Void) {
+        guard HKHealthStore.isHealthDataAvailable() else { return }
+        for type in sampleTypes {
+            let query = HKObserverQuery(sampleType: type, predicate: nil) { _, completion, error in
+                guard error == nil else { completion(); return }
+                onChange(completion)
+            }
+            store.execute(query)
+            let frequency: HKUpdateFrequency = type == HKObjectType.workoutType() ? .immediate : .hourly
+            store.enableBackgroundDelivery(for: type, frequency: frequency) { _, _ in }
+        }
+    }
+
+    func stopBackgroundDelivery() {
+        store.disableAllBackgroundDelivery { _, _ in }
+    }
+
+    func read(days: Int, timeZone: TimeZone) async throws -> HealthPayload {
+        try await requestAccess()
         // Successful authorization means the prompt completed, not that all read types were granted.
         var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = timeZone

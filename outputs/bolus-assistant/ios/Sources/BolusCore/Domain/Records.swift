@@ -648,11 +648,17 @@ public struct AppPreferences: Codable, Equatable, Sendable {
     public var yazioCountry: String
     public var yazioLocale: String
     public var usdaEnabled: Bool
+    /// The home-screen icon follows the colour of the theme.
+    public var iconFollowsTheme: Bool
+    /// Apple Health is read automatically (launch, foreground, HealthKit background delivery).
+    public var healthAutoSync: Bool
+    public var healthLastSync: Date?
 
     public init(name: String = "Мой дневник", timezoneIdentifier: String = "", glucoseUnit: GlucoseUnit = .mmol,
                 themeID: String = "light", mascotID: String = "cat", appLockEnabled: Bool = false, aiProvider: String = "openai",
                 aiModel: String = "gpt-4.1-mini", aiConsent: Bool = false, onboardingCompleted: Bool = false,
-                yazioEnabled: Bool = true, yazioCountry: String = "RU", yazioLocale: String = "ru_RU", usdaEnabled: Bool = false) {
+                yazioEnabled: Bool = true, yazioCountry: String = "RU", yazioLocale: String = "ru_RU", usdaEnabled: Bool = false,
+                iconFollowsTheme: Bool = false, healthAutoSync: Bool = false, healthLastSync: Date? = nil) {
         self.name = name
         self.timezoneIdentifier = timezoneIdentifier
         self.glucoseUnit = glucoseUnit
@@ -667,13 +673,17 @@ public struct AppPreferences: Codable, Equatable, Sendable {
         self.yazioCountry = yazioCountry
         self.yazioLocale = yazioLocale
         self.usdaEnabled = usdaEnabled
+        self.iconFollowsTheme = iconFollowsTheme
+        self.healthAutoSync = healthAutoSync
+        self.healthLastSync = healthLastSync
     }
 
     enum CodingKeys: String, CodingKey {
         case name, timezoneIdentifier = "timezone", glucoseUnit = "glucose_unit", themeID = "theme_id", mascotID = "mascot_id"
         case appLockEnabled = "app_lock_enabled", aiProvider = "ai_provider", aiModel = "ai_model", aiConsent = "ai_consent"
         case onboardingCompleted = "onboarding_completed", yazioEnabled = "yazio_enabled", yazioCountry = "yazio_country"
-        case yazioLocale = "yazio_locale", usdaEnabled = "usda_enabled"
+        case yazioLocale = "yazio_locale", usdaEnabled = "usda_enabled", iconFollowsTheme = "icon_follows_theme"
+        case healthAutoSync = "health_auto_sync", healthLastSync = "health_last_sync"
     }
 
     public init(from decoder: Decoder) throws {
@@ -683,7 +693,9 @@ public struct AppPreferences: Codable, Equatable, Sendable {
         timezoneIdentifier = try c.value(.timezoneIdentifier, default: defaults.timezoneIdentifier)
         glucoseUnit = try c.value(.glucoseUnit, default: defaults.glucoseUnit)
         themeID = try c.value(.themeID, default: defaults.themeID)
-        mascotID = try c.value(.mascotID, default: defaults.mascotID)
+        let mascot = try c.value(.mascotID, default: defaults.mascotID)
+        // The rabbit was replaced by the frog; older settings and server copies keep working.
+        mascotID = mascot == "rabbit" ? "frog" : mascot
         appLockEnabled = try c.value(.appLockEnabled, default: defaults.appLockEnabled)
         aiProvider = try c.value(.aiProvider, default: defaults.aiProvider)
         aiModel = try c.value(.aiModel, default: defaults.aiModel)
@@ -693,6 +705,30 @@ public struct AppPreferences: Codable, Equatable, Sendable {
         yazioCountry = try c.value(.yazioCountry, default: defaults.yazioCountry)
         yazioLocale = try c.value(.yazioLocale, default: defaults.yazioLocale)
         usdaEnabled = try c.value(.usdaEnabled, default: defaults.usdaEnabled)
+        iconFollowsTheme = try c.value(.iconFollowsTheme, default: defaults.iconFollowsTheme)
+        healthAutoSync = try c.value(.healthAutoSync, default: defaults.healthAutoSync)
+        healthLastSync = try c.decodeIfPresent(ISODateString.self, forKey: .healthLastSync)?.date
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var c = encoder.container(keyedBy: CodingKeys.self)
+        try c.encode(name, forKey: .name)
+        try c.encode(timezoneIdentifier, forKey: .timezoneIdentifier)
+        try c.encode(glucoseUnit, forKey: .glucoseUnit)
+        try c.encode(themeID, forKey: .themeID)
+        try c.encode(mascotID, forKey: .mascotID)
+        try c.encode(appLockEnabled, forKey: .appLockEnabled)
+        try c.encode(aiProvider, forKey: .aiProvider)
+        try c.encode(aiModel, forKey: .aiModel)
+        try c.encode(aiConsent, forKey: .aiConsent)
+        try c.encode(onboardingCompleted, forKey: .onboardingCompleted)
+        try c.encode(yazioEnabled, forKey: .yazioEnabled)
+        try c.encode(yazioCountry, forKey: .yazioCountry)
+        try c.encode(yazioLocale, forKey: .yazioLocale)
+        try c.encode(usdaEnabled, forKey: .usdaEnabled)
+        try c.encode(iconFollowsTheme, forKey: .iconFollowsTheme)
+        try c.encode(healthAutoSync, forKey: .healthAutoSync)
+        try c.encodeIfPresent(healthLastSync.map(ISODateString.init), forKey: .healthLastSync)
     }
 
     public func timeZone(device: TimeZone = .current) -> TimeZone {
@@ -701,11 +737,11 @@ public struct AppPreferences: Codable, Equatable, Sendable {
 
     public static let themes: [(id: String, name: String)] = [
         ("light", "Minimal Light"), ("dark", "Minimal Dark"), ("cat", "Cat Café"),
-        ("pink", "Pink Pastel"), ("dino", "Dino"), ("oled", "OLED Black"),
+        ("pink", "Pink Pastel"), ("dino", "Dino"), ("oled", "OLED Black"), ("lilac", "Lilac"),
     ]
 
     public static let mascots: [(id: String, emoji: String, name: String)] = [
-        ("cat", "🐱", "Кот"), ("pig", "🐷", "Поросёнок"), ("dinosaur", "🦕", "Динозавр"),
-        ("rabbit", "🐰", "Кролик"), ("otter", "🦦", "Выдра"), ("panda", "🐼", "Панда"),
+        ("cat", "🐱", "Кот"), ("siamese", "🐈", "Сиамский кот"), ("pig", "🐷", "Поросёнок"), ("dinosaur", "🦕", "Динозавр"),
+        ("frog", "🐸", "Лягушка"), ("otter", "🦦", "Выдра"), ("panda", "🐼", "Панда"),
     ]
 }

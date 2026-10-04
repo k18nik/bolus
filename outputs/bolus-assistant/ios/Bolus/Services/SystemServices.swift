@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 import Security
 import LocalAuthentication
 import Network
@@ -97,6 +98,23 @@ final class AppLockController {
     func confirmOwner() async -> Bool {
         let context = LAContext()
         return (try? await context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: "Включить защиту дневника")) ?? false
+    }
+}
+
+/// Home-screen icon in the colours of the chosen theme (alternate icons in the asset catalog).
+@MainActor
+enum AppIconManager {
+    static func iconName(for themeID: String) -> String? {
+        themeID == "light" || !BolusTheme.all.contains(where: { $0.id == themeID }) ? nil : "AppIcon-" + themeID
+    }
+
+    /// iOS confirms the change with its own short alert; nothing happens if the icon is already right.
+    static func apply(themeID: String, followsTheme: Bool) {
+        let application = UIApplication.shared
+        guard application.supportsAlternateIcons else { return }
+        let target = followsTheme ? iconName(for: themeID) : nil
+        guard application.alternateIconName != target else { return }
+        application.setAlternateIconName(target) { _ in }
     }
 }
 

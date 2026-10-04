@@ -341,6 +341,33 @@ struct EventRow: View {
     }
 }
 
+/// Cycle start shown in the diary on its date (cycles are kept apart from diary entries).
+struct CycleDayRow: View {
+    @Environment(\.theme) private var theme
+    let cycle: CycleRecord
+
+    var body: some View {
+        HStack(spacing: 12) {
+            Text("день").font(.caption).foregroundStyle(theme.muted).frame(width: 40, alignment: .leading)
+            Image(systemName: "moon.fill")
+                .font(.subheadline)
+                .foregroundStyle(BolusTheme.below)
+                .frame(width: 34, height: 34)
+                .background(BolusTheme.below.opacity(0.16))
+                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+            VStack(alignment: .leading, spacing: 2) {
+                Text("Начало цикла").font(.subheadline.weight(.semibold)).foregroundStyle(theme.text).lineLimit(1)
+                Text("\(cycle.startDate.title("d MMMM yyyy")) · длина \(cycle.cycleLength) дней").font(.caption).foregroundStyle(theme.muted).lineLimit(1)
+            }
+            Spacer(minLength: 4)
+            Text("1-й день").font(.subheadline.weight(.semibold)).foregroundStyle(theme.text)
+            Image(systemName: "chevron.right").font(.caption).foregroundStyle(theme.muted)
+        }
+        .padding(.vertical, 6)
+        .contentShape(Rectangle())
+    }
+}
+
 /// Standard iOS share sheet.
 struct ActivityView: UIViewControllerRepresentable {
     let items: [Any]

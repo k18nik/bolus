@@ -142,6 +142,30 @@ final class DiaryStoreTests: XCTestCase {
         XCTAssertFalse(store.preferences.onboardingCompleted)
     }
 
+    /// «Редактировать»: the corrected dose keeps its identity, refreshes IOB and is audited.
+    func testEditedEntryKeepsIdentityAndRefreshesIOB() throws {
+        let store = try makeStore()
+        try store.saveProfile(settings())
+        let result = try store.saveBatch(.init(occurredAt: Date().addingTimeInterval(-60), glucose: 6.1, rapidUnits: 4))
+        let insulin = try XCTUnwrap(result.entries.first { $0.kind == .insulin })
+        XCTAssertEqual(try XCTUnwrap(store.currentIOB()), 4, accuracy: 0.05)
+        let corrected = try store.editor().insulin(insulin, units: 3, administeredAt: insulin.occurredAt, note: "опечатка")
+        try store.updateEntry(corrected)
+        let saved = try XCTUnwrap(store.entry(id: insulin.id))
+        XCTAssertEqual(saved.insulin?.units, 3)
+        XCTAssertEqual(saved.insulin?.dia, 4)
+        XCTAssertEqual(saved.version, 2)
+        XCTAssertEqual(saved.createdAt, insulin.createdAt)
+        XCTAssertEqual(try XCTUnwrap(store.currentIOB()), 3, accuracy: 0.05)
+        XCTAssertThrowsError(try store.updateEntry(corrected), "a stale version is never written over a newer one")
+        XCTAssertEqual(store.allEntries().count, 2)
+        XCTAssertTrue(store.auditEvents().contains { $0.action == "entry_update" })
+
+        let glucose = try XCTUnwrap(result.glucose)
+        try store.updateEntry(try store.editor().glucose(glucose, value: 6.4, unit: .mmol, measuredAt: glucose.occurredAt, note: ""))
+        XCTAssertEqual(store.latestGlucose()?.data.double("value_mmol"), 6.4)
+    }
+
     /// Server → iPhone: the JSON export of the former server lands in SwiftData once.
     func testServerBackupMigratesIntoTheLocalStore() throws {
         let url = try XCTUnwrap(Bundle(for: DiaryStoreTests.self).url(forResource: "legacy_server_backup", withExtension: "json"))

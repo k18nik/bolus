@@ -32,6 +32,9 @@ struct RootView: View {
         .environment(\.theme, theme)
         .preferredColorScheme(theme.isDark ? .dark : .light)
         .tint(theme.accent)
+        .onChange(of: "\(store.preferences.themeID)|\(store.preferences.iconFollowsTheme)") { _, _ in
+            AppIconManager.apply(themeID: store.preferences.themeID, followsTheme: store.preferences.iconFollowsTheme)
+        }
     }
 
     private var tabSelection: Binding<AppTab> {

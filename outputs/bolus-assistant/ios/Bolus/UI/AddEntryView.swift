@@ -1,7 +1,8 @@
 import SwiftUI
 
 enum AddSection: String, CaseIterable, Identifiable {
-    case glucose, meal, insulin, activity, cycle, note, bolus
+    /// Form order: the bolus calculator comes right after glucose, before food.
+    case glucose, bolus, meal, insulin, activity, cycle, note
     var id: String { rawValue }
 
     var title: String {
@@ -41,6 +42,8 @@ struct AddEntryView: View {
     @State private var glucose = ""
     @State private var mealName = "Приём пищи"
     @State private var mealType: MealType = .snack
+    @State private var includeMeal = false
+    @State private var includeActivity = false
     @State private var items: [PickedFood] = []
     @State private var carbs = ""
     @State private var rapid = ""
@@ -71,12 +74,12 @@ struct AddEntryView: View {
                         Text("В часовом поясе \(store.timeZone.identifier)").font(.caption).foregroundStyle(theme.muted)
                     }
                     glucoseSection.id(AddSection.glucose)
+                    bolusSection.id(AddSection.bolus)
                     mealSection.id(AddSection.meal)
                     insulinSection.id(AddSection.insulin)
                     activitySection.id(AddSection.activity)
                     cycleSection.id(AddSection.cycle)
                     noteSection.id(AddSection.note)
-                    bolusSection.id(AddSection.bolus)
                     Button(action: save) { Text("Сохранить заполненное") }
                         .buttonStyle(PrimaryButtonStyle(fullWidth: true))
                         .disabled(draftIsEmpty)
@@ -89,6 +92,8 @@ struct AddEntryView: View {
                 guard !appliedInitial else { return }
                 appliedInitial = true
                 if let initialFood { items = [PickedFood(food: initialFood)] }
+                if initialFood != nil || initialSection == .meal { includeMeal = true }
+                if initialSection == .activity { includeActivity = true }
                 if initialSection != .glucose {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { withAnimation { proxy.scrollTo(initialSection, anchor: .top) } }
                 }
@@ -106,7 +111,11 @@ struct AddEntryView: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 8) {
                 ForEach(AddSection.allCases) { section in
-                    Button { withAnimation { proxy.scrollTo(section, anchor: .top) } } label: {
+                    Button {
+                        if section == .meal { includeMeal = true }
+                        if section == .activity { includeActivity = true }
+                        withAnimation { proxy.scrollTo(section, anchor: .top) }
+                    } label: {
                         Label(section.title, systemImage: section.icon).font(.footnote)
                             .padding(.horizontal, 10).padding(.vertical, 7)
                             .background(theme.surface)
@@ -129,21 +138,36 @@ struct AddEntryView: View {
         }
     }
 
+    /// Carbohydrates of the food section; 0 when the section is not ticked.
+    private var mealCarbs: Double {
+        guard includeMeal else { return 0 }
+        return items.compactMap(\.item).reduce(0.0) { $0 + $1.carbs } + (BolusFormat.parse(carbs) ?? 0)
+    }
+
+    private func sectionToggle(_ section: AddSection, isOn: Binding<Bool>) -> some View {
+        Toggle(isOn: isOn.animation(.easeInOut(duration: 0.2))) {
+            Label(section.title, systemImage: section.icon).font(.headline).foregroundStyle(theme.text)
+        }
+        .tint(theme.accent)
+    }
+
     private var mealSection: some View {
-        let picked = items.compactMap(\.item)
-        let total = picked.reduce(0.0) { $0 + $1.carbs } + (BolusFormat.parse(carbs) ?? 0)
-        return Card {
-            SectionTitle(title: "Еда", systemImage: AddSection.meal.icon)
-            LabeledField(title: "Название приёма пищи") { TextField("Приём пищи", text: $mealName) }
-            Picker("Тип", selection: $mealType) {
-                ForEach(MealType.allCases, id: \.self) { Text($0.label).tag($0) }
+        Card {
+            sectionToggle(.meal, isOn: $includeMeal)
+            if includeMeal {
+                LabeledField(title: "Название приёма пищи") { TextField("Приём пищи", text: $mealName) }
+                Picker("Тип", selection: $mealType) {
+                    ForEach(MealType.allCases, id: \.self) { Text($0.label).tag($0) }
+                }
+                .pickerStyle(.segmented)
+                FoodPicker(onPick: { items.append(PickedFood(food: $0)) })
+                IngredientEditor(items: $items)
+                NumberField(title: "Углеводы вручную · необязательно", text: $carbs, unit: "г", placeholder: "Необязательно")
+                Text("Добавляются к выбранным продуктам. Остальные нутриенты для этой строки не указаны.").font(.caption).foregroundStyle(theme.muted)
+                DataRow(label: "Всего углеводов", value: "\(BolusFormat.decimal(mealCarbs)) г")
+            } else {
+                Text("Отметьте, чтобы добавить приём пищи.").font(.caption).foregroundStyle(theme.muted)
             }
-            .pickerStyle(.segmented)
-            FoodPicker(onPick: { items.append(PickedFood(food: $0)) })
-            IngredientEditor(items: $items)
-            NumberField(title: "Углеводы вручную · необязательно", text: $carbs, unit: "г", placeholder: "Необязательно")
-            Text("Добавляются к выбранным продуктам. Остальные нутриенты для этой строки не указаны.").font(.caption).foregroundStyle(theme.muted)
-            DataRow(label: "Всего углеводов", value: "\(BolusFormat.decimal(total)) г")
         }
     }
 
@@ -164,28 +188,42 @@ struct AddEntryView: View {
 
     private var activitySection: some View {
         Card {
-            SectionTitle(title: "Активность", systemImage: AddSection.activity.icon)
-            LabeledField(title: "Название активности") { TextField("Например, ходьба", text: $activity) }
-            NumberField(title: "Длительность", text: $minutes, unit: "мин")
-            Picker("Интенсивность", selection: $intensity) {
-                Text("Лёгкая").tag("low")
-                Text("Умеренная").tag("moderate")
-                Text("Высокая").tag("high")
+            sectionToggle(.activity, isOn: $includeActivity)
+            if includeActivity {
+                LabeledField(title: "Название активности") { TextField("Например, ходьба", text: $activity) }
+                NumberField(title: "Длительность", text: $minutes, unit: "мин")
+                Picker("Интенсивность", selection: $intensity) {
+                    Text("Лёгкая").tag("low")
+                    Text("Умеренная").tag("moderate")
+                    Text("Высокая").tag("high")
+                }
+                .pickerStyle(.segmented)
+                Text("Учитывается в дневнике и аналитике, дозу не меняет.").font(.caption).foregroundStyle(theme.muted)
+            } else {
+                Text("Отметьте, чтобы записать тренировку или прогулку.").font(.caption).foregroundStyle(theme.muted)
             }
-            .pickerStyle(.segmented)
         }
     }
 
     private var cycleSection: some View {
-        Card {
-            SectionTitle(title: "Цикл", systemImage: AddSection.cycle.icon)
-            Toggle("Отметить начало цикла", isOn: $trackCycle)
+        let latest = store.latestCycle()
+        return Card {
+            Toggle(isOn: $trackCycle.animation(.easeInOut(duration: 0.2))) {
+                Label("Начало цикла", systemImage: AddSection.cycle.icon).font(.headline).foregroundStyle(theme.text)
+            }
+            .tint(theme.accent)
             if trackCycle {
                 DatePicker("Первый день менструации", selection: $cycleStart, in: ...Date(), displayedComponents: .date)
                     .environment(\.locale, Locale(identifier: "ru_RU"))
+                DataRow(label: "Дата начала цикла", value: LocalDate(date: cycleStart, timeZone: store.timeZone).title("d MMMM yyyy"))
                 NumberField(title: "Обычная длина цикла", text: $cycleLength, unit: "дней")
             }
-            Text("Фаза цикла не меняет дозу инсулина.").font(.caption).foregroundStyle(theme.muted)
+            if let latest {
+                let status = latest.status(today: store.today)
+                Text("Текущий цикл: с \(latest.startDate.title("d MMMM yyyy")) · день \(status.day)")
+                    .font(.caption).foregroundStyle(theme.muted)
+            }
+            Text("Дата начала появится в дневнике и на экране цикла. Фаза цикла не меняет дозу инсулина.").font(.caption).foregroundStyle(theme.muted)
         }
     }
 
@@ -201,11 +239,10 @@ struct AddEntryView: View {
     }
 
     private var bolusSection: some View {
-        let picked = items.compactMap(\.item)
-        let total = picked.reduce(0.0) { $0 + $1.carbs } + (BolusFormat.parse(carbs) ?? 0)
+        let total = mealCarbs
         return Card {
             SectionTitle(title: "Калькулятор болюса", systemImage: AddSection.bolus.icon)
-            Text("Расчёт выполняется на iPhone по подтверждённому профилю, без интернета. Еду лучше сначала сохранить — тогда углеводы возьмутся из записи.")
+            Text("Расчёт перед едой выполняется на iPhone по подтверждённому профилю, без интернета. Углеводы берутся из раздела «Еда» ниже, если он отмечен.")
                 .font(.caption).foregroundStyle(theme.muted)
             NavigationLink {
                 BolusView(prefillGlucose: BolusFormat.parse(glucose), prefillCarbs: total > 0 ? total : nil, prefillTime: glucose.isEmpty ? nil : time)
@@ -219,6 +256,9 @@ struct AddEntryView: View {
     private func savedCard(_ result: EntryFactory.BatchResult) -> some View {
         Card {
             Notice(text: "Сохранено записей: \(result.count). Данные на устройстве.", style: .success)
+            if let cycle = result.cycle {
+                DataRow(label: "Начало цикла", value: cycle.startDate.title("d MMMM yyyy"))
+            }
             if result.meal != nil || result.glucose != nil {
                 NavigationLink { BolusView(mealID: result.meal?.id) } label: {
                     Label("Рассчитать болюс", systemImage: "function").frame(maxWidth: .infinity)
@@ -234,8 +274,10 @@ struct AddEntryView: View {
     }
 
     private var draftIsEmpty: Bool {
-        [glucose, carbs, rapid, basal, minutes, activity, note].allSatisfy { $0.trimmingCharacters(in: .whitespaces).isEmpty }
-            && items.isEmpty && !trackCycle
+        func blank(_ text: String) -> Bool { text.trimmingCharacters(in: .whitespaces).isEmpty }
+        let mealEmpty = !includeMeal || (items.isEmpty && blank(carbs))
+        let activityEmpty = !includeActivity || (blank(activity) && blank(minutes))
+        return [glucose, rapid, basal, note].allSatisfy(blank) && mealEmpty && activityEmpty && !trackCycle
     }
 
     private func number(_ text: String, _ field: String) throws -> Double? {
@@ -248,10 +290,15 @@ struct AddEntryView: View {
     private func save() {
         error = nil
         do {
-            let mealItems = items.compactMap(\.item)
-            guard mealItems.count == items.count else { throw BolusError.validation("Укажите количество каждого продукта") }
+            // Food and activity are saved only when their section is ticked.
+            let mealItems = includeMeal ? items.compactMap(\.item) : []
+            guard !includeMeal || mealItems.count == items.count else { throw BolusError.validation("Укажите количество каждого продукта") }
+            let manualCarbs = includeMeal ? try number(carbs, "Углеводы") : nil
+            if includeMeal && mealItems.isEmpty && manualCarbs == nil {
+                throw BolusError.validation("В разделе «Еда» добавьте продукт или углеводы — или снимите отметку.")
+            }
             var minutesValue: Int?
-            if let value = try number(minutes, "Длительность") {
+            if includeActivity, let value = try number(minutes, "Длительность") {
                 guard let whole = Int(exactly: value) else { throw BolusError.validation("Длительность указывается в целых минутах") }
                 minutesValue = whole
             }
@@ -264,13 +311,15 @@ struct AddEntryView: View {
             }
             let draft = EntryFactory.BatchDraft(
                 occurredAt: time, glucose: try number(glucose, "Глюкоза"), glucoseUnit: store.unit, mealName: mealName, mealType: mealType,
-                mealItems: mealItems, manualCarbs: try number(carbs, "Углеводы"), rapidUnits: try number(rapid, "Быстрый инсулин"),
-                basalUnits: try number(basal, "Базальный инсулин"), activityName: activity, activityMinutes: minutesValue,
+                mealItems: mealItems, manualCarbs: manualCarbs, rapidUnits: try number(rapid, "Быстрый инсулин"),
+                basalUnits: try number(basal, "Базальный инсулин"), activityName: includeActivity ? activity : "", activityMinutes: minutesValue,
                 activityIntensity: intensity, cycleStart: trackCycle ? LocalDate(date: cycleStart, timeZone: store.timeZone) : nil,
                 cycleLength: lengthValue, note: note)
             saved = try store.saveBatch(draft)
             glucose = ""
             items = []
+            includeMeal = false
+            includeActivity = false
             carbs = ""
             rapid = ""
             basal = ""
