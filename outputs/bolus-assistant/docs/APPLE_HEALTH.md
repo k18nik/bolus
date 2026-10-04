@@ -20,14 +20,13 @@ HealthKit capability предоставляется нативным прило�
 - [Configuring HealthKit access](https://developer.apple.com/documentation/xcode/configuring-healthkit-access)
 - [Authorizing access to health data](https://developer.apple.com/documentation/healthkit/authorizing-access-to-health-data)
 
-В `ios/` находится нативное local-first приложение с read-only HealthKit и ручной синхронизацией **HealthKit → SwiftData**, без сервера и без интернета. Инструкция установки — в [ios/README.md](../ios/README.md), архитектура — в [LOCAL_FIRST.md](LOCAL_FIRST.md).
+В `ios/` находится нативное local-first приложение с read-only HealthKit и прямой автоматической синхронизацией **HealthKit → SwiftData**, без сервера и без интернета. Инструкция установки — в [ios/README.md](../ios/README.md), архитектура — в [LOCAL_FIRST.md](LOCAL_FIRST.md).
 
-Читаются тренировки, шаги, activeEnergyBurned, appleExerciseTime и distanceWalkingRunning; дневные показатели агрегирует HKStatisticsCollectionQuery по локальным дням. Перед сохранением приложение показывает число тренировок и дней. Тренировки сохраняются с UUID HealthKit в `dedupeKey`, дневные сводки — по дате, поэтому повторная синхронизация обновляет записи и не создаёт копий. Недоступные поля не подменяются нулями, сводки не суммируются с тренировками, активность не меняет дозу и IOB. Endpoint `POST /api/imports/healthkit` остаётся только для веб-версии.
+Читаются тренировки, шаги, activeEnergyBurned, appleExerciseTime и distanceWalkingRunning; дневные показатели агрегирует HKStatisticsCollectionQuery по локальным дням. Переключатель «Синхронизировать автоматически» на экране «Здоровья» включает чтение при запуске, при возврате в приложение и по сигналу HealthKit (HKObserverQuery и фоновая доставка); кнопка «Синхронизировать сейчас» загружает выбранный период вручную. Тренировки сохраняются с UUID HealthKit в `dedupeKey`, дневные сводки — по дате, поэтому повторная синхронизация обновляет записи и не создаёт копий. Недоступные поля не подменяются нулями, сводки не суммируются с тренировками, активность не меняет дозу и IOB. Endpoint `POST /api/imports/healthkit` остаётся только для веб-версии.
 
-Для дальнейшей автоматической фоновой синхронизации остаются:
+Остаётся сделать:
 
-1. HKAnchoredObjectQuery с persisted anchor и обработкой удалённых объектов.
-2. Ограниченная долговременная сессия устройства для фоновой доставки.
-3. Интеграционные тесты на физическом iPhone. Background delivery — best effort, не обещание постоянной синхронизации.
+1. HKAnchoredObjectQuery с сохранённым anchor и переносом удалённых в «Здоровье» объектов.
+2. Интеграционные тесты на физическом iPhone. Фоновая доставка HealthKit — best effort: iOS решает, когда разбудить приложение, а пока iPhone заблокирован, данные «Здоровья» недоступны.
 
 Сборка и тесты приложения на симуляторе выполняются в GitHub Actions. Разрешения HealthKit и реальные данные часов проверяются только на физическом iPhone с подписью владельца.
