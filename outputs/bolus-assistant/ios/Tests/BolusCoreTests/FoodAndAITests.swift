@@ -207,13 +207,11 @@ final class AITests: XCTestCase {
         XCTAssertTrue(payload["input"]?.arrayValue?[0]["content"]?.stringValue?.contains("Точная схема JSON") ?? false)
     }
 
-    func testRefusalTruncationToolsAndDosesAreRejected() async {
-        let dose = String(decoding: try! BolusJSON.encoder.encode(insight(["summary": .string("Введите 3 ЕД инсулина")])), as: UTF8.self)
+    func testRefusalTruncationAndToolsAreRejected() async {
         let bodies: [Data] = [
             try! BolusJSON.encoder.encode(JSONValue.object(["status": .string("incomplete"), "output": .array([])])),
             try! BolusJSON.encoder.encode(JSONValue.object(["status": .string("completed"), "output": .array([.object(["type": .string("function_call"), "name": .string("set_bolus")])])])),
             try! BolusJSON.encoder.encode(JSONValue.object(["status": .string("completed"), "output": .array([.object(["type": .string("message"), "content": .array([.object(["type": .string("refusal")])])])])])),
-            completed(dose),
             Data("[]".utf8), Data("null".utf8),
             try! BolusJSON.encoder.encode(JSONValue.object(["status": .string("completed"), "output": .null])),
             try! BolusJSON.encoder.encode(JSONValue.object(["status": .string("completed"), "output": .array([.object(["type": .string("message"), "content": .array([.object(["type": .string("output_text"), "text": .number(42)])])])])])),
@@ -227,12 +225,55 @@ final class AITests: XCTestCase {
         }
     }
 
-    func testForbiddenFieldsAndDoseChanges() {
-        for answer in [insight(["bolus_units": .number(5)]), insight(["summary": .string("Увеличьте дозу инсулина")]),
-                       insight(["summary": .string("Take 2 units insulin")]), insight(["observations": .array([.string("Поставьте 1,5 ЕД")])])] {
-            XCTAssertThrowsError(try AIAssistant.validateExplanation(answer))
-        }
+    func testForbiddenFieldsAreRejected() {
+        XCTAssertThrowsError(try AIAssistant.validateExplanation(insight(["bolus_units": .number(5)])))
+        XCTAssertThrowsError(try AIAssistant.validateExplanation(insight(["summary": .number(1)])))
         XCTAssertNoThrow(try AIAssistant.validateExplanation(insight()))
+    }
+
+    /// Dosing advice is removed sentence by sentence; facts from the data stay visible.
+    func testScreeningKeepsFactsAndRemovesDosingAdvice() async throws {
+        let answer = insight([
+            "summary": .string("Глюкоза выросла после сока, выпитого при 3,5 ммоль/л. Введите 3 ЕД инсулина."),
+            "observations": .array([
+                .string("Болюс на еду был 6,2 ЕД, коррекция 2,1 ЕД, итог 8 ЕД."),
+                .string("Глюкоза снизилась после болюса и выросла к 9 утра."),
+                .string("Активность может снизить потребность в инсулине."),
+                .string("Обычно хватает 3 ЕД."),
+                .string("Вечером вы ввели 4 ЕД."),
+            ]),
+            "possible_explanations": .array([
+                .string("Быстрые углеводы сока и ответный подъём после низкой глюкозы."),
+                .string("Стоит увеличить базальный инсулин на ночь."),
+                .string("Уменьшите базал на 20%."),
+            ]),
+            "questions": .array([.string("Нужно ли обсудить со специалистом ночную базальную дозу?"), .string("Можно добавить подколку?")]),
+            "safety_flags": .array([.string("При 17 ммоль/л проверьте кетоны и следуйте плану, согласованному со специалистом."),
+                                    .string("Take 2 units of insulin now.")]),
+        ])
+        let context: JSONValue = .object(["calculation": .object(["result": .object([
+            "meal_bolus": .number(6.2), "correction_bolus": .number(2.1), "recommended_bolus": .number(8)])])])
+        let question = "В 4 утра сахар был 3.5, я выпила сок, с 9 утра он начал расти и сейчас 17, почему? Вечером я ввела 4 ЕД."
+        let screened = AIAssistant.screen(try AIAssistant.validateExplanation(answer),
+                                          grounded: AIAssistant.groundedNumbers(question: question, context: context))
+        XCTAssertEqual(screened.insight.summary, "Глюкоза выросла после сока, выпитого при 3,5 ммоль/л.")
+        XCTAssertEqual(screened.insight.observations, ["Болюс на еду был 6,2 ЕД, коррекция 2,1 ЕД, итог 8 ЕД.",
+                                                       "Глюкоза снизилась после болюса и выросла к 9 утра.",
+                                                       "Активность может снизить потребность в инсулине.",
+                                                       "Вечером вы ввели 4 ЕД."])
+        XCTAssertEqual(screened.insight.possibleExplanations, ["Быстрые углеводы сока и ответный подъём после низкой глюкозы."])
+        XCTAssertEqual(screened.insight.questions, ["Нужно ли обсудить со специалистом ночную базальную дозу?"])
+        XCTAssertEqual(screened.insight.safetyFlags, ["При 17 ммоль/л проверьте кетоны и следуйте плану, согласованному со специалистом."])
+        XCTAssertEqual(screened.hidden, 6)
+
+        // A summary that is only advice is replaced; the call still succeeds with a notice.
+        let onlyAdvice = String(decoding: try BolusJSON.encoder.encode(insight(["summary": .string("Введите 3 ЕД инсулина")])), as: UTF8.self)
+        let result = try await AIAssistant.generateInsight(provider: .openai, key: "sk-test-secret-key-not-real-12345", model: "gpt-4.1-mini",
+                                                           question: "Анализ", context: .object([:]),
+                                                           transport: RequestRecorder().respond(200, completed(onlyAdvice)))
+        XCTAssertEqual(result.insight.summary, AIAssistant.hiddenSummary)
+        XCTAssertEqual(result.hidden, 1)
+        XCTAssertEqual(result.insight.observations, ["Записанные значения требуют сопоставления с едой."])
     }
 
     func testProviderErrorsAreSanitized() async {

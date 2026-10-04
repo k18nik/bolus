@@ -96,7 +96,9 @@ struct AIView: View {
             let model = store.preferences.aiModel
             let result = try await AIAssistant.generateInsight(provider: provider, key: key, model: model, question: question,
                                                                context: context, transport: HTTPClient.transport)
-            let record = AIInsightRecord(question: question, response: try JSONValue.encode(result.insight), context: context,
+            var response = try JSONValue.encode(result.insight)
+            if result.hidden > 0 { response = response.merging(.object(["hidden_sentences": .number(Double(result.hidden))])) }
+            let record = AIInsightRecord(question: question, response: response, context: context,
                                          provider: provider.rawValue, model: model, usage: result.usage, calculationID: selected)
             try store.saveInsight(record)
             question = ""
@@ -123,6 +125,11 @@ struct InsightCard: View {
                 list("Возможные объяснения", response.possibleExplanations)
                 list("Вопросы для обсуждения", response.questions)
                 list("Важно", response.safetyFlags)
+            }
+            if let hidden = insight.response.double("hidden_sentences"), hidden > 0 {
+                Label("Скрыто фраз: \(Int(hidden)). AI не даёт рекомендаций по дозам инсулина — для расчёта используйте калькулятор болюса.",
+                      systemImage: "shield.lefthalf.filled")
+                    .font(.caption).foregroundStyle(theme.muted)
             }
         }
     }
